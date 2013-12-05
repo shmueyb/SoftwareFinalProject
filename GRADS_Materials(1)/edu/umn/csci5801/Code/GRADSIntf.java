@@ -1,3 +1,4 @@
+package edu.umn.csci5801.Code;
 // GRADSIntf.java
 // Last Modified: 11/09/2013
 
@@ -30,11 +31,10 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.umn.csci5801;
 
 import java.util.Map;
 import java.util.List;
-
+import edu.umn.csci5801.model.*;
 /**
  * This defines the interface between the driver of the 
  * Graduation Requirement Assessment Data System (GRADS) 

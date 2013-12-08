@@ -62,19 +62,10 @@ public class GRADS implements GRADSIntf {
 	@Override
 	public List<String> getStudentIDs() throws Exception {
 
-        final List<StudentRecord> studentList;
-        final List<String> idList = new ArrayList<String>();
-
         access.checkUserCanGetListOfStudentIDs();
+        Department gpcDepartment = currentSession.getProfessorUser().getDepartment();
 
-        final Department currentUserDept = currentSession.getProfessorUser().getDepartment();
-        studentList = StudentDAO.getStudentsByDepartment(currentUserDept);
-
-        for(StudentRecord studentDAO: studentList) {
-            idList.add(studentDAO.getStudent().getId());
-        }
-
-		return idList;
+        return StudentRecordController.getStudentIDsByDepartment(gpcDepartment);
 	}
 
     /**

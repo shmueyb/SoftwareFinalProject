@@ -23,17 +23,17 @@ public class FileAccess {
     }
 
     public String getCourseJSON() {
-        //TODO: fill in method
+        //TODO: fill in method: read file into a single JSON string
         return "";
     }
 
     public String getUserJSON() {
-        //TODO: fill in method
+        //TODO: fill in method: read file into a single JSON string
         return "";
     }
 
     public String getProgressJSON() {
-        //TODO: fill in method
+        //TODO: fill in method: read file into a single JSON string
         return "";
     }
 

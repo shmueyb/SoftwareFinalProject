@@ -2,6 +2,7 @@ package edu.umn.csci5801.studentrecord;
 
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.db.StudentDAO;
+import edu.umn.csci5801.studentrecord.program.Department;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
 import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
 
@@ -75,5 +76,25 @@ public class StudentRecordController {
         studentRecord.setNotes(notes);
 
         updateStudentRecord(studentID, studentRecord);
+    }
+
+    /**
+     *
+     * @param gpcDepartment
+     * @return
+     * @throws DatabaseAccessException
+     */
+    public static List<String> getStudentIDsByDepartment(Department gpcDepartment) throws DatabaseAccessException{
+
+        final List<StudentRecord> studentList;
+        final List<String> idList = new ArrayList<String>();
+
+        studentList = StudentDAO.getStudentsByDepartment(gpcDepartment);
+
+        for(StudentRecord studentDAO: studentList) {
+            idList.add(studentDAO.getStudent().getId());
+        }
+
+        return idList;
     }
 }

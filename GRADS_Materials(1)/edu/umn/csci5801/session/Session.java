@@ -1,8 +1,5 @@
 package edu.umn.csci5801.session;
 
-import edu.umn.csci5801.model.Professor;
-import edu.umn.csci5801.model.Student;
-
 /**
  * Created with IntelliJ IDEA.
  * User: Ben

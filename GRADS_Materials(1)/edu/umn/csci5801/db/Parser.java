@@ -1,11 +1,11 @@
 package edu.umn.csci5801.db;
 
-import edu.umn.csci5801.model.Course;
-import edu.umn.csci5801.model.CourseArea;
-import edu.umn.csci5801.model.Department;
-import edu.umn.csci5801.model.Professor;
-import edu.umn.csci5801.model.ProgressSummary;
-import edu.umn.csci5801.model.Student;
+import edu.umn.csci5801.studentrecord.transcript.Course;
+import edu.umn.csci5801.studentrecord.transcript.CourseArea;
+import edu.umn.csci5801.studentrecord.program.Department;
+import edu.umn.csci5801.session.Professor;
+import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
+import edu.umn.csci5801.session.Student;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,35 +2,50 @@ package edu.umn.csci5801;
 
 import java.util.List;
 
-import edu.umn.csci5801.access.AccessController;
+import edu.umn.csci5801.access.AccessDeniedException;
 import edu.umn.csci5801.db.Parser;
-import edu.umn.csci5801.model.CourseTaken;
-import edu.umn.csci5801.model.ProgressSummary;
-import edu.umn.csci5801.model.StudentRecord;
+import edu.umn.csci5801.session.InvalidUserException;
+import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
+import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
+import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.session.Session;
 
 public class GRADS implements GRADSIntf {
 
-    private AccessController accessController;
     private Session currentSession;
 
 	public GRADS() {
-		// TODO Auto-generated constructor stub
-        AccessController accessController = new AccessController();
+
 	}
 
+    /**
+     * Sets the current user of the GRADS system.
+     *
+     * @param userID id of the current user.
+     * @throws InvalidUserException if there was a problem with the given userID
+     */
 	@Override
-	public void setUser(String userID) throws Exception {
+	public void setUser(String userID) throws InvalidUserException {
         currentSession = new Session(userID);
-		// TODO Auto-generated method stub
-
 	}
 
+    /**
+     * returns the userID of the current user.
+     *
+     * @return current user's userID
+     */
 	@Override
 	public String getUser() {
 		return currentSession.getUserID();
 	}
 
+    /**
+     * Fetches a list of student IDs corresponding to students that the
+     * current user (GPC only) has access to
+     *
+     * @return List of strings of student IDs
+     * @throws Exception if the current user is not a GPC
+     */
 	@Override
 	public List<String> getStudentIDs() throws Exception {
 		Parser parser = new Parser("Data/");
@@ -41,45 +56,75 @@ public class GRADS implements GRADSIntf {
 		return null;
 	}
 
+    /**
+     * retrieves the transcript corresponding to the given studentID.
+     * @param studentID  the identifier of the student, for which we want a transcript.
+     * @return StudentRecord corresponding to the userID
+     * @throws Exception if the data could not be retrieved, or if the current user
+     *      does not have access to the desired record.
+     */
 	@Override
-	public StudentRecord getTranscript(String userId) throws Exception {
+	public StudentRecord getTranscript(String studentID) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+    /**
+     * Updates the StudentRecord in the database for the supplied userID
+     *
+     * @param studentID the ID of the student, whose student record we want to overwrite.
+     * @param transcript the new student record
+     * @throws Exception if the user does not have access, or updating failed
+     */
 	@Override
-	public void updateTranscript(String userId, StudentRecord transcript)
+	public void updateTranscript(String studentID, StudentRecord transcript)
 			throws Exception {
 		// TODO Auto-generated method stub
 
 	}
 
+    /**
+     * adds a new note to the student record corresponding to the studentID
+     *
+     * @param studentID the student ID to add a new note for.
+     * @param note the note to append
+     * @throws Exception if the user does not have access or adding the note failed
+     */
 	@Override
-	public void addNote(String userId, String note) throws Exception {
+	public void addNote(String studentID, String note) throws Exception {
 		// TODO Auto-generated method stub
 
 	}
 
+    /**
+     * generates and returned a progress summary for the given student
+     *
+     * @param studentID the student to generate the record for.
+     * @return
+     * @throws Exception
+     */
 	@Override
-	public ProgressSummary generateProgressSummary(String userId)
+	public ProgressSummary generateProgressSummary(String studentID)
 			throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+    /**
+     * Returns the ProgressSummary that would result from the given student
+     * taking the supplied courses.
+     *
+     * @param studentID the student to generate the record for.
+     * @param courses a list of the prospective courses.
+     * @return ProgressSummary, what the student's record would look like after taking and passing
+     *      the supplied list of courses.
+     * @throws Exception the user does not have permission to do this, or generating the
+     *      summary failed for the given reason.
+     */
 	@Override
-	public ProgressSummary simulateCourses(String userId,
-			List<CourseTaken> courses) throws Exception {
+	public ProgressSummary simulateCourses(String studentID, List<CourseTaken> courses) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

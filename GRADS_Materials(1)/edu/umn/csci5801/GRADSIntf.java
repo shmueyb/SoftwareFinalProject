@@ -32,9 +32,11 @@ package edu.umn.csci5801;
  */
 
 
-import java.util.Map;
 import java.util.List;
-import edu.umn.csci5801.model.*;
+
+import edu.umn.csci5801.studentrecord.StudentRecord;
+import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
+import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
 /**
  * This defines the interface between the driver of the 
  * Graduation Requirement Assessment Data System (GRADS) 
@@ -84,7 +86,7 @@ public interface GRADSIntf
      * @throws Exception  if the form data could not be retrieved.  SEE NOTE IN 
      *      CLASS HEADER.
      */
-    public StudentRecord getTranscript(String userId) 
+    public StudentRecord getTranscript(String userId)
             throws Exception;
     
     /**
@@ -114,7 +116,7 @@ public interface GRADSIntf
      * @throws Exception  if the progress summary could not be generated.  
      * SEE NOTE IN CLASS HEADER.
      */
-    public ProgressSummary generateProgressSummary(String userId) 
+    public ProgressSummary generateProgressSummary(String userId)
             throws Exception;
 
     /**
@@ -126,6 +128,6 @@ public interface GRADSIntf
      * @throws Exception  if the progress summary could not be generated or the courses  
      * are invalid. SEE NOTE IN CLASS HEADER.
      */
-    public ProgressSummary simulateCourses(String userId, List<CourseTaken> courses) 
+    public ProgressSummary simulateCourses(String userId, List<CourseTaken> courses)
             throws Exception;
 }

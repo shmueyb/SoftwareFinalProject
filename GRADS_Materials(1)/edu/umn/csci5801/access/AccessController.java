@@ -9,6 +9,18 @@ package edu.umn.csci5801.access;
  */
 public class AccessController {
 
+    private AccessController accessController;
 
+    private AccessController() {
+
+    }
+
+    public AccessController getAccessController() {
+        if (accessController == null) {
+            accessController = new AccessController();
+        }
+
+        return accessController;
+    }
 
 }

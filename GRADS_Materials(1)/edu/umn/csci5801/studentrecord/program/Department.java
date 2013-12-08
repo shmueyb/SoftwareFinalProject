@@ -1,5 +1,11 @@
 package edu.umn.csci5801.studentrecord.program;
 
+import com.google.gson.annotations.SerializedName;
+
 public enum Department {
-	COMPUTER_SCIENCE, MATH
+    @SerializedName("COMPUTER_SCIENCE")
+	COMPUTER_SCIENCE,
+
+    @SerializedName("MATH")
+    MATH
 }

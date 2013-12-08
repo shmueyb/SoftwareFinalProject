@@ -5,12 +5,22 @@
     <ignored path="GRADS.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Parser.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386272822519" ignored="false" />
-    <file path="/fragment.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386471208770" ignored="false" />
-    <file path="/GRADS.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386474688876" ignored="false" />
-    <file path="/AccessController.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386473241259" ignored="false" />
+    <file path="/fragment.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386494460353" ignored="false" />
+    <file path="/GRADS.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386498172770" ignored="false" />
+    <file path="/AccessController.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386491576799" ignored="false" />
     <file path="/Session.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386473508812" ignored="false" />
     <file path="/UserType.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386274497267" ignored="false" />
     <file path="/UserNotFoundException.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386473371811" ignored="false" />
+    <file path="/UserDAO.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386477810590" ignored="false" />
+    <file path="/StudentDAO.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386494403408" ignored="false" />
+    <file path="/FileAccess.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386492049861" ignored="false" />
+    <file path="/Department.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386489656732" ignored="false" />
+    <file path="/StudentAccess.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386494820922" ignored="false" />
+    <file path="/AccessDeniedException.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386490373756" ignored="false" />
+    <file path="/DatabaseAccessException.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386491654304" ignored="false" />
+    <file path="/Controller.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386498621504" ignored="false" />
+    <file path="/StudentRecordController.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386498563437" ignored="false" />
+    <file path="/ProgressAccess.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386495458497" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,19 +79,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GRADSIntf.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/GRADSIntf.java">
+      <file leaf-file-name="GRADS.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/GRADS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="17" selection-start="2386" selection-end="2386" vertical-scroll-proportion="0.0">
+            <state line="132" column="47" selection-start="4404" selection-end="4404" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2019#2027#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StudentRecordController.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecordController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="51" selection-start="92" selection-end="92" vertical-scroll-proportion="0.049751244">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GRADS.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/GRADS.java">
+      <file leaf-file-name="RequirementCheckResult.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/requirements/RequirementCheckResult.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="37" selection-start="584" selection-end="584" vertical-scroll-proportion="-0.57507986">
+            <state line="10" column="42" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -89,19 +111,39 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Session.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/session/Session.java">
+      <file leaf-file-name="CheckResultDetails.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/CheckResultDetails.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="21" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0">
+            <state line="4" column="13" selection-start="89" selection-end="89" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccessController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/access/AccessController.java">
+      <file leaf-file-name="Course.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/Course.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="31" selection-start="298" selection-end="298" vertical-scroll-proportion="0.0">
+            <state line="6" column="17" selection-start="158" selection-end="158" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StudentRecord.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecord.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="25" selection-start="731" selection-end="731" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MilestoneSet.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/requirements/MilestoneSet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="37" selection-start="365" selection-end="365" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -117,18 +159,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/GRADSIntf.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/Parser.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/Session.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/session/UserType.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/controller/StudentRecord.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecord.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/CheckResultDetails.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/UserDAO.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/program/Department.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/access/AccessDeniedException.java" />
         <option value="$PROJECT_DIR$/edu/umn/csci5801/access/AccessController.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/session/UserNotFoundException.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/session/InvalidUserException.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/session/Session.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/DatabaseAccessException.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/FileAccess.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/ProgressDAO.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/ProgressSummary.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/Controller.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecord.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/StudentDAO.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/StudentAccess.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/ProgressAccess.java" />
         <option value="$PROJECT_DIR$/edu/umn/csci5801/GRADS.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecordController.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/CourseDAO.java" />
       </list>
     </option>
   </component>
@@ -342,16 +388,20 @@
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="preferences.sourceCode.Java" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="FullScreen" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
-    <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.lastSelected" value="preferences.sourceCode.Java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/gson" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -455,6 +505,24 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="DETECT_NESTED_COPIES" value="true" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="fbb72c43-a767-4019-a997-9034d1805821" name="Default" comment="" />
@@ -470,6 +538,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -479,11 +548,10 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24674267" sideWeight="0.99847096" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24674267" sideWeight="0.6712538" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -544,122 +612,227 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/ProgressSummary.java">
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/StudentDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/CheckResultDetails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="55" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="25" selection-start="671" selection-end="671" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/CheckResultDetails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="19" selection-start="235" selection-end="235" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/ProgressSummary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="425" selection-end="425" vertical-scroll-proportion="0.105820104">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/session/UserType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="19" selection-start="232" selection-end="232" vertical-scroll-proportion="0.3233831">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="7" selection-start="48" selection-end="48" vertical-scroll-proportion="-1.0543131">
+        <state line="23" column="0" selection-start="691" selection-end="1091" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1327#1342#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/access/AccessController.java">
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/requirements/Milestone.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="31" selection-start="298" selection-end="298" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/access/AccessDeniedException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="34" selection-start="219" selection-end="219" vertical-scroll-proportion="0.21565495">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/session/InvalidUserException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="4" selection-start="244" selection-end="244" vertical-scroll-proportion="0.23961662">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/session/Person.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="48" selection-end="48" vertical-scroll-proportion="0.047923323">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/session/Professor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="107" selection-end="107" vertical-scroll-proportion="0.095846646">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/session/Student.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="48" selection-end="48" vertical-scroll-proportion="-0.21565495">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/session/Session.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="21" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0">
+        <state line="2" column="12" selection-start="66" selection-end="66" vertical-scroll-proportion="0.050847456">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/GRADSIntf.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="17" selection-start="2386" selection-end="2386" vertical-scroll-proportion="0.0">
+        <state line="130" column="27" selection-start="5290" selection-end="5290" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/GRADS.java">
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecord.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="37" selection-start="584" selection-end="584" vertical-scroll-proportion="-0.57507986">
+        <state line="23" column="25" selection-start="731" selection-end="731" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/CourseTaken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="14" selection-start="90" selection-end="90" vertical-scroll-proportion="0.024875622">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/CourseArea.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="12" selection-start="64" selection-end="64" vertical-scroll-proportion="0.049751244">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/ProgressSummary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="34" selection-start="774" selection-end="774" vertical-scroll-proportion="0.5472637">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#697#721#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/CheckResultDetails.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="13" selection-start="89" selection-end="89" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/requirements/MilestoneSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="37" selection-start="365" selection-end="365" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/requirements/RequirementCheckResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="42" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/GRADS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="132" column="47" selection-start="4404" selection-end="4404" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2019#2027#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/Course.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="17" selection-start="158" selection-end="158" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/CourseDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="209" selection-end="209" vertical-scroll-proportion="0.29850745">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/UserDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="30" selection-start="679" selection-end="679" vertical-scroll-proportion="0.5522388">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#847#860#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecordController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="51" selection-start="92" selection-end="92" vertical-scroll-proportion="0.049751244">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="Copyright.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>mysql-connector-java-5.1.22-bin</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.6</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>umn</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.6</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>gson</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
 

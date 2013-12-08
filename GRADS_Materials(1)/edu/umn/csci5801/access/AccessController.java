@@ -1,5 +1,8 @@
 package edu.umn.csci5801.access;
 
+import edu.umn.csci5801.session.Session;
+import edu.umn.csci5801.session.UserType;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Ben
@@ -9,18 +12,51 @@ package edu.umn.csci5801.access;
  */
 public class AccessController {
 
-    private AccessController accessController;
+    private Session currentSession;
 
-    private AccessController() {
-
+    /**
+     *
+     * @param session
+     */
+    public AccessController(Session session) {
+        currentSession = session;
     }
 
-    public AccessController getAccessController() {
-        if (accessController == null) {
-            accessController = new AccessController();
+
+    /**
+     *
+     * @param studentID
+     */
+    public void checkUserCanAccessStudentRecord(String studentID) {
+        //TODO: perform check
+    }
+
+
+    /**
+     *
+     * @throws AccessDeniedException
+     */
+    public void checkUserCanGetListOfStudentIDs() throws AccessDeniedException{
+        if (currentSession.getCurrentUserType() != UserType.GPC) {
+            throw new AccessDeniedException("User " + currentSession.getUserID() + " is not a GPC," +
+                    "and therefore does not have access to generate a list of student IDs");
         }
-
-        return accessController;
     }
 
+
+    /**
+     *
+     * @param studentID
+     * @throws AccessDeniedException
+     */
+    public void checkUserCanEditRecord(String studentID) throws AccessDeniedException{
+        if (currentSession.getCurrentUserType() == UserType.GPC) {
+            //TODO: perform check on student's dept
+
+        } else if (currentSession.getCurrentUserType() == UserType.STUDENT) {
+            //TODO: throw exception if student ID != user ID
+        } else {
+            throw new AccessDeniedException("User " + currentSession.getUserID() + "has an invalid user type");
+        }
+    }
 }

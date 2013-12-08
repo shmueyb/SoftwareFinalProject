@@ -5,7 +5,6 @@ import edu.umn.csci5801.session.Student;
 import edu.umn.csci5801.studentrecord.program.Degree;
 import edu.umn.csci5801.studentrecord.program.Department;
 import edu.umn.csci5801.studentrecord.requirements.RequirementCheckResult;
-import edu.umn.csci5801.studentrecord.transcript.Term;
 
 import java.util.ArrayList;
 import java.util.List;

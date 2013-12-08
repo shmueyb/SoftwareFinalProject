@@ -1,10 +1,15 @@
 package edu.umn.csci5801;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import edu.umn.csci5801.access.AccessDeniedException;
-import edu.umn.csci5801.db.Parser;
+import edu.umn.csci5801.access.AccessController;
+import edu.umn.csci5801.db.DatabaseAccessException;
+import edu.umn.csci5801.db.FileAccess;
+import edu.umn.csci5801.db.StudentDAO;
 import edu.umn.csci5801.session.InvalidUserException;
+import edu.umn.csci5801.studentrecord.StudentRecordController;
+import edu.umn.csci5801.studentrecord.program.Department;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
 import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
 import edu.umn.csci5801.studentrecord.StudentRecord;
@@ -13,10 +18,17 @@ import edu.umn.csci5801.session.Session;
 public class GRADS implements GRADSIntf {
 
     private Session currentSession;
+    private AccessController access;
 
 	public GRADS() {
+        String databaseLocation = "Grads_Materials/Data/";
 
-	}
+        try {
+            FileAccess.initialize(databaseLocation);
+        } catch (DatabaseAccessException e) {
+            //do nothing, this will not fail on the first call
+        }
+    }
 
     /**
      * Sets the current user of the GRADS system.
@@ -27,6 +39,7 @@ public class GRADS implements GRADSIntf {
 	@Override
 	public void setUser(String userID) throws InvalidUserException {
         currentSession = new Session(userID);
+        access = new AccessController(currentSession);
 	}
 
     /**
@@ -48,12 +61,20 @@ public class GRADS implements GRADSIntf {
      */
 	@Override
 	public List<String> getStudentIDs() throws Exception {
-		Parser parser = new Parser("Data/");
 
-        //TODO: check that they have permission using access controller
+        final List<StudentRecord> studentList;
+        final List<String> idList = new ArrayList<String>();
 
-        parser.findStudentsByAdvisor(currentSession.getProfessorUser());
-		return null;
+        access.checkUserCanGetListOfStudentIDs();
+
+        final Department currentUserDept = currentSession.getProfessorUser().getDepartment();
+        studentList = StudentDAO.getStudentsByDepartment(currentUserDept);
+
+        for(StudentRecord studentDAO: studentList) {
+            idList.add(studentDAO.getStudent().getId());
+        }
+
+		return idList;
 	}
 
     /**
@@ -65,8 +86,9 @@ public class GRADS implements GRADSIntf {
      */
 	@Override
 	public StudentRecord getTranscript(String studentID) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+
+        access.checkUserCanAccessStudentRecord(studentID);
+        return StudentRecordController.getTranscript(studentID);
 	}
 
     /**
@@ -77,10 +99,10 @@ public class GRADS implements GRADSIntf {
      * @throws Exception if the user does not have access, or updating failed
      */
 	@Override
-	public void updateTranscript(String studentID, StudentRecord transcript)
-			throws Exception {
-		// TODO Auto-generated method stub
+	public void updateTranscript(String studentID, StudentRecord transcript) throws Exception {
 
+        access.checkUserCanEditRecord(studentID);
+        StudentRecordController.updateStudentRecord(studentID, transcript);
 	}
 
     /**
@@ -92,22 +114,23 @@ public class GRADS implements GRADSIntf {
      */
 	@Override
 	public void addNote(String studentID, String note) throws Exception {
-		// TODO Auto-generated method stub
 
+        access.checkUserCanEditRecord(studentID);
+        StudentRecordController.addNote(studentID, note);
 	}
 
     /**
-     * generates and returned a progress summary for the given student
+     * generates and returns a progress summary for the given student
      *
      * @param studentID the student to generate the record for.
      * @return
      * @throws Exception
      */
 	@Override
-	public ProgressSummary generateProgressSummary(String studentID)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public ProgressSummary generateProgressSummary(String studentID) throws Exception {
+
+        access.checkUserCanAccessStudentRecord(studentID);
+        return StudentRecordController.generateProgressSummary(studentID);
 	}
 
     /**
@@ -123,8 +146,8 @@ public class GRADS implements GRADSIntf {
      */
 	@Override
 	public ProgressSummary simulateCourses(String studentID, List<CourseTaken> courses) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+        access.checkUserCanAccessStudentRecord(studentID);
+        return StudentRecordController.simulateCourses(studentID, courses);
 	}
 
 }

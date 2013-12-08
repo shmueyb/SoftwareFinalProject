@@ -10,6 +10,9 @@ import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
 
 import java.util.List;
 
+/**
+ *
+ */
 public class StudentRecord {
 	private Student student;
 	private Department department;
@@ -144,6 +147,5 @@ public class StudentRecord {
 			return false;
 		return true;
 	}
-	
 	
 }

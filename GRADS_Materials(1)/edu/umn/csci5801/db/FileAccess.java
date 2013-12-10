@@ -2,7 +2,7 @@ package edu.umn.csci5801.db;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import edu.umn.csci5801.session.Session;
+import edu.umn.csci5801.session.Users;
 import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.studentrecord.transcript.Course;
 
@@ -40,9 +40,9 @@ public class FileAccess {
         return courses;
     }
 
-    public static List<Session> getUserJSON() throws FileNotFoundException {
+    public static List<Users> getUserJSON() throws FileNotFoundException {
         //TODO: fill in method: read file into a single JSON string
-        List<Session> sessions = new Gson().fromJson( new FileReader( new File("GRADS_Materials/Data/users.txt")), new TypeToken<List<Session>>(){}.getType());
+        List<Users> sessions = new Gson().fromJson( new FileReader( new File("GRADS_Materials/Data/users.txt")), new TypeToken<List<Users>>(){}.getType());
         return sessions;
     }
 

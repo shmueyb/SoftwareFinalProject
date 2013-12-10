@@ -6,6 +6,7 @@ import edu.umn.csci5801.studentrecord.program.Department;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
 import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class StudentRecordController {
      * @return
      * @throws DatabaseAccessException
      */
-    public static StudentRecord getTranscript(String studentID) throws DatabaseAccessException{
+    public static StudentRecord getTranscript(String studentID) throws DatabaseAccessException, FileNotFoundException {
         return StudentDAO.getStudentByID(studentID);
     }
 
@@ -69,7 +70,7 @@ public class StudentRecordController {
      * @param note
      * @throws DatabaseAccessException
      */
-    public static void addNote(String studentID, String note) throws DatabaseAccessException{
+    public static void addNote(String studentID, String note) throws DatabaseAccessException, FileNotFoundException {
         StudentRecord studentRecord = StudentDAO.getStudentByID(studentID);
         List<String> notes = studentRecord.getNotes();
         notes.add(note);
@@ -84,7 +85,7 @@ public class StudentRecordController {
      * @return
      * @throws DatabaseAccessException
      */
-    public static List<String> getStudentIDsByDepartment(Department gpcDepartment) throws DatabaseAccessException{
+    public static List<String> getStudentIDsByDepartment(Department gpcDepartment) throws DatabaseAccessException, FileNotFoundException {
 
         final List<StudentRecord> studentList;
         final List<String> idList = new ArrayList<String>();

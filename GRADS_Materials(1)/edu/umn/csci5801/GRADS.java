@@ -20,7 +20,7 @@ public class GRADS implements GRADSIntf {
     private Session currentSession;
     private AccessController access;
 
-	public GRADS() {
+    public GRADS() {
         String databaseLocation = "Grads_Materials/Data/";
 
         try {
@@ -36,21 +36,21 @@ public class GRADS implements GRADSIntf {
      * @param userID id of the current user.
      * @throws InvalidUserException if there was a problem with the given userID
      */
-	@Override
-	public void setUser(String userID) throws InvalidUserException {
+    @Override
+    public void setUser(String userID) throws InvalidUserException {
         currentSession = new Session(userID);
         access = new AccessController(currentSession);
-	}
+    }
 
     /**
      * returns the userID of the current user.
      *
      * @return current user's userID
      */
-	@Override
-	public String getUser() {
-		return currentSession.getUserID();
-	}
+    @Override
+    public String getUser() {
+        return currentSession.getUserID();
+    }
 
     /**
      * Fetches a list of student IDs corresponding to students that the
@@ -59,14 +59,14 @@ public class GRADS implements GRADSIntf {
      * @return List of strings of student IDs
      * @throws Exception if the current user is not a GPC
      */
-	@Override
-	public List<String> getStudentIDs() throws Exception {
+    @Override
+    public List<String> getStudentIDs() throws Exception {
 
         access.checkUserCanGetListOfStudentIDs();
         Department gpcDepartment = currentSession.getProfessorUser().getDepartment();
 
         return StudentRecordController.getStudentIDsByDepartment(gpcDepartment);
-	}
+    }
 
     /**
      * retrieves the transcript corresponding to the given studentID.
@@ -75,12 +75,12 @@ public class GRADS implements GRADSIntf {
      * @throws Exception if the data could not be retrieved, or if the current user
      *      does not have access to the desired record.
      */
-	@Override
-	public StudentRecord getTranscript(String studentID) throws Exception {
+    @Override
+    public StudentRecord getTranscript(String studentID) throws Exception {
 
         access.checkUserCanAccessStudentRecord(studentID);
         return StudentRecordController.getTranscript(studentID);
-	}
+    }
 
     /**
      * Updates the StudentRecord in the database for the supplied userID
@@ -89,12 +89,12 @@ public class GRADS implements GRADSIntf {
      * @param transcript the new student record
      * @throws Exception if the user does not have access, or updating failed
      */
-	@Override
-	public void updateTranscript(String studentID, StudentRecord transcript) throws Exception {
+    @Override
+    public void updateTranscript(String studentID, StudentRecord transcript) throws Exception {
 
         access.checkUserCanEditRecord(studentID);
         StudentRecordController.updateStudentRecord(studentID, transcript);
-	}
+    }
 
     /**
      * adds a new note to the student record corresponding to the studentID
@@ -103,12 +103,12 @@ public class GRADS implements GRADSIntf {
      * @param note the note to append
      * @throws Exception if the user does not have access or adding the note failed
      */
-	@Override
-	public void addNote(String studentID, String note) throws Exception {
+    @Override
+    public void addNote(String studentID, String note) throws Exception {
 
         access.checkUserCanEditRecord(studentID);
         StudentRecordController.addNote(studentID, note);
-	}
+    }
 
     /**
      * generates and returns a progress summary for the given student
@@ -117,12 +117,12 @@ public class GRADS implements GRADSIntf {
      * @return
      * @throws Exception
      */
-	@Override
-	public ProgressSummary generateProgressSummary(String studentID) throws Exception {
+    @Override
+    public ProgressSummary generateProgressSummary(String studentID) throws Exception {
 
         access.checkUserCanAccessStudentRecord(studentID);
         return StudentRecordController.generateProgressSummary(studentID);
-	}
+    }
 
     /**
      * Returns the ProgressSummary that would result from the given student
@@ -135,10 +135,10 @@ public class GRADS implements GRADSIntf {
      * @throws Exception the user does not have permission to do this, or generating the
      *      summary failed for the given reason.
      */
-	@Override
-	public ProgressSummary simulateCourses(String studentID, List<CourseTaken> courses) throws Exception {
+    @Override
+    public ProgressSummary simulateCourses(String studentID, List<CourseTaken> courses) throws Exception {
         access.checkUserCanAccessStudentRecord(studentID);
         return StudentRecordController.simulateCourses(studentID, courses);
-	}
+    }
 
 }

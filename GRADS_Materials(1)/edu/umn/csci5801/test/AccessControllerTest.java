@@ -22,7 +22,7 @@ public class AccessControllerTest {
     @Test
     public void testCheckUserCanGetListOfStudentIDs_asGPC() {
         Session session = EasyMock.createMock(Session.class);
-        expect(session.getCurrentUserType()).andReturn(UserType.GPC).anyTimes();
+        expect(session.getCurrentUserType()).andReturn(UserType.GRADUATE_PROGRAM_COORDINATOR).anyTimes();
 
         EasyMock.replay(session);
 

@@ -33,7 +33,21 @@ public class FileAccessTest {
 
     @Test
     public void testWriteStudentsJSON() throws Exception {
+        GRADS grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
+        List<StudentRecord> studentRecords;
+        studentRecords = FileAccess.getStudentsJSON(grads.getStudentRecords());
+        // Set ID of first user to a different ID
+        studentRecords.get(0).getStudent().setId("blust013");
+        FileAccess.writeStudentsJSON(grads.getStudentRecords(), studentRecords);
+        // Check files have been writen to
+        studentRecords = FileAccess.getStudentsJSON(grads.getStudentRecords());
+        StudentRecord firstStudent=studentRecords.get(0);
+        assertEquals(firstStudent.getStudent().getId(), "blust013");
+        assertEquals(firstStudent.getDepartment(), Department.COMPUTER_SCIENCE);
 
+        //reset the old value
+        studentRecords.get(0).getStudent().setId("nguy0621");
+        FileAccess.writeStudentsJSON(grads.getStudentRecords(), studentRecords);
     }
 
     @Test

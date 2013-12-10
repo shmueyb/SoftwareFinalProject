@@ -23,10 +23,10 @@ public class StudentDAO {
         //TODO: get all students, find this one, replace with updated version, convert to JSON, save using FileAccess.java
     }
 
-    public static List<StudentRecord> getAllStudents() throws DatabaseAccessException, FileNotFoundException {
+    public static List<StudentRecord> getAllStudents(String studentRecordsFile) throws DatabaseAccessException, FileNotFoundException {
         List<StudentRecord> studentList;
         Gson gson = new Gson();
-        studentList = FileAccess.getStudentsJSON();
+        studentList = FileAccess.getStudentsJSON(studentRecordsFile);
 
         Type type = new TypeToken<ArrayList<StudentRecord>>(){}.getType();
 
@@ -35,8 +35,8 @@ public class StudentDAO {
         return studentList;
     }
 
-    public static List<StudentRecord> getStudentsByDepartment(Department dept) throws DatabaseAccessException, FileNotFoundException {
-        List<StudentRecord> fullStudentList= getAllStudents();
+    public static List<StudentRecord> getStudentsByDepartment(String studentRecordsFile, Department dept) throws DatabaseAccessException, FileNotFoundException {
+        List<StudentRecord> fullStudentList= getAllStudents(studentRecordsFile);
         List<StudentRecord> filteredStudentList = new ArrayList<StudentRecord>();
 
         for(StudentRecord student: fullStudentList) {
@@ -48,8 +48,8 @@ public class StudentDAO {
         return filteredStudentList;
     }
 
-    public static StudentRecord getStudentByID(String studentID) throws DatabaseAccessException, FileNotFoundException {
-        List<StudentRecord> fullStudentList = getAllStudents();
+    public static StudentRecord getStudentByID(String studentRecordsFile, String studentID) throws DatabaseAccessException, FileNotFoundException {
+        List<StudentRecord> fullStudentList = getAllStudents(studentRecordsFile);
 
         for (StudentRecord studentRecord: fullStudentList) {
             if (studentRecord.getStudent().getId().equals(studentID)) {

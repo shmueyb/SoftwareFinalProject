@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.util.List;
 
 /**
+ * Created by us.
  * Class for specifying and accessing the JSON "database"
  * Used to read and write the database files.
  */
@@ -24,9 +25,10 @@ public class FileAccess {
         this.path = path;
     }
 
-    public static List<StudentRecord> getStudentsJSON() throws FileNotFoundException {
+    public static List<StudentRecord> getStudentsJSON(String filename) throws FileNotFoundException {
         //TODO: fill in method: read file into a single JSON string
-        List<StudentRecord> studentRecords = new Gson().fromJson( new FileReader( new File("GRADS_Materials/Data/students.txt")), new TypeToken<List<StudentRecord>>(){}.getType());
+        //GRADS_Materials/Data/students.txt
+        List<StudentRecord> studentRecords = new Gson().fromJson( new FileReader( new File(filename)), new TypeToken<List<StudentRecord>>(){}.getType());
         return studentRecords;
     }
 
@@ -34,15 +36,17 @@ public class FileAccess {
         //TODO: fill in method: overwrite path/students.txt with the supplied string
     }
 
-    public static List<Course> getCourseJSON() throws FileNotFoundException {
+    public static List<Course> getCourseJSON(String filename) throws FileNotFoundException {
         //TODO: fill in method: read file into a single JSON string
-        List<Course> courses = new Gson().fromJson( new FileReader( new File("GRADS_Materials/Data/courses.txt")), new TypeToken<List<Course>>(){}.getType());
+        //"GRADS_Materials/Data/courses.txt
+        List<Course> courses = new Gson().fromJson( new FileReader( new File(filename)), new TypeToken<List<Course>>(){}.getType());
         return courses;
     }
 
-    public static List<Users> getUserJSON() throws FileNotFoundException {
+    public static List<Users> getUserJSON(String filename) throws FileNotFoundException {
         //TODO: fill in method: read file into a single JSON string
-        List<Users> sessions = new Gson().fromJson( new FileReader( new File("GRADS_Materials/Data/users.txt")), new TypeToken<List<Users>>(){}.getType());
+        //"GRADS_Materials/Data/users.txt"
+        List<Users> sessions = new Gson().fromJson( new FileReader( new File(filename)), new TypeToken<List<Users>>(){}.getType());
         return sessions;
     }
 

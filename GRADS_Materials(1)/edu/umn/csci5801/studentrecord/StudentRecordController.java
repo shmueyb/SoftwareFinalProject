@@ -24,8 +24,8 @@ public class StudentRecordController {
      * @return
      * @throws DatabaseAccessException
      */
-    public static StudentRecord getTranscript(String studentID) throws DatabaseAccessException, FileNotFoundException {
-        return StudentDAO.getStudentByID(studentID);
+    public static StudentRecord getTranscript(String studentRecordsFile, String studentID) throws DatabaseAccessException, FileNotFoundException {
+        return StudentDAO.getStudentByID(studentRecordsFile, studentID);
     }
 
     /**
@@ -70,8 +70,8 @@ public class StudentRecordController {
      * @param note
      * @throws DatabaseAccessException
      */
-    public static void addNote(String studentID, String note) throws DatabaseAccessException, FileNotFoundException {
-        StudentRecord studentRecord = StudentDAO.getStudentByID(studentID);
+    public static void addNote(String studentRecordsFile, String studentID, String note) throws DatabaseAccessException, FileNotFoundException {
+        StudentRecord studentRecord = StudentDAO.getStudentByID(studentRecordsFile, studentID);
         List<String> notes = studentRecord.getNotes();
         notes.add(note);
         studentRecord.setNotes(notes);
@@ -85,12 +85,12 @@ public class StudentRecordController {
      * @return
      * @throws DatabaseAccessException
      */
-    public static List<String> getStudentIDsByDepartment(Department gpcDepartment) throws DatabaseAccessException, FileNotFoundException {
+    public static List<String> getStudentIDsByDepartment(String studentRecordFile, Department gpcDepartment) throws DatabaseAccessException, FileNotFoundException {
 
         final List<StudentRecord> studentList;
         final List<String> idList = new ArrayList<String>();
 
-        studentList = StudentDAO.getStudentsByDepartment(gpcDepartment);
+        studentList = StudentDAO.getStudentsByDepartment(studentRecordFile, gpcDepartment);
 
         for(StudentRecord studentDAO: studentList) {
             idList.add(studentDAO.getStudent().getId());

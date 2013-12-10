@@ -9,5 +9,5 @@ package edu.umn.csci5801.session;
  */
 public enum UserType {
     STUDENT,
-    GPC
+    GRADUATE_PROGRAM_COORDINATOR
 }

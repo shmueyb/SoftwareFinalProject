@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.studentrecord.program.Department;
 
+import java.io.FileNotFoundException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,19 +23,19 @@ public class StudentDAO {
         //TODO: get all students, find this one, replace with updated version, convert to JSON, save using FileAccess.java
     }
 
-    public static List<StudentRecord> getAllStudents() throws DatabaseAccessException {
+    public static List<StudentRecord> getAllStudents() throws DatabaseAccessException, FileNotFoundException {
         List<StudentRecord> studentList;
         Gson gson = new Gson();
-        String jsonString = FileAccess.getInstance().getStudentsJSON();
+        studentList = FileAccess.getStudentsJSON();
 
         Type type = new TypeToken<ArrayList<StudentRecord>>(){}.getType();
 
-        studentList = gson.fromJson(jsonString, type);
+        //studentList = gson.fromJson(jsonString, type);
 
         return studentList;
     }
 
-    public static List<StudentRecord> getStudentsByDepartment(Department dept) throws DatabaseAccessException{
+    public static List<StudentRecord> getStudentsByDepartment(Department dept) throws DatabaseAccessException, FileNotFoundException {
         List<StudentRecord> fullStudentList= getAllStudents();
         List<StudentRecord> filteredStudentList = new ArrayList<StudentRecord>();
 
@@ -47,7 +48,7 @@ public class StudentDAO {
         return filteredStudentList;
     }
 
-    public static StudentRecord getStudentByID(String studentID) throws DatabaseAccessException{
+    public static StudentRecord getStudentByID(String studentID) throws DatabaseAccessException, FileNotFoundException {
         List<StudentRecord> fullStudentList = getAllStudents();
 
         for (StudentRecord studentRecord: fullStudentList) {

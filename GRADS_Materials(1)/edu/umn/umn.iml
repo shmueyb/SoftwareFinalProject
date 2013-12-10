@@ -17,6 +17,9 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="easymock" level="project" />
+    <orderEntry type="library" name="objenesis" level="project" />
+    <orderEntry type="library" name="cglib" level="project" />
   </component>
 </module>
 

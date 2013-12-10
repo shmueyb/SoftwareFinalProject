@@ -1,8 +1,14 @@
 package edu.umn.csci5801.test;
 
 import edu.umn.csci5801.access.AccessController;
+import edu.umn.csci5801.access.AccessDeniedException;
 import edu.umn.csci5801.session.Session;
+import edu.umn.csci5801.session.UserType;
+import org.easymock.EasyMock;
 import org.junit.Test;
+
+import static junit.framework.Assert.fail;
+import static org.easymock.EasyMock.expect;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,9 +20,11 @@ import org.junit.Test;
 public class AccessControllerTest {
 
     @Test
-    public void testCheckUserCanGetListOfStudentIDs_asGPC() {  /*
+    public void testCheckUserCanGetListOfStudentIDs_asGPC() {
         Session session = EasyMock.createMock(Session.class);
-        session.expect(getCurrentUserType()).andReturn(UserType.GPC).anyTimes();
+        expect(session.getCurrentUserType()).andReturn(UserType.GPC).anyTimes();
+
+        EasyMock.replay(session);
 
         AccessController controller = new AccessController(session);
 
@@ -26,25 +34,26 @@ public class AccessControllerTest {
             fail();
         }
 
-        */
+
     }
 
 
 
     @Test
-    public void testCheckUserCanGetListOfStudentIDs_asStudent() {  /*
+    public void testCheckUserCanGetListOfStudentIDs_asStudent() {
         Session session = EasyMock.createMock(Session.class);
-        session.expect(getCurrentUserType()).andReturn(UserType.STUDENT).anyTimes();
+        expect(session.getCurrentUserType()).andReturn(UserType.STUDENT).anyTimes();
+        expect(session.getUserID()).andReturn("Mocked User").anyTimes();
+
+        EasyMock.replay(session);
 
         AccessController controller = new AccessController(session);
 
         try {
             controller.checkUserCanGetListOfStudentIDs();
-            fail()
+            fail();
         } catch (AccessDeniedException ex) {
             //do nothing
         }
-
-        */
     }
 }

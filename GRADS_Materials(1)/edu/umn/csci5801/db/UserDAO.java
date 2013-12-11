@@ -29,6 +29,7 @@ public class UserDAO {
     public static List<StudentInfo> getStudentsByDepartment(Department department) {
         List<StudentInfo> studentList = new ArrayList<StudentInfo>();
 
+
         //TODO: fill in method
 
         return studentList;

@@ -19,8 +19,19 @@ import java.util.List;
  */
 public class StudentDAO {
 
-    public static void updateStudentRecord(String StudentID, StudentRecord record) {
+    public static void updateStudentRecord(String studentID, StudentRecord record, String studentRecordsFile) throws FileNotFoundException, DatabaseAccessException {
         //TODO: get all students, find this one, replace with updated version, convert to JSON, save using FileAccess.java
+        List<StudentRecord> allStudents = getAllStudents(studentRecordsFile);
+        List<StudentRecord> newRecord=allStudents;
+
+        for (int counter=0; counter < allStudents.size(); counter++){
+
+            if (studentID.equals(allStudents.get(counter).getStudent().getId())){
+                newRecord.remove(counter);
+                newRecord.add(counter,record);
+            }
+        }
+        FileAccess.writeStudentsJSON(studentRecordsFile,newRecord);
     }
 
     public static List<StudentRecord> getAllStudents(String studentRecordsFile) throws DatabaseAccessException, FileNotFoundException {

@@ -101,8 +101,8 @@ public class StudentRecordController {
      * @param transcript
      * @throws DatabaseAccessException
      */
-    public static void updateStudentRecord(String studentID, StudentRecord transcript) throws DatabaseAccessException{
-        StudentDAO.updateStudentRecord(studentID, transcript);
+    public static void updateStudentRecord(String studentID, StudentRecord transcript, String studentRecordsFile) throws DatabaseAccessException, FileNotFoundException {
+        StudentDAO.updateStudentRecord(studentID, transcript, studentRecordsFile);
     }
 
     /**
@@ -117,7 +117,7 @@ public class StudentRecordController {
         notes.add(note);
         studentRecord.setNotes(notes);
 
-        updateStudentRecord(studentID, studentRecord);
+        updateStudentRecord(studentID, studentRecord, studentRecordsFile);
     }
 
     /**

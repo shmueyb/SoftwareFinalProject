@@ -108,7 +108,7 @@ public class GRADS implements GRADSIntf {
     public void updateTranscript(String studentID, StudentRecord transcript) throws Exception {
 
         access.checkUserCanEditRecord(studentID);
-        StudentRecordController.updateStudentRecord(studentID, transcript);
+        StudentRecordController.updateStudentRecord(studentID, transcript, this.getStudentRecords());
     }
 
     /**
@@ -136,7 +136,7 @@ public class GRADS implements GRADSIntf {
     public ProgressSummary generateProgressSummary(String studentID) throws Exception {
 
         access.checkUserCanAccessStudentRecord(studentID);
-        return StudentRecordController.generateProgressSummary(studentID);
+        return StudentRecordController.generateProgressSummary(this.getStudentRecords(), studentID);
     }
 
     /**
@@ -153,7 +153,7 @@ public class GRADS implements GRADSIntf {
     @Override
     public ProgressSummary simulateCourses(String studentID, List<CourseTaken> courses) throws Exception {
         access.checkUserCanAccessStudentRecord(studentID);
-        return StudentRecordController.simulateCourses(studentID, courses);
+        return StudentRecordController.simulateCourses(this.getStudentRecords(), studentID, courses);
     }
 
     public String getStudentRecords() {

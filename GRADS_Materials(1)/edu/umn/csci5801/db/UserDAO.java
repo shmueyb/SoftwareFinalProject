@@ -3,9 +3,12 @@ package edu.umn.csci5801.db;
 import com.google.gson.JsonObject;
 import edu.umn.csci5801.session.Person;
 import edu.umn.csci5801.session.Student;
+import edu.umn.csci5801.session.User;
+import edu.umn.csci5801.session.Users;
 import edu.umn.csci5801.studentrecord.program.Department;
 import edu.umn.csci5801.studentrecord.transcript.StudentInfo;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,20 +21,21 @@ import java.util.List;
  */
 public class UserDAO {
 
-    public static Person getUserByID(String userID) {
-        Person user = new Student(); //TODO: this should be replaced with the actual correct type;
+    public static Users getUserByID(String userFile, String userID) {
+        List<Users> usersList=null;
+        try {
+            usersList= FileAccess.getUserJSON(userFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Users currentUser=null;
+        for (Users user: usersList){
+            if (userID.equals(user.getUser().getId())){
+                currentUser=user;
+            }
+        }
 
-        //TODO: fill in method
-
-        return user;
+        return currentUser;
     }
 
-    public static List<StudentInfo> getStudentsByDepartment(Department department) {
-        List<StudentInfo> studentList = new ArrayList<StudentInfo>();
-
-
-        //TODO: fill in method
-
-        return studentList;
-    }
 }

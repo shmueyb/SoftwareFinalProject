@@ -208,7 +208,6 @@ public class GRADSTest {
     /**
      * Test if getting the correct transcript
      */
-
     @Test
     public void testGetTranscript() throws Exception {
         StudentRecord XumRecord = grads.getTranscript("3333");
@@ -226,9 +225,35 @@ public class GRADSTest {
         } catch (FileNotFoundException f) {
 
         }
-
-
     }
+
+    /**
+     * Testing if updateTranscript would swap records
+     * @throws Exception
+     */
+    @Test
+    public void testUpdateTranscript() throws Exception {
+        grads.updateTranscript("blust013", StudentRecordFactory.SamRecord());
+        StudentRecord studentRecord = grads.getTranscript("blust013");
+        Assert.assertSame(StudentRecordFactory.SamRecord(), studentRecord);
+        }
+
+    /**
+     * Testing if updateTranscript would throw the correct Exception for invalid UserID
+     * @throws DatabaseAccessException
+     * @throws InvalidUserException
+     * @throws AccessDeniedException
+     */
+    @Test
+    public void testUpdateTranscript_InvalidID() throws DatabaseAccessException, InvalidUserException, AccessDeniedException{
+        try {
+            grads.updateTranscript("dummyID", StudentRecordFactory.CatherineRecord());
+            fail();
+        } catch(FileNotFoundException f) {
+
+        }
+    }
+
     /**
      * Checks if the GPC can get a Student's Transcript
      * @throws Exception
@@ -461,6 +486,43 @@ public class GRADSTest {
      * Checks that a student cannot add a note
      * @throws FileNotFoundException
      */
+    @Test
+    public void testAddNote() throws Exception {
+        grads.addNote("3333", "I am Xum");
+        StudentRecord studentRecord = grads.getTranscript("3333");
+        Assert.assertTrue(studentRecord.getNotes().contains("I am Xum"));
+    }
+
+    /**
+     * testing for if added note to the invalidUer
+     * @throws DatabaseAccessException
+     * @throws AccessDeniedException
+     */
+    @Test
+    public void testAddNote_InvalidRecord() throws DatabaseAccessException, AccessDeniedException {
+        try {
+            grads.addNote("invalidUser", "anything");
+            fail();
+        } catch (FileNotFoundException f) {
+
+        }
+    }
+
+    /**
+     * Testing for null notes
+     * @throws FileNotFoundException
+     * @throws AccessDeniedException
+     */
+    @Test
+    public void testAddNote_NullNote() throws FileNotFoundException, AccessDeniedException {
+        try {
+            grads.addNote("3333", null);
+            fail();
+        } catch (DatabaseAccessException d) {
+
+        }
+    }
+
 
     @Test
     public void testAddNote_asStudent() throws FileNotFoundException,DatabaseAccessException {

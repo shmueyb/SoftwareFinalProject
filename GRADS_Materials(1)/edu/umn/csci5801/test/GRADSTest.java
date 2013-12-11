@@ -1,6 +1,18 @@
 package edu.umn.csci5801.test;
 
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.easymock.EasyMock;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import edu.umn.csci5801.GRADS;
 import edu.umn.csci5801.access.AccessDeniedException;
 import edu.umn.csci5801.db.DatabaseAccessException;
@@ -10,21 +22,32 @@ import edu.umn.csci5801.session.UserType;
 import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
 import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
-import org.easymock.EasyMock;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
-import org.junit.Test;
-
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by trangnguyen on 12/9/13.
  */
 
 public class GRADSTest {
+    private GRADS grads;
+
+
+    /**
+     * Init Grads for usage
+     */
+    @Before
+    public void initGrad(){
+        grads = new GRADS();
+    }
+
+    /**
+     * Test if userID would get set
+     * @throws Exception
+     */
+    @Test
+    public void testSetUserID()throws Exception{
+        grads.setUser("12abc");
+        Assert.assertSame("12abc", grads.getUser());
+    }
 
     /**
      * Test setting a valid GPC  user
@@ -69,6 +92,32 @@ public class GRADSTest {
             fail();
         } catch (InvalidUserException e) {
             //do nothing
+        }
+    }
+
+    /**
+     * Test with Null setUserID should throw exception
+     */
+    @Test
+    public void testSetUserID_Null() {
+        try {
+            //method supposed to check for null userID
+            grads.setUser(null);
+            fail();
+        } catch (InvalidUserException i) {
+        }
+    }
+
+    /**
+     * Test with empty parameter, setUserID should throw exception
+     */
+    @Test
+    public void testSetUserID_Empty() {
+        try {
+            //method supposed to check for null userID
+            grads.setUser("");
+            fail();
+        } catch (InvalidUserException i) {
         }
     }
 

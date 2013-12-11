@@ -1,8 +1,12 @@
 package edu.umn.csci5801.db;
 
+import edu.umn.csci5801.GRADS;
+import edu.umn.csci5801.session.UserType;
+import edu.umn.csci5801.session.Users;
 import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.studentrecord.program.Department;
 import edu.umn.csci5801.studentrecord.transcript.Course;
+import edu.umn.csci5801.studentrecord.transcript.CourseArea;
 import org.junit.Test;
 
 import java.util.List;
@@ -15,8 +19,9 @@ import static org.junit.Assert.assertEquals;
 public class FileAccessTest {
     @Test
     public void testGetStudentsJSON() throws Exception {
+        GRADS grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
         List<StudentRecord> studentRecords;
-        studentRecords = FileAccess.getStudentsJSON();
+        studentRecords = FileAccess.getStudentsJSON(grads.getStudentRecords());
         StudentRecord firstStudent=studentRecords.get(0);
         assertEquals(firstStudent.getStudent().getFirstName(), "Luan");
         assertEquals(firstStudent.getDepartment(), Department.COMPUTER_SCIENCE);
@@ -28,32 +33,47 @@ public class FileAccessTest {
 
     @Test
     public void testWriteStudentsJSON() throws Exception {
+        GRADS grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
+        List<StudentRecord> studentRecords;
+        studentRecords = FileAccess.getStudentsJSON(grads.getStudentRecords());
+        // Set ID of first user to a different ID
+        studentRecords.get(0).getStudent().setId("blust013");
+        FileAccess.writeStudentsJSON(grads.getStudentRecords(), studentRecords);
+        // Check files have been writen to
+        studentRecords = FileAccess.getStudentsJSON(grads.getStudentRecords());
+        StudentRecord firstStudent=studentRecords.get(0);
+        assertEquals(firstStudent.getStudent().getId(), "blust013");
+        assertEquals(firstStudent.getDepartment(), Department.COMPUTER_SCIENCE);
 
+        //reset the old value
+        studentRecords.get(0).getStudent().setId("nguy0621");
+        FileAccess.writeStudentsJSON(grads.getStudentRecords(), studentRecords);
     }
 
     @Test
     public void testGetCourseJSON() throws Exception {
+        GRADS grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
         List<Course> courses;
-        courses = FileAccess.getCourseJSON();
+        courses = FileAccess.getCourseJSON(grads.getCourses());
         Course firstCourse=courses.get(0);
         assertEquals(firstCourse.getName(), "Operating Systems");
         assertEquals(firstCourse.getNumCredits(), "3");
 
         Course secondCourse=courses.get(1);
         assertEquals(secondCourse.getId(), "csci5104");
-        // Course Area won't be populated?
-        //assertEquals(secondCourse.getCourseArea(), CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE);
+        assertEquals(secondCourse.getCourseArea(), CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE);
 
     }
 
     @Test
     public void testGetUserJSON() throws Exception {
-       /* List<Session> sessions;
-        sessions = FileAccess.getUserJSON();
-        Session firstSession=sessions.get(0);
+        GRADS grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
+        List<Users> users;
+        users = FileAccess.getUserJSON(grads.getUsers());
+        Users firstSession=users.get(0);
         assertEquals(firstSession.getUser().getId(), "nguy0621");
         assertEquals(firstSession.getRole(), UserType.STUDENT);
-        assertEquals(firstSession.getDepartment(), Department.COMPUTER_SCIENCE);*/
+        assertEquals(firstSession.getDepartment(), Department.COMPUTER_SCIENCE);
     }
 
     @Test

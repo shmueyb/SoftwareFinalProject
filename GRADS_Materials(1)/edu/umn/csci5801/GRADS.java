@@ -1,5 +1,6 @@
 package edu.umn.csci5801;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +9,11 @@ import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.db.FileAccess;
 import edu.umn.csci5801.db.StudentDAO;
 import edu.umn.csci5801.session.InvalidUserException;
+import edu.umn.csci5801.session.User;
+import edu.umn.csci5801.session.Users;
 import edu.umn.csci5801.studentrecord.StudentRecordController;
 import edu.umn.csci5801.studentrecord.program.Department;
+import edu.umn.csci5801.studentrecord.transcript.Course;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
 import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
 import edu.umn.csci5801.studentrecord.StudentRecord;
@@ -19,6 +23,9 @@ public class GRADS implements GRADSIntf {
 
     private Session currentSession;
     private AccessController access;
+    private String studentRecords;
+    private String users;
+    private String courses;
 
     public GRADS() {
         String databaseLocation = "Grads_Materials/Data/";
@@ -28,6 +35,14 @@ public class GRADS implements GRADSIntf {
         } catch (DatabaseAccessException e) {
             //do nothing, this will not fail on the first call
         }
+    }
+
+    public GRADS(String studentsFileName, String coursesFileName, String usersFileName) throws FileNotFoundException {
+        studentRecords = studentsFileName;
+        courses= coursesFileName;
+        users = usersFileName;
+
+
     }
 
     /**
@@ -65,7 +80,7 @@ public class GRADS implements GRADSIntf {
         access.checkUserCanGetListOfStudentIDs();
         Department gpcDepartment = currentSession.getProfessorUser().getDepartment();
 
-        return StudentRecordController.getStudentIDsByDepartment(gpcDepartment);
+        return StudentRecordController.getStudentIDsByDepartment(this.getStudentRecords(), gpcDepartment);
     }
 
     /**
@@ -79,7 +94,7 @@ public class GRADS implements GRADSIntf {
     public StudentRecord getTranscript(String studentID) throws Exception {
 
         access.checkUserCanAccessStudentRecord(studentID);
-        return StudentRecordController.getTranscript(studentID);
+        return StudentRecordController.getTranscript(this.getStudentRecords(), studentID);
     }
 
     /**
@@ -107,7 +122,7 @@ public class GRADS implements GRADSIntf {
     public void addNote(String studentID, String note) throws Exception {
 
         access.checkUserCanEditRecord(studentID);
-        StudentRecordController.addNote(studentID, note);
+        StudentRecordController.addNote(this.getStudentRecords(), studentID, note);
     }
 
     /**
@@ -141,4 +156,27 @@ public class GRADS implements GRADSIntf {
         return StudentRecordController.simulateCourses(studentID, courses);
     }
 
+    public String getStudentRecords() {
+        return studentRecords;
+    }
+
+    public void setStudentRecords(String studentRecords) {
+        this.studentRecords = studentRecords;
+    }
+
+    public String getUsers() {
+        return users;
+    }
+
+    public void setUsers(String users) {
+        this.users = users;
+    }
+
+    public String getCourses() {
+        return courses;
+    }
+
+    public void setCourses(String courses) {
+        this.courses = courses;
+    }
 }

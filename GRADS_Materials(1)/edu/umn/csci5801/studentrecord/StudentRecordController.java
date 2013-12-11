@@ -36,8 +36,8 @@ public class StudentRecordController {
      * @return
      * @throws DatabaseAccessException
      */
-    public static ProgressSummary generateProgressSummary(String studentID) throws DatabaseAccessException, FileNotFoundException {
-        return simulateCourses(studentID, new ArrayList<CourseTaken>());
+    public static ProgressSummary generateProgressSummary(String studentRecordsFile, String studentID) throws DatabaseAccessException, FileNotFoundException {
+        return simulateCourses(studentRecordsFile, studentID, new ArrayList<CourseTaken>());
     }
 
     /**
@@ -47,12 +47,12 @@ public class StudentRecordController {
      * @return
      * @throws DatabaseAccessException
      */
-    public static ProgressSummary simulateCourses(String studentID,
+    public static ProgressSummary simulateCourses(String studentRecordsFile, String studentID,
                                                   List<CourseTaken> courses) throws DatabaseAccessException, FileNotFoundException {
         ProgressSummary summary = new ProgressSummary();
 
         //TODO: fill in
-        StudentRecord record = StudentDAO.getStudentByID(studentID);
+        StudentRecord record = StudentDAO.getStudentByID(studentRecordsFile,studentID);
         List<RequirementCheckResult> requirementCheckResultsList = null;
         courses.addAll(record.getCoursesTaken());
 

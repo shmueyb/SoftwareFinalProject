@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.umn.csci5801.access.AccessController;
+import edu.umn.csci5801.access.AccessDeniedException;
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.db.FileAccess;
 import edu.umn.csci5801.db.StudentDAO;
@@ -91,7 +92,7 @@ public class GRADS implements GRADSIntf {
      *      does not have access to the desired record.
      */
     @Override
-    public StudentRecord getTranscript(String studentID) throws Exception {
+    public StudentRecord getTranscript(String studentID) throws AccessDeniedException,DatabaseAccessException,FileNotFoundException {
 
         access.checkUserCanAccessStudentRecord(studentID);
         return StudentRecordController.getTranscript(this.getStudentRecords(), studentID);
@@ -105,7 +106,7 @@ public class GRADS implements GRADSIntf {
      * @throws Exception if the user does not have access, or updating failed
      */
     @Override
-    public void updateTranscript(String studentID, StudentRecord transcript) throws Exception {
+    public void updateTranscript(String studentID, StudentRecord transcript) throws AccessDeniedException,DatabaseAccessException,FileNotFoundException {
 
         access.checkUserCanEditRecord(studentID);
         StudentRecordController.updateStudentRecord(studentID, transcript, this.getStudentRecords());
@@ -119,7 +120,7 @@ public class GRADS implements GRADSIntf {
      * @throws Exception if the user does not have access or adding the note failed
      */
     @Override
-    public void addNote(String studentID, String note) throws Exception {
+    public void addNote(String studentID, String note) throws AccessDeniedException,DatabaseAccessException,FileNotFoundException{
 
         access.checkUserCanEditRecord(studentID);
         StudentRecordController.addNote(this.getStudentRecords(), studentID, note);
@@ -133,7 +134,7 @@ public class GRADS implements GRADSIntf {
      * @throws Exception
      */
     @Override
-    public ProgressSummary generateProgressSummary(String studentID) throws Exception {
+    public ProgressSummary generateProgressSummary(String studentID) throws AccessDeniedException,DatabaseAccessException,FileNotFoundException {
 
         access.checkUserCanAccessStudentRecord(studentID);
         return StudentRecordController.generateProgressSummary(this.getStudentRecords(), studentID);
@@ -151,7 +152,7 @@ public class GRADS implements GRADSIntf {
      *      summary failed for the given reason.
      */
     @Override
-    public ProgressSummary simulateCourses(String studentID, List<CourseTaken> courses) throws Exception {
+    public ProgressSummary simulateCourses(String studentID, List<CourseTaken> courses) throws AccessDeniedException,DatabaseAccessException,FileNotFoundException {
         access.checkUserCanAccessStudentRecord(studentID);
         return StudentRecordController.simulateCourses(this.getStudentRecords(), studentID, courses);
     }

@@ -30,6 +30,11 @@ public class StudentRecordFactory {
     static private Term fall = new Term(Semester.FALL, 2014);
     static private Term spring = new Term(Semester.SPRING, 2014);
 
+    /**
+     *
+     * @return: a list of student records for database
+     * @throws Exception
+     */
     public static List<StudentRecord> createRecords() throws Exception{
         List<StudentRecord> list = new LinkedList<StudentRecord>();
         list.add(TrangRecord());
@@ -40,14 +45,23 @@ public class StudentRecordFactory {
         return list;
     }
 
-    private static List<String> notes() {
+    /**
+     *
+     * @return: dummy list of notes
+     */
+    public static List<String> notes() {
         List<String> notes = new LinkedList<String>();
         for (int i = 0; i<10;i++) {
             notes.add("" + i);
         }
         return notes;
     }
-    private static List<MilestoneSet> milestones() {
+
+    /**
+     * generating example milestones
+     * @return: list of milestones
+     */
+    public static List<MilestoneSet> milestones() {
         List<MilestoneSet> milestoneSets = new LinkedList<MilestoneSet>();
         milestoneSets.add(new MilestoneSet(Milestone.DEFENSE_PASSED, fall));
         milestoneSets.add(new MilestoneSet(Milestone.DPF_APPROVED, fall));
@@ -60,7 +74,12 @@ public class StudentRecordFactory {
         milestoneSets.add(new MilestoneSet(Milestone.TRACKING_FORM_APPROVED,spring));
         return milestoneSets;
     }
-    private static List<Professor> professors() {
+
+    /**
+     * generating a list of : professors, committee, advisors
+     * @return: list of professors
+     */
+    public static List<Professor> professors() {
         List<Professor> professors = new LinkedList<Professor>();
         Professor professor1 = new Professor("Youself", "Saad", math);
         Professor professor2 = new Professor("Nick","Harper", CompSci);
@@ -74,7 +93,12 @@ public class StudentRecordFactory {
         professors.add(professor4);
         return professors;
     }
-    private static List<CourseTaken> courseTakens() {
+
+    /**
+     * generating a list of courses
+     * @return: list of courses taken
+     */
+    public static List<CourseTaken> courseTakens() {
         CourseTaken courseTaken = new CourseTaken(new Course("Developing the Interactive Web", "csci5117", "3", CourseArea.APPLICATIONS), fall, Grade.A);
         CourseTaken courseTaken1 = new CourseTaken(new Course("Aritificial Intelligence", "csci5511", "3", CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE), fall, Grade.A);
         CourseTaken courseTaken2 = new CourseTaken(new Course("SoftWare Engineer", "csci5801", "3", CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE), fall, Grade.A);
@@ -87,7 +111,11 @@ public class StudentRecordFactory {
         return  courseTakenList;
     }
 
-    private static StudentRecord TrangRecord() {
+    /**
+     * generating Trang's record
+     * @return Trang's record
+     */
+    public static StudentRecord TrangRecord() {
         return  new StudentRecord.StudentRecordBuilder()
                 .student(Trang)
                 .department(CompSci)
@@ -100,6 +128,11 @@ public class StudentRecordFactory {
                 .notes(notes())
                 .build();
     }
+
+    /**
+     * generating Ben's record
+     * @return Ben's record
+     */
     public static StudentRecord BenRecord() {
         return new StudentRecord.StudentRecordBuilder()
                 .student(Ben)
@@ -113,6 +146,11 @@ public class StudentRecordFactory {
                 .notes(notes())
                 .build();
     }
+
+    /**
+     * generating Xum's record
+     * @return: Xum's record
+     */
     public static StudentRecord XumRecord() {
         return new StudentRecord.StudentRecordBuilder()
                 .student(Xum)
@@ -126,6 +164,11 @@ public class StudentRecordFactory {
                 .notes(notes())
                 .build();
     }
+
+    /**
+     * generating Sam's record
+     * @return Sam's record
+     */
     public static StudentRecord SamRecord() {
         return new StudentRecord.StudentRecordBuilder()
                 .student(Sam)
@@ -139,12 +182,17 @@ public class StudentRecordFactory {
                 .notes(notes())
                 .build();
     }
+
+    /**
+     * generating Catherine's record
+     * @return Catherine's record
+     */
     public static StudentRecord CatherineRecord() {
         return new StudentRecord.StudentRecordBuilder()
                 .student(Catherine)
                 .department(CompSci)
                 .degreeSought(Degree.PHD)
-                .termBegan(spring)
+                .termBegan(fall)
                 .advisors(professors())
                 .committee(professors())
                 .coursesTaken(courseTakens())

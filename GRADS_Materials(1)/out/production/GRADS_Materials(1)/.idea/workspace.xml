@@ -21,10 +21,9 @@
     <file path="/Controller.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386499263008" ignored="false" />
     <file path="/StudentRecordController.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386499243637" ignored="false" />
     <file path="/ProgressAccess.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386495458497" ignored="false" />
-    <file path="/AccessControllerTest.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386500849183" ignored="false" />
-    <file path="/GRADSTest.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386773222135" ignored="false" />
-    <file path="/StudentRecordFactory.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386773085889" ignored="false" />
-    <file path="/StudentRecord.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386768561198" ignored="false" />
+    <file path="/AccessControllerTest.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386630973126" ignored="false" />
+    <file path="/a.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386635051806" ignored="false" />
+    <file path="/sample.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386635050055" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +38,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -76,6 +74,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -85,59 +84,59 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GRADSTest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/test/GRADSTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="9" selection-start="1981" selection-end="1981" vertical-scroll-proportion="0.94755244">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StudentRecordFactory.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecordFactory/StudentRecordFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="32" selection-start="1685" selection-end="1685" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1634#1649#0" expanded="true" />
-                <element signature="e#1929#1937#0" expanded="true" />
-                <element signature="e#2156#2170#0" expanded="true" />
-                <element signature="e#3040#3051#0" expanded="true" />
-                <element signature="e#4371#4384#0" expanded="true" />
-                <element signature="method#BenRecord#0;class#StudentRecordFactory#0" expanded="false" />
-                <element signature="method#XumRecord#0;class#StudentRecordFactory#0" expanded="false" />
-                <element signature="method#SamRecord#0;class#StudentRecordFactory#0" expanded="false" />
-                <element signature="method#CatherineRecord#0;class#StudentRecordFactory#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StudentDAO.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/StudentDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="0" selection-start="2270" selection-end="2270" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="FileAccess.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/FileAccess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="20" selection-start="2239" selection-end="2283" vertical-scroll-proportion="0.0">
+            <state line="6" column="13" selection-start="155" selection-end="155" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CourseTaken.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/CourseTaken.java">
+      <file leaf-file-name="AccessControllerTest.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/test/AccessControllerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="16" selection-start="531" selection-end="536" vertical-scroll-proportion="0.0">
+            <state line="37" column="0" selection-start="980" selection-end="1490" vertical-scroll-proportion="0.6235955">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CourseDAO.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/CourseDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="13" selection-start="194" selection-end="194" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AccessController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/access/AccessController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="13" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RequirementCheckResult.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/requirements/RequirementCheckResult.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="67" selection-start="465" selection-end="465" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GRADSIntf.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/GRADSIntf.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="59" selection-start="663" selection-end="663" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -146,7 +145,7 @@
       <file leaf-file-name="GRADS.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/GRADS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="7" selection-start="3128" selection-end="3128" vertical-scroll-proportion="0.0">
+            <state line="145" column="0" selection-start="5101" selection-end="5101" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -154,37 +153,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Professor.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/session/Professor.java">
+      <file leaf-file-name="AccessDeniedException.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/access/AccessDeniedException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="13" selection-start="107" selection-end="107" vertical-scroll-proportion="0.0">
+            <state line="9" column="13" selection-start="198" selection-end="198" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StudentRecord.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecord.java">
+      <file leaf-file-name="DatabaseAccessException.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/DatabaseAccessException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="0" selection-start="1672" selection-end="1672" vertical-scroll-proportion="0.0">
+            <state line="9" column="13" selection-start="194" selection-end="194" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MilestoneSet.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/requirements/MilestoneSet.java">
+      <file leaf-file-name="InvalidUserException.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/session/InvalidUserException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="14" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Milestone.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/requirements/Milestone.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="404" selection-end="404" vertical-scroll-proportion="0.0">
+            <state line="9" column="13" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -200,9 +190,13 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/access/AccessDeniedException.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/access/AccessController.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/DatabaseAccessException.java" />
         <option value="$PROJECT_DIR$/edu/umn/csci5801/db/ProgressDAO.java" />
         <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/ProgressSummary.java" />
         <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/Controller.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecord.java" />
         <option value="$PROJECT_DIR$/edu/umn/csci5801/db/StudentDAO.java" />
         <option value="$PROJECT_DIR$/edu/umn/csci5801/db/StudentAccess.java" />
         <option value="$PROJECT_DIR$/edu/umn/csci5801/db/ProgressAccess.java" />
@@ -210,20 +204,16 @@
         <option value="$PROJECT_DIR$/edu/umn/csci5801/GRADS.java" />
         <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecordController.java" />
         <option value="$PROJECT_DIR$/edu/umn/csci5801/db/FileAccess.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/requirements/RequirementCheckResult.java" />
         <option value="$PROJECT_DIR$/edu/umn/csci5801/test/AccessControllerTest.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/test/StudentRecordControllerTest.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/StudentRecordFactory.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecord.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecordFactory/StudentRecordFactory.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/test/GRADSTest.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="24" />
-    <option name="width" value="1855" />
-    <option name="height" value="1056" />
+    <option name="x" value="64" />
+    <option name="y" value="-4" />
+    <option name="width" value="1857" />
+    <option name="height" value="1085" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -252,19 +242,54 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="GRADS" />
+              <option name="myItemId" value="GRADS_Materials(1)" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="GRADS" />
+              <option name="myItemId" value="GRADS_Materials(1)" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GRADS_Materials(1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GRADS_Materials(1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GRADS_Materials(1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gson" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GRADS_Materials(1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GRADS_Materials(1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="umn" />
@@ -273,8 +298,16 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="GRADS" />
+              <option name="myItemId" value="GRADS_Materials(1)" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GRADS_Materials(1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="umn" />
@@ -287,8 +320,16 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="GRADS" />
+              <option name="myItemId" value="GRADS_Materials(1)" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GRADS_Materials(1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="umn" />
@@ -305,8 +346,16 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="GRADS" />
+              <option name="myItemId" value="GRADS_Materials(1)" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GRADS_Materials(1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="umn" />
@@ -323,8 +372,16 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="GRADS" />
+              <option name="myItemId" value="GRADS_Materials(1)" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GRADS_Materials(1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="umn" />
@@ -339,14 +396,78 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="StudentRecordFactory" />
+              <option name="myItemId" value="requirements" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="GRADS" />
+              <option name="myItemId" value="GRADS_Materials(1)" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GRADS_Materials(1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="umn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="csci5801" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="studentrecord" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="program" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GRADS_Materials(1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GRADS_Materials(1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="umn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="csci5801" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="session" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GRADS_Materials(1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GRADS_Materials(1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="umn" />
@@ -361,45 +482,72 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GRADS_Materials(1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GRADS_Materials(1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="umn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="csci5801" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="access" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="project.structure.last.edited" value="SDKs" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="preferences.externalTools" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="preferences.sourceCode.Java" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../objenesis-tck-2.1.jar!/" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
-    <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecordFactory" />
+      <recent name="$PROJECT_DIR$/edu/umn/csci5801" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib" />
       <recent name="$PROJECT_DIR$/edu/umn/edu/umn/csci5801" />
       <recent name="$PROJECT_DIR$/edu/umn" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GRADSTest">
-    <configuration default="false" name="GRADSTest" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="umn" />
+  <component name="RunManager" selected="JUnit.AccessControllerTest">
+    <configuration default="false" name="AccessControllerTest" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="GRADS_Materials(1)" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="edu.umn.csci5801.test" />
-      <option name="MAIN_CLASS_NAME" value="edu.umn.csci5801.test.GRADSTest" />
+      <option name="MAIN_CLASS_NAME" value="edu.umn.csci5801.test.AccessControllerTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -412,22 +560,6 @@
       </option>
       <envs />
       <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="StudentRecordFactory" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="edu.umn.csci5801.studentrecord.StudentRecordFactory.StudentRecordFactory" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="umn" />
-      <envs />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
@@ -520,14 +652,12 @@
       <patterns />
       <method />
     </configuration>
-    <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.GRADSTest" />
-      <item index="1" class="java.lang.String" itemvalue="Application.StudentRecordFactory" />
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="JUnit.AccessControllerTest" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.GRADSTest" />
-        <item index="1" class="java.lang.String" itemvalue="Application.StudentRecordFactory" />
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.AccessControllerTest" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -536,7 +666,7 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
-  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false">
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
     <option name="USER" value="" />
     <option name="PASSWORD" value="" />
     <option name="mySSHConnectionTimeout" value="30000" />
@@ -546,7 +676,6 @@
     <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
     <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
     <option name="IGNORE_SPACES_IN_MERGE" value="false" />
-    <option name="DETECT_NESTED_COPIES" value="true" />
     <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
     <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
     <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
@@ -563,28 +692,28 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1855" height="1056" extended-state="0" />
+    <frame x="64" y="-4" width="1857" height="1085" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32819384" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24958494" sideWeight="0.68171805" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31828195" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24599226" sideWeight="0.68089646" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3191035" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -653,19 +782,24 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/Course.java">
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/session/UserType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="65" selection-end="65" vertical-scroll-proportion="0.051635113">
+        <state line="9" column="12" selection-start="198" selection-end="198" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/test/AccessControllerTest.java">
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/session/Student.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="0" selection-start="1657" selection-end="1657" vertical-scroll-proportion="0.9456522">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="2" column="13" selection-start="48" selection-end="48" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/session/Session.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="31" selection-start="673" selection-end="696" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -676,106 +810,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecordController.java">
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/session/Person.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="64" selection-start="456" selection-end="456" vertical-scroll-proportion="0.2173913">
+        <state line="2" column="13" selection-start="48" selection-end="48" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/requirements/MilestoneSet.java">
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/UserDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="14" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/Term.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="4" selection-start="126" selection-end="126" vertical-scroll-proportion="0.15706806">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/requirements/Milestone.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="404" selection-end="404" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="0" selection-start="1672" selection-end="1672" vertical-scroll-proportion="0.0">
+        <state line="24" column="30" selection-start="680" selection-end="680" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/FileAccess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="20" selection-start="2239" selection-end="2283" vertical-scroll-proportion="0.0">
+        <state line="6" column="13" selection-start="155" selection-end="155" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/local/java/jdk1.7.0_40/src.zip!/java/io/FileReader.java">
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/DatabaseAccessException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="11" selection-start="1778" selection-end="1778" vertical-scroll-proportion="0.33333334">
+        <state line="9" column="13" selection-start="194" selection-end="194" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/gson/gson-2.2.4-sources.jar!/com/google/gson/Gson.java">
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/CourseDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="765" column="15" selection-start="33581" selection-end="33581" vertical-scroll-proportion="0.33333334">
+        <state line="9" column="13" selection-start="194" selection-end="194" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/CourseTaken.java">
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/access/AccessDeniedException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="16" selection-start="531" selection-end="536" vertical-scroll-proportion="0.0">
+        <state line="9" column="13" selection-start="198" selection-end="198" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/StudentDAO.java">
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/access/AccessController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="0" selection-start="2270" selection-end="2270" vertical-scroll-proportion="0.0">
+        <state line="12" column="13" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/GRADSIntf.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="59" selection-start="663" selection-end="663" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/GRADS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="7" selection-start="3128" selection-end="3128" vertical-scroll-proportion="0.0">
+        <state line="145" column="0" selection-start="5101" selection-end="5101" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecordFactory/StudentRecordFactory.java">
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/session/InvalidUserException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="32" selection-start="1685" selection-end="1685" vertical-scroll-proportion="0.0">
+        <state line="9" column="13" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/requirements/RequirementCheckResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="67" selection-start="465" selection-end="465" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1634#1649#0" expanded="true" />
-            <element signature="e#1929#1937#0" expanded="true" />
-            <element signature="e#2156#2170#0" expanded="true" />
-            <element signature="e#3040#3051#0" expanded="true" />
-            <element signature="e#4371#4384#0" expanded="true" />
-            <element signature="method#BenRecord#0;class#StudentRecordFactory#0" expanded="false" />
-            <element signature="method#XumRecord#0;class#StudentRecordFactory#0" expanded="false" />
-            <element signature="method#SamRecord#0;class#StudentRecordFactory#0" expanded="false" />
-            <element signature="method#CatherineRecord#0;class#StudentRecordFactory#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/test/GRADSTest.java">
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/test/AccessControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="9" selection-start="1981" selection-end="1981" vertical-scroll-proportion="0.94755244">
+        <state line="37" column="0" selection-start="980" selection-end="1490" vertical-scroll-proportion="0.6235955">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -822,7 +940,6 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
-          <last-edited>mysql-connector-java-5.1.22-bin</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -846,7 +963,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>umn</last-edited>
+          <last-edited>GRADS_Materials(1)</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -858,7 +975,7 @@
       </state>
       <state key="ProjectJDKs.UI">
         <settings>
-          <last-edited>1.6</last-edited>
+          <last-edited>1.7</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -870,7 +987,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>easymock-31</last-edited>
+          <last-edited>easymock-3</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

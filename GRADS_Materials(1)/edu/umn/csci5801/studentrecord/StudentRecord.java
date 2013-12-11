@@ -1,14 +1,14 @@
 package edu.umn.csci5801.studentrecord;
 
-import edu.umn.csci5801.studentrecord.transcript.Term;
+import java.util.List;
+
 import edu.umn.csci5801.session.Professor;
 import edu.umn.csci5801.session.Student;
 import edu.umn.csci5801.studentrecord.program.Degree;
 import edu.umn.csci5801.studentrecord.program.Department;
 import edu.umn.csci5801.studentrecord.requirements.MilestoneSet;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
-
-import java.util.List;
+import edu.umn.csci5801.studentrecord.transcript.Term;
 
 /**
  *
@@ -23,7 +23,79 @@ public class StudentRecord {
 	private List<CourseTaken> coursesTaken;
 	private List<MilestoneSet> milestonesSet;
 	private List<String> notes;
-	
+
+    public StudentRecord(StudentRecordBuilder builder) {
+        student = builder.student;
+        department = builder.department;
+        degreeSought = builder.degreeSought;
+        termBegan = builder.termBegan;
+        advisors = builder.advisors;
+        committee = builder.committee;
+        coursesTaken = builder.coursesTaken;
+        milestonesSet = builder.milestonesSet;
+        notes = builder.notes;
+    }
+
+	public static class StudentRecordBuilder {
+        private Student student = null;
+        private Department department = null;
+        private Degree degreeSought = null;
+        private Term termBegan = null;
+        private List<Professor> advisors = null;
+        private List<Professor> committee = null;
+        private List<CourseTaken> coursesTaken = null;
+        private List<MilestoneSet> milestonesSet = null;
+        private List<String> notes = null;
+
+        public StudentRecordBuilder student(Student student) {
+            this.student = student;
+            return this;
+        }
+
+        public StudentRecordBuilder department(Department department) {
+            this.department = department;
+            return this;
+        }
+
+        public StudentRecordBuilder degreeSought(Degree degree) {
+            this.degreeSought = degree;
+            return this;
+        }
+
+        public StudentRecordBuilder termBegan(Term term) {
+            this.termBegan = term;
+            return this;
+        }
+
+        public StudentRecordBuilder advisors(List<Professor> advisors) {
+            this.advisors = advisors;
+            return this;
+        }
+
+        public StudentRecordBuilder committee(List<Professor> committee) {
+            this.committee = committee;
+            return this;
+        }
+
+        public StudentRecordBuilder coursesTaken(List<CourseTaken> coursesTaken) {
+            this.coursesTaken = coursesTaken;
+            return this;
+        }
+
+        public StudentRecordBuilder milesstoneSet(List<MilestoneSet> milestoneSet) {
+            this.milestonesSet = milestoneSet;
+            return this;
+        }
+
+        public StudentRecordBuilder notes(List<String> nodes) {
+            this.notes = notes;
+            return this;
+        }
+
+        public StudentRecord build() {
+            return new StudentRecord(this);
+        }
+    }
 	public Student getStudent() {
 		return student;
 	}

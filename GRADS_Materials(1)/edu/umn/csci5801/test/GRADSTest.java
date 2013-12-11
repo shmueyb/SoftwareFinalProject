@@ -21,6 +21,7 @@ import edu.umn.csci5801.session.Session;
 import edu.umn.csci5801.session.UserType;
 import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.studentrecord.StudentRecordFactory.StudentRecordFactory;
+import edu.umn.csci5801.studentrecord.requirements.RequirementCheckResult;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
 import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
 
@@ -567,6 +568,54 @@ public class GRADSTest {
     }
 
     /**
+     * testing if generatateProgressSummary() would return the correct result
+     * @throws Exception
+     */
+    @Test
+    public void testGenerateProgressSummary() throws Exception {
+        ProgressSummary progressSummary = grads.generateProgressSummary("2222");
+        Assert.assertSame(StudentRecordFactory.notes(), progressSummary.getNotes());
+        Assert.assertSame(StudentRecordFactory.BenRecord().getTermBegan(), progressSummary.getTermBegan());
+        Assert.assertSame(StudentRecordFactory.BenRecord().getDegreeSought(), progressSummary.getDegreeSought());
+        Assert.assertSame(StudentRecordFactory.BenRecord().getStudent(), progressSummary.getStudent());
+        Assert.assertSame(StudentRecordFactory.professors(), progressSummary.getAdvisors());
+        Assert.assertSame(StudentRecordFactory.BenRecord().getDepartment(), progressSummary.getDepartment());
+        Assert.assertSame(StudentRecordFactory.BenRecord().getDepartment(), progressSummary.getRequirementCheckResults());
+    }
+
+    /**
+     * testing if the method would handle invalid user
+     * @throws DatabaseAccessException
+     * @throws AccessDeniedException
+     */
+    @Test
+    public void testGenerateProgressSummary_invalidUser() throws DatabaseAccessException, AccessDeniedException {
+        try {
+            ProgressSummary progressSummary = grads.generateProgressSummary("InvalidUser");
+            fail();
+        } catch (FileNotFoundException f) {
+
+        }
+
+    }
+
+    /**
+     * testing if the method would handle null user
+     * @throws DatabaseAccessException
+     * @throws AccessDeniedException
+     */
+    @Test
+    public void testGenerateProgressSummary_NullUser() throws FileNotFoundException, AccessDeniedException {
+        try {
+            ProgressSummary progressSummary = grads.generateProgressSummary("InvalidUser");
+            fail();
+        } catch ( DatabaseAccessException d) {
+
+        }
+
+    }
+
+    /**
      * Test that the student can get their Progress Summary
      * @throws Exception
      */
@@ -650,6 +699,43 @@ public class GRADSTest {
         ProgressSummary expected = new ProgressSummary();
 
         assertEquals(expected, actual);
+    }
+
+    /**
+     * test if simulate courses would return the expeccted progress summary
+     */
+    @Test
+    public void testSimulateCourses() throws Exception {
+        ProgressSummary progressSummary = grads.simulateCourses("gayxx067", StudentRecordFactory.courseTakens());
+        for(CourseTaken c : StudentRecordFactory.courseTakens()) {
+            Assert.assertTrue(checkForCourseName(c.getCourse().getName(), progressSummary.getRequirementCheckResults()));
+        }
+    }
+
+    /**
+     * checking to see if a class exists in the list of RequirementCheckResults
+     * @param courseName
+     * @param results
+     * @return
+     */
+    private boolean checkForCourseName(String courseName, List<RequirementCheckResult> results) {
+        for(RequirementCheckResult r : results) {
+            if(courseName.equals(r.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * test if simulateCourses would generate grades for simulated courses
+     */
+    @Test
+    public void testSimulateCourses_gradesGenerating() throws Exception {
+        ProgressSummary progressSummary = grads.simulateCourses("gayxx067", StudentRecordFactory.courseTakens());
+        for(RequirementCheckResult r : progressSummary.getRequirementCheckResults()) {
+            Assert.assertNotNull(r.getDetails().getGPA());
+        }
     }
 
     /**

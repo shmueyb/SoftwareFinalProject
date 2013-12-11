@@ -580,7 +580,6 @@ public class GRADSTest {
         Assert.assertSame(StudentRecordFactory.BenRecord().getStudent(), progressSummary.getStudent());
         Assert.assertSame(StudentRecordFactory.professors(), progressSummary.getAdvisors());
         Assert.assertSame(StudentRecordFactory.BenRecord().getDepartment(), progressSummary.getDepartment());
-        Assert.assertSame(StudentRecordFactory.BenRecord().getDepartment(), progressSummary.getRequirementCheckResults());
     }
 
     /**

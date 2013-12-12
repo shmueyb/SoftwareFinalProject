@@ -21,7 +21,7 @@ public class FileAccessTest {
     public void testGetStudentsJSON() throws Exception {
         GRADS grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
         List<StudentRecord> studentRecords;
-        studentRecords = FileAccess.getStudentsJSON(grads.getStudentRecords());
+        studentRecords = FileAccess.getInstance().getStudentsJSON();
         StudentRecord firstStudent=studentRecords.get(0);
         assertEquals(firstStudent.getStudent().getFirstName(), "Luan");
         assertEquals(firstStudent.getDepartment(), Department.COMPUTER_SCIENCE);
@@ -35,26 +35,26 @@ public class FileAccessTest {
     public void testWriteStudentsJSON() throws Exception {
         GRADS grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
         List<StudentRecord> studentRecords;
-        studentRecords = FileAccess.getStudentsJSON(grads.getStudentRecords());
+        studentRecords = FileAccess.getInstance().getStudentsJSON();
         // Set ID of first user to a different ID
         studentRecords.get(0).getStudent().setId("blust013");
-        FileAccess.writeStudentsJSON(grads.getStudentRecords(), studentRecords);
+        FileAccess.getInstance().writeStudentsJSON(studentRecords);
         // Check files have been writen to
-        studentRecords = FileAccess.getStudentsJSON(grads.getStudentRecords());
+        studentRecords = FileAccess.getInstance().getStudentsJSON();
         StudentRecord firstStudent=studentRecords.get(0);
         assertEquals(firstStudent.getStudent().getId(), "blust013");
         assertEquals(firstStudent.getDepartment(), Department.COMPUTER_SCIENCE);
 
         //reset the old value
         studentRecords.get(0).getStudent().setId("nguy0621");
-        FileAccess.writeStudentsJSON(grads.getStudentRecords(), studentRecords);
+        FileAccess.getInstance().writeStudentsJSON(studentRecords);
     }
 
     @Test
     public void testGetCourseJSON() throws Exception {
         GRADS grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
         List<Course> courses;
-        courses = FileAccess.getCourseJSON(grads.getCourses());
+        courses = FileAccess.getInstance().getCourseJSON();
         Course firstCourse=courses.get(0);
         assertEquals(firstCourse.getName(), "Operating Systems");
         assertEquals(firstCourse.getNumCredits(), "3");
@@ -69,7 +69,7 @@ public class FileAccessTest {
     public void testGetUserJSON() throws Exception {
         GRADS grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
         List<Users> users;
-        users = FileAccess.getUserJSON(grads.getUsers());
+        users = FileAccess.getInstance().getUserJSON();
         Users firstSession=users.get(0);
         assertEquals(firstSession.getUser().getId(), "nguy0621");
         assertEquals(firstSession.getRole(), UserType.STUDENT);

@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.easymock.EasyMock;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,16 +14,9 @@ import org.junit.Test;
 import edu.umn.csci5801.GRADS;
 import edu.umn.csci5801.access.AccessDeniedException;
 import edu.umn.csci5801.db.DatabaseAccessException;
-import edu.umn.csci5801.db.FileAccess;
 import edu.umn.csci5801.session.InvalidUserException;
-import edu.umn.csci5801.session.Session;
-import edu.umn.csci5801.session.User;
-import edu.umn.csci5801.session.UserType;
-import edu.umn.csci5801.session.Users;
 import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.studentrecord.StudentRecordFactory.StudentRecordFactory;
-import edu.umn.csci5801.studentrecord.program.Department;
-import edu.umn.csci5801.studentrecord.requirements.RequirementCheckResult;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
 import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
 
@@ -39,17 +31,9 @@ public class GRADSTest {
      * Init Grads for usage
      */
     @Before
-
-    public void initGrad() throws  Exception {
+    public void initGrad() throws Exception {
         // creating test files
-        FileAccess.getInstance().writeStudentsJSON(StudentRecordFactory.createRecords());
-        List<Users> users = FileAccess.getInstance().getUserJSON("GRADS_Materials/Data/users.txt");
-        User newUser = new User();
-        newUser.setFirstName("Catherine");
-        newUser.setLastName("Reed");
-        newUser.setId("1111");
-        users.add(new Users(newUser, UserType.STUDENT, Department.COMPUTER_SCIENCE));
-        FileAccess.writeUsersJSON("GRADS_Materials/Data/TestUsers.txt", users);
+        StudentRecordFactory.instantiateTestDb();
         // init Grads
         grads = new GRADS("GRADS_Materials/Data/TestStudents.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/TestUsers.txt");
     }
@@ -198,24 +182,10 @@ public class GRADSTest {
      * Test if getting the correct transcript
      */
     @Test
-<<<<<<< HEAD
     public void testGetTranscript() throws Exception {
         grads.setUser("nguy0621");
         StudentRecord Luan= grads.getTranscript("nguy0621");
         Assert.assertSame(StudentRecordFactory.LuanRecord(), Luan);
-=======
-    public void testGetTranscriptAsStudent() throws Exception {
-        //TODO: setUser for access, add user to user.txt
- /* If you want to use your info you created Xum*/
-//        StudentRecord XumRecord = grads.getTranscript("3333");
-//        Assert.assertSame(StudentRecordFactory.XumRecord(), XumRecord);
-        //TODO:if we stick with the database, create LuanRecord();
-        grads.setUser("nguy0621");
-        StudentRecord actual = grads.getTranscript("nguy0621");
-//        StudentRecord expected = StudentRecordFactory.LuanRecord();
-//        Assert.assertSame(actual, expected);
-
->>>>>>> d593801dcd36d582220a303ef4cfcdd463c41ac1
     }
 
     /**
@@ -230,18 +200,17 @@ public class GRADSTest {
         }
     }
 
-<<<<<<< HEAD
     /**
      * Testing if updateTranscript would swap records
      * @throws Exception
      */
-    @Test
-    public void testUpdateTranscript() throws Exception {
-
-        grads.updateTranscript("blust013", StudentRecordFactory.SamRecord());
-        StudentRecord studentRecord = grads.getTranscript("blust013");
-        Assert.assertSame(StudentRecordFactory.SamRecord(), studentRecord);
-        }
+//    @Test
+//    public void testUpdateTranscript() throws Exception {
+//        grads.
+//        grads.updateTranscript("blust013", StudentRecordFactory.SamRecord());
+//        StudentRecord studentRecord = grads.getTranscript("blust013");
+//        Assert.assertSame(StudentRecordFactory.SamRecord(), studentRecord);
+//        }
 
     /**
      * Testing if updateTranscript would throw the correct Exception for invalid UserID
@@ -258,24 +227,6 @@ public class GRADSTest {
 
         }
     }
-=======
-//    /**
-//     * Testing if updateTranscript would throw the correct Exception for invalid UserID
-//     * @throws DatabaseAccessException
-//     * @throws InvalidUserException
-//     * @throws AccessDeniedException
-//     */
-//    @Test
-//    public void testUpdateTranscript_InvalidID() throws DatabaseAccessException, InvalidUserException, FileNotFoundException {
-//        //TODO: Xum, GPC testing invalid ID or Student that is INVALID
-//        try {
-//            grads.updateTranscript("dummyID", StudentRecordFactory.CatherineRecord());
-//            fail();
-//        } catch(AccessDeniedException f) {
-//            //do nothing
-//        }
-//    }
->>>>>>> d593801dcd36d582220a303ef4cfcdd463c41ac1
 
     /**
      * Checks if the GPC can get a Student's Transcript

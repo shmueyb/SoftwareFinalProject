@@ -1,10 +1,22 @@
 package edu.umn.csci5801.studentrecord.StudentRecordFactory;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
 import edu.umn.csci5801.session.Professor;
 import edu.umn.csci5801.session.Student;
+import edu.umn.csci5801.session.User;
+import edu.umn.csci5801.session.UserType;
+import edu.umn.csci5801.session.Users;
 import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.studentrecord.program.Degree;
 import edu.umn.csci5801.studentrecord.program.Department;
@@ -33,6 +45,19 @@ public class StudentRecordFactory {
      * @return: a list of student records for database
      * @throws Exception
      */
+
+    public static void instantiateTestDb() throws Exception {
+        writeStudentsJSON("GRADS_Materials/Data/TestStudents.txt", createRecords());
+        List<Users> users = new Gson().fromJson( new FileReader( new File("GRADS_Materials/Data/users.txt")), new TypeToken<List<Users>>(){}.getType());
+        User newUser = new User();
+        newUser.setFirstName("Catherine");
+        newUser.setLastName("Reed");
+        newUser.setId("1111");
+        users.add(new Users(newUser, UserType.STUDENT, Department.COMPUTER_SCIENCE));
+        writeUsersJSON("GRADS_Materials/Data/TestUsers.txt", users);
+
+    }
+
     public static List<StudentRecord> createRecords() throws Exception{
         List<StudentRecord> list = new LinkedList<StudentRecord>();
         list.add(LuanRecord());
@@ -251,6 +276,38 @@ public class StudentRecordFactory {
         List<MilestoneSet> milestoneSets = new LinkedList<MilestoneSet>();
         milestoneSets.add(new MilestoneSet(Milestone.PRELIM_COMMITTEE_APPOINTED, new Term(Semester.FALL, 2014)));
         return  milestoneSets;
+    }
+
+    public static void writeStudentsJSON(String jsonFileName, List<StudentRecord> newStudentRecords) {
+        BufferedWriter out = null;
+        try
+        {
+            FileWriter fstream = new FileWriter(jsonFileName, false); //true tells to append data.
+            String newRecords = new GsonBuilder().setPrettyPrinting().create().toJson(newStudentRecords);
+            out = new BufferedWriter(fstream);
+            out.write(newRecords);
+            out.close();
+        }
+        catch (IOException e)
+        {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+    public static void writeUsersJSON(String jsonFileName, List<Users> newStudentRecords) {
+        BufferedWriter out = null;
+        try
+        {
+            FileWriter fstream = new FileWriter(jsonFileName, false); //true tells to append data.
+            String newRecords = new GsonBuilder().setPrettyPrinting().create().toJson(newStudentRecords);
+            out = new BufferedWriter(fstream);
+            out.write(newRecords);
+            out.close();
+        }
+        catch (IOException e)
+        {
+            System.err.println("Error: " + e.getMessage());
+        }
+
     }
 
 }

@@ -1,6 +1,7 @@
 package edu.umn.csci5801.studentrecord.program;
 
 import edu.umn.csci5801.studentrecord.requirements.MilestoneSet;
+import edu.umn.csci5801.studentrecord.requirements.Milestone;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
 import edu.umn.csci5801.studentrecord.transcript.Course;
 import edu.umn.csci5801.studentrecord.transcript.CourseArea;
@@ -30,8 +31,16 @@ public class GradRequirements {
         boolean breadth_req_passed = false;
         boolean thesis_phd_req_passed = false;
         boolean colloquium_req_passed = false;
+        boolean milestone_req_passed = false;
+        boolean research_class_req_passed = false;
         List<CourseTaken> breadth_courses_list = null;
         int numThesisCredits = 0;
+
+        List<Milestone> milestoneListPHD = Arrays.asList(Milestone.PRELIM_COMMITTEE_APPOINTED,
+                Milestone.WRITTEN_PE_SUBMITTED, Milestone.WRITTEN_PE_APPROVED, Milestone.ORAL_PE_PASSED,
+                Milestone.DPF_SUBMITTED, Milestone.DPF_APPROVED, Milestone.THESIS_COMMITTEE_APPOINTED,
+                Milestone.PROPOSAL_PASSED, Milestone.GRADUATION_PACKET_REQUESTED, Milestone.THESIS_SUBMITTED,
+                Milestone.THESIS_APPROVED, Milestone.DEFENSE_PASSED) ;
 
         for (CourseTaken courseTaken : coursesTaken){
             Course studentCourse = courseTaken.getCourse();
@@ -75,6 +84,7 @@ public class GradRequirements {
                 }
                 double breadth_req_gpa = total_grade_points/total_credits;
 
+
                 if((num_breadth_courses_taken >= 5) & (num_app >= 1) & (num_theory>= 1) & (num_arch_sys_soft>=1) &(breadth_req_gpa>=min_breadth_gpa_PHD) ){
                     breadth_req_passed = true;
                 }
@@ -84,7 +94,9 @@ public class GradRequirements {
                 if(studentCourse.getId().equals("csci8970") & (courseTaken.getGrade().equals("S"))){
                     colloquium_req_passed = true;
                 }
-
+                if(milestoneSetList.containsAll(milestoneListPHD)){
+                    milestone_req_passed = true;
+                }
 
             }
 
@@ -113,8 +125,5 @@ public class GradRequirements {
         return null;
 
     }
-
-
-
 
 }

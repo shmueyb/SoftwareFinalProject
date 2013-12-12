@@ -35,8 +35,12 @@ public class GRADSTest {
      * Init Grads for usage
      */
     @Before
-    public void initGrad() throws FileNotFoundException {
-        grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
+    public void initGrad() {
+        try {
+            grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
+        } catch (DatabaseAccessException e) {
+            fail();
+        }
 
     }
 

@@ -6,14 +6,14 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/Parser.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386272822519" ignored="false" />
     <file path="/fragment.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386494460353" ignored="false" />
-    <file path="/GRADS.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386499230915" ignored="false" />
+    <file path="/GRADS.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386882700176" ignored="false" />
     <file path="/AccessController.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386491576799" ignored="false" />
-    <file path="/Session.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386473508812" ignored="false" />
+    <file path="/Session.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386882682531" ignored="false" />
     <file path="/UserType.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386274497267" ignored="false" />
     <file path="/UserNotFoundException.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386473371811" ignored="false" />
-    <file path="/UserDAO.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386477810590" ignored="false" />
-    <file path="/StudentDAO.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386494403408" ignored="false" />
-    <file path="/FileAccess.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386492049861" ignored="false" />
+    <file path="/UserDAO.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386881759697" ignored="false" />
+    <file path="/StudentDAO.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386881845349" ignored="false" />
+    <file path="/FileAccess.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386882651995" ignored="false" />
     <file path="/Department.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386489656732" ignored="false" />
     <file path="/StudentAccess.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386494820922" ignored="false" />
     <file path="/AccessDeniedException.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386490373756" ignored="false" />
@@ -27,6 +27,8 @@
     <file path="/StudentRecord.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386768561198" ignored="false" />
     <file path="/DegreeRequirement.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386876300503" ignored="false" />
     <file path="/DegreeRequirementsDAO.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386879605847" ignored="false" />
+    <file path="$PROJECT_DIR$/edu/umn/csci5801/access/AccessController.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386879677729" ignored="false" />
+    <file path="/UserDAOTest.java" changelist="fbb72c43-a767-4019-a997-9034d1805821" time="1386882100199" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,69 +87,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GradRequirements.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/program/GradRequirements.java">
+      <file leaf-file-name="UserDAO.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/UserDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="31" selection-start="595" selection-end="595" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DegreePlan.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/program/DegreePlan.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="25" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DegreeRequirement.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/program/DegreeRequirement.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="29" selection-start="897" selection-end="897" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DegreePlanDAO.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/DegreePlanDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="22" selection-start="318" selection-end="318" vertical-scroll-proportion="0.27860695">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#542#554#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GRADS.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/GRADS.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="86" selection-start="1436" selection-end="1448" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CourseArea.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/CourseArea.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="12" selection-start="64" selection-end="64" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StudentDAO.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/StudentDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="9" selection-start="1417" selection-end="1418" vertical-scroll-proportion="0.0">
+            <state line="26" column="48" selection-start="778" selection-end="778" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -156,25 +99,45 @@
       <file leaf-file-name="FileAccess.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/FileAccess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="13" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0">
+            <state line="52" column="35" selection-start="1568" selection-end="1568" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StudentRecord.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecord.java">
+      <file leaf-file-name="GRADS.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/GRADS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="14" selection-start="553" selection-end="553" vertical-scroll-proportion="0.0">
+            <state line="43" column="49" selection-start="1535" selection-end="1535" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Degree.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/program/Degree.java">
+      <file leaf-file-name="FileAccessTest.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/FileAccessTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="12" selection-start="61" selection-end="61" vertical-scroll-proportion="0.0">
+            <state line="18" column="13" selection-start="520" selection-end="520" vertical-scroll-proportion="0.17128874">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Session.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/session/Session.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="54" selection-start="898" selection-end="898" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StudentRecordController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecordController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="125" column="63" selection-start="4152" selection-end="4152" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -190,13 +153,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/StudentDAO.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/StudentAccess.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/ProgressAccess.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/CourseDAO.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/GRADS.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecordController.java" />
-        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/FileAccess.java" />
         <option value="$PROJECT_DIR$/edu/umn/csci5801/test/AccessControllerTest.java" />
         <option value="$PROJECT_DIR$/edu/umn/csci5801/test/StudentRecordControllerTest.java" />
         <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/StudentRecordFactory.java" />
@@ -206,6 +162,13 @@
         <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/program/DegreeRequirement.java" />
         <option value="$PROJECT_DIR$/edu/umn/csci5801/db/DegreeRequirementsDAO.java" />
         <option value="$PROJECT_DIR$/edu/umn/csci5801/db/DegreePlanDAO.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/UserDAOTest.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/StudentDAO.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecordController.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/UserDAO.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/db/FileAccess.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/session/Session.java" />
+        <option value="$PROJECT_DIR$/edu/umn/csci5801/GRADS.java" />
       </list>
     </option>
   </component>
@@ -619,7 +582,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="774" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -633,7 +596,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24878444" sideWeight="0.68171805" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24878444" sideWeight="0.68171805" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31811488" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -703,104 +666,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/test/GRADSTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="9" selection-start="1938" selection-end="1938" vertical-scroll-proportion="0.025423728">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecordFactory/StudentRecordFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="32" selection-start="1560" selection-end="1560" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/program/GradRequirements.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="31" selection-start="595" selection-end="595" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/CourseArea.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="12" selection-start="64" selection-end="64" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/transcript/Course.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="65" selection-end="65" vertical-scroll-proportion="0.049751244">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/requirements/Milestone.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="404" selection-end="404" vertical-scroll-proportion="0.12711865">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/requirements/MilestoneSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="123" selection-end="123" vertical-scroll-proportion="0.09950249">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/program/DegreeRequirement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="29" selection-start="897" selection-end="897" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/program/Department.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="12" selection-start="113" selection-end="113" vertical-scroll-proportion="0.09950249">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/GRADS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="86" selection-start="1436" selection-end="1448" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/StudentDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="9" selection-start="1417" selection-end="1418" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/program/Degree.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="12" selection-start="61" selection-end="61" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/FileAccess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="13" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/program/DegreePlan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="25" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -812,13 +680,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/program/DegreeRequirement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="29" selection-start="897" selection-end="897" vertical-scroll-proportion="0.6948882">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/program/DegreePlan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="25" selection-start="227" selection-end="227" vertical-scroll-proportion="0.21565495">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/StudentDAOTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="13" selection-start="322" selection-end="322" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/UserDAOTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="63" selection-start="413" selection-end="413" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/StudentDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="32" selection-start="866" selection-end="866" vertical-scroll-proportion="0.3882545">
+          <folding>
+            <element signature="e#1906#1921#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/DegreePlanDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="22" selection-start="318" selection-end="318" vertical-scroll-proportion="0.27860695">
+        <state line="22" column="39" selection-start="574" selection-end="574" vertical-scroll-proportion="0.52715653">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#542#554#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/DatabaseAccessException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="13" selection-start="194" selection-end="194" vertical-scroll-proportion="0.21565495">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/CourseDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="13" selection-start="194" selection-end="194" vertical-scroll-proportion="0.21565495">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/studentrecord/StudentRecordController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="125" column="63" selection-start="4152" selection-end="4152" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/UserDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="48" selection-start="778" selection-end="778" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/FileAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="35" selection-start="1568" selection-end="1568" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/session/Session.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="54" selection-start="898" selection-end="898" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/GRADS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="49" selection-start="1535" selection-end="1535" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edu/umn/csci5801/db/FileAccessTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="13" selection-start="520" selection-end="520" vertical-scroll-proportion="0.17128874">
+          <folding />
         </state>
       </provider>
     </entry>

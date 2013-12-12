@@ -15,7 +15,7 @@ public class UserDAOTest {
     @Test
     public void testGetUserByID() throws Exception {
         GRADS grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
-        Users user = UserDAO.getUserByID(grads.getUsers(), "tolas9999");
+        Users user = UserDAO.getUserByID("tolas9999");
         assertEquals(user.getUser().getFirstName(), "Georganne");
         assertEquals(user.getDepartment(), Department.COMPUTER_SCIENCE);
     }

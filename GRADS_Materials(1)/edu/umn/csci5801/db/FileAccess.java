@@ -88,6 +88,23 @@ public class FileAccess {
 
     }
 
+    public static void writeUsersJSON(String jsonFileName, List<Users> newStudentRecords) {
+        BufferedWriter out = null;
+        try
+        {
+            FileWriter fstream = new FileWriter(jsonFileName, false); //true tells to append data.
+            String newRecords = new GsonBuilder().setPrettyPrinting().create().toJson(newStudentRecords);
+            out = new BufferedWriter(fstream);
+            out.write(newRecords);
+            out.close();
+        }
+        catch (IOException e)
+        {
+            System.err.println("Error: " + e.getMessage());
+        }
+
+    }
+
     /**
      *
      * @return

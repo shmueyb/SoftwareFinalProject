@@ -1,6 +1,7 @@
 package edu.umn.csci5801.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.FileNotFoundException;
@@ -387,12 +388,11 @@ public class GRADSTest {
     @Test
     public void testAddNote() throws Exception {
         //TODO: Student Record Factory for gayxx067 with the updated Note,and the assert
-
         grads.setUser("tolas9999");
-
-
         grads.addNote("gayxx067", "I am Xum");
         StudentRecord studentRecord = grads.getTranscript("gayxx067");
+        assertTrue(studentRecord.getNotes().contains("I am Xum"));
+        assertEquals(studentRecord, StudentRecordFactory.GregRecord());
     }
 
     /**

@@ -224,7 +224,7 @@ public class GRADSTest {
         try {
             grads.updateTranscript("dummyID", StudentRecordFactory.CatherineRecord());
             fail();
-        } catch(FileNotFoundException f) {
+        } catch( AccessDeniedException a) {
 
         }
     }

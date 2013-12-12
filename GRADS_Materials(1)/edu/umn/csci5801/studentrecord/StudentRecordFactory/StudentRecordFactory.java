@@ -67,13 +67,16 @@ public class StudentRecordFactory {
         return list;
     }
 
+    public static void main(String[] args) {
+        System.out.println(LuanRecord().getNotes());
+    }
     /**
      *
      * @return: dummy list of notes
      */
     public static List<String> notes() {
         List<String> notes = new LinkedList<String>();
-        for (int i = 0; i<10;i++) {
+        for (int i = 0; i<5;i++) {
             notes.add("" + i);
         }
         return notes;

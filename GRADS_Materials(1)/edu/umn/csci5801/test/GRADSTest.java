@@ -1,6 +1,5 @@
 package edu.umn.csci5801.test;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -261,7 +260,7 @@ public class GRADSTest {
      */
     @Test
     public void testUpdateTranscriptStudent_InDept_asGPC() throws  FileNotFoundException, DatabaseAccessException, InvalidUserException {
-      grads.setUser("talas9999");
+      grads.setUser("tolas9999");
         try {
             grads.updateTranscript("gayxx067",grads.getTranscript("gayxx067"));
         } catch (AccessDeniedException e) {
@@ -293,7 +292,7 @@ public class GRADSTest {
      */
     @Test
     public void testUpdateTranscript_Milestone() throws Exception{
-        grads.setUser("talas9999");
+        grads.setUser("tolas9999");
         grads.updateTranscript("gayxx067",grads.getTranscript("gayxx067"));
         //TODO create StudentRecordFactor for "gayxx067" with an updated Transcript Milestone,add the assert
         StudentRecord actual = grads.getTranscript("gayxx067");
@@ -307,7 +306,7 @@ public class GRADSTest {
      */
     @Test
     public void testUpdateTranscript_Requirement() throws Exception {
-        grads.setUser("talas9999");
+        grads.setUser("tolas9999");
         grads.updateTranscript("gayxx067", grads.getTranscript("gayxx067"));
         //TODO create StudentRecordFactor for "gayxx067" with an updated Transcript Requirement,add the assert
         StudentRecord actual = grads.getTranscript("gayxx067");
@@ -321,7 +320,7 @@ public class GRADSTest {
      */
     @Test
     public void testUpdateTranscript_Grade() throws Exception{
-        grads.setUser("talas9999");
+        grads.setUser("tolas9999");
         grads.updateTranscript("nguy0261", grads.getTranscript("nguy0261"));
         //TODO create StudentRecordFactor for "gayxx067" with an updated Transcript GRADE,add the assert
         StudentRecord actual = grads.getTranscript("nguy0261");
@@ -464,7 +463,7 @@ public class GRADSTest {
      * Checks that a GPC cannot generate a progress summary for a student outside of their dept.
      */
     @Test
-    public void testGenerateProgressSummary_OutDept_asGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
+    public void testGenerateProgressSummary_OutDept_AsGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
         grads.setUser("smith0001");
         try {
             grads.generateProgressSummary("nguy0621");
@@ -480,7 +479,7 @@ public class GRADSTest {
      * @throws DatabaseAccessException
      */
     @Test
-    public void testGenerateProgress_OtherStudent_asStudent() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
+    public void testGenerateProgress_OtherStudent_AsStudent() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
         //TODO: Add inputs testID, Expected Progress Summary;
         grads.setUser("gayxx067");
         try {
@@ -496,7 +495,7 @@ public class GRADSTest {
      * @throws Exception
      */
     @Test
-    public void testGenerateProgressSummary_InDept_asGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
+    public void testGenerateProgressSummary_InDept_AsGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
         //TODO: Add inputs testID, Expected Progress Summary
         grads.setUser("tolas9999");
         try {
@@ -546,24 +545,12 @@ public class GRADSTest {
 
 
     /**
-     * Checks that GPC can simulate a progress summary for a student in their dept.
-     * @throws Exception
-     */
-    @Test
-    public void testSimulateCourses_InDept_asGPC() throws Exception {
-        //TODO inputs: courseTaken list, StudentRecordFactor for user new student record,assert
-        grads.setUser("tolas9999");
-        List<CourseTaken> courses = new ArrayList<CourseTaken>();
-        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
-    }
-
-    /**
      * checks that a GPC cannot simulate a progress summary for a student out of their dept.
      * @throws FileNotFoundException
      * @throws DatabaseAccessException
      */
     @Test
-    public void testSimulateCoursesOutDept_asGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
+    public void testSimulateCoursesOutDept_AsGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
         //TODO inputs: courseTaken list
         String testID = "smith0002";
         List<CourseTaken> courses = new ArrayList<CourseTaken>();
@@ -587,49 +574,64 @@ public class GRADSTest {
         List<CourseTaken> courses = new ArrayList<CourseTaken>();
         grads.setUser("desil1337");
         try {
-           grads.simulateCourses("nguy0261",courses);
+            grads.simulateCourses("nguy0261",courses);
             fail();
         } catch (Exception ex) {
             //do nothing
         }
     }
 
-    /**
-     * Check that simulate courses takes in account retaken course
-     * @throws Exception
-     */
-    @Test
-    public void testSimulateCourses_RetakenCourse_asStudent() throws Exception {
-        //TODO inputs: courseTaken list, expected Factory Progress Summary, assert
-        grads.setUser("gayxx067");
-        List<CourseTaken> courses = new ArrayList<CourseTaken>();
-        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
+    //TODO: Create Users and Student Record for each type of degree,PHD= LUAN, MS_A MS_B MS_C needs records,and users
 
-    }
-
-    /**
-     * Checks simulate courses takes courses without a grade input
-     * @throws Exception
-     */
-    @Test
-    public void testSimulateCourses_NoGradeInput_asStudent() throws Exception {
-        //TODO inputs: courseTaken list, expected Progress Summary
-        grads.setUser("gayxx067");
-        List<CourseTaken> courses = new ArrayList<CourseTaken>();
-        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
-
-    }
-
-    /**
-     * Checks simulate courses takes with
-     * @throws Exception
-     */
-    @Test
-    public void testSimulateCourses_FailingGradeInput_asStudent() throws Exception {
-        //TODO inputs: courseTaken list, expected Progress Summary
-        grads.setUser("gayxx067");
-        List<CourseTaken> courses = new ArrayList<CourseTaken>();
-        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
-
-    }
+//
+//    /**
+//     * Checks that GPC can simulate a progress summary for a student in their dept.
+//     * @throws Exception
+//     */
+//    @Test
+//    public void testSimulateCourses_PHD_AsGPC() throws Exception {
+//        //TODO inputs: courseTaken list, StudentRecordFactor for user new student record,assert
+//        grads.setUser("tolas9999");
+//        List<CourseTaken> courses = new ArrayList<CourseTaken>();
+//        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
+//    }
+//
+//    /**
+//     * Check that simulate courses takes in account retaken course
+//     * @throws Exception
+//     */
+//    @Test
+//    public void testSimulateCourses_RetakenCourse_MS_A_AsStudent() throws Exception {
+//        //TODO inputs: courseTaken list, expected Factory Progress Summary, assert
+//        grads.setUser("gayxx067");
+//        List<CourseTaken> courses = new ArrayList<CourseTaken>();
+//        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
+//
+//    }
+//
+//    /**
+//     * Checks simulate courses takes courses without a grade input
+//     * @throws Exception
+//     */
+//    @Test
+//    public void testSimulateCourses_NoGradeInput_MS_B_AsStudent() throws Exception {
+//        //TODO inputs: courseTaken list, expected Progress Summary
+//        grads.setUser("gayxx067");
+//        List<CourseTaken> courses = new ArrayList<CourseTaken>();
+//        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
+//
+//    }
+//
+//    /**
+//     *
+//     * @throws Exception
+//     */
+//    @Test
+//    public void testSimulateCourses_FailingGradeInput_MS_C_AsStudent() throws Exception {
+//        //TODO inputs: courseTaken list, expected Progress Summary
+//        grads.setUser("gayxx067");
+//        List<CourseTaken> courses = new ArrayList<CourseTaken>();
+//        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
+//
+//    }
 }

@@ -77,7 +77,7 @@ public class StudentRecordFactory {
     public static List<String> notes() {
         List<String> notes = new LinkedList<String>();
         for (int i = 0; i<5;i++) {
-            notes.add("" + i);
+            notes.add("aaddf");
         }
         return notes;
     }

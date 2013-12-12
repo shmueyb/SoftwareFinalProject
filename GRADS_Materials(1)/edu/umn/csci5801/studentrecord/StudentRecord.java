@@ -87,7 +87,7 @@ public class StudentRecord {
             return this;
         }
 
-        public StudentRecordBuilder notes(List<String> nodes) {
+        public StudentRecordBuilder notes(List<String> notes) {
             this.notes = notes;
             return this;
         }

@@ -11,7 +11,6 @@ import java.util.List;
 import org.easymock.EasyMock;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import edu.umn.csci5801.GRADS;
@@ -36,7 +35,7 @@ public class GRADSTest {
     /**
      * Init Grads for usage
      */
-    @BeforeClass
+    @Before
     public void initGrad(){
         grads = new GRADS();
     }
@@ -126,14 +125,11 @@ public class GRADSTest {
      */
 
     public void testGetStudentIDs_asGPC() throws Exception {
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getUserID()).andReturn("smith0001").anyTimes();
-        EasyMock.replay(session);
-
-        //TODO: Grab list of students
+        //TODO: Grab list of students from Math Dept.
+        grads.setUser("smith0001");  /* Math Dept.*/
         List<String> actual  = grads.getStudentIDs();
-        List<String> expected = null;
-        assertEquals(expected, actual);
+//        List<String> expected = null;
+//        assertEquals(expected, actual);
     }
 
     /**
@@ -141,7 +137,7 @@ public class GRADSTest {
      * @throws DatabaseAccessException
      * @throws FileNotFoundException
      */
-    public void testGetStudentIDs_asStudent() throws DatabaseAccessException, FileNotFoundException, InvalidUserException {
+    public void testGetStudentIDs_AsStudent() throws DatabaseAccessException, FileNotFoundException, InvalidUserException {
         grads.setUser("gayxx067");
         try {
             grads.getTranscript("gayxx067");
@@ -157,8 +153,15 @@ public class GRADSTest {
     @Test
     public void testGetTranscriptAsStudent() throws Exception {
         //TODO: setUser for access, add user to user.txt
-        StudentRecord XumRecord = grads.getTranscript("3333");
-        Assert.assertSame(StudentRecordFactory.XumRecord(), XumRecord);
+ /* If you want to use your info you created Xum*/
+//        StudentRecord XumRecord = grads.getTranscript("3333");
+//        Assert.assertSame(StudentRecordFactory.XumRecord(), XumRecord);
+        //TODO:if we stick with the database, create LuanRecord();
+        grads.setUser("nguy0621");
+        StudentRecord actual = grads.getTranscript("nguy0621");
+//        StudentRecord expected = StudentRecordFactory.LuanRecord();
+//        Assert.assertSame(actual, expected);
+
     }
 
     /**
@@ -172,32 +175,23 @@ public class GRADSTest {
             //do nothing
         }
     }
-    /**
-     * Testing if updateTranscript would swap records
-     * @throws Exception
-     */
-    @Test
-    public void testUpdateTranscriptOwnAsStudent() throws Exception {
-        grads.updateTranscript("1111", StudentRecordFactory.SamRecord());
-        StudentRecord studentRecord = grads.getTranscript("1111");
-        Assert.assertSame(StudentRecordFactory.TrangRecord(), studentRecord);
-        }
 
-    /**
-     * Testing if updateTranscript would throw the correct Exception for invalid UserID
-     * @throws DatabaseAccessException
-     * @throws InvalidUserException
-     * @throws AccessDeniedException
-     */
-    @Test
-    public void testUpdateTranscript_InvalidID() throws DatabaseAccessException, InvalidUserException, FileNotFoundException {
-        try {
-            grads.updateTranscript("dummyID", StudentRecordFactory.CatherineRecord());
-            fail();
-        } catch(AccessDeniedException f) {
-            //do nothing
-        }
-    }
+//    /**
+//     * Testing if updateTranscript would throw the correct Exception for invalid UserID
+//     * @throws DatabaseAccessException
+//     * @throws InvalidUserException
+//     * @throws AccessDeniedException
+//     */
+//    @Test
+//    public void testUpdateTranscript_InvalidID() throws DatabaseAccessException, InvalidUserException, FileNotFoundException {
+//        //TODO: Xum, GPC testing invalid ID or Student that is INVALID
+//        try {
+//            grads.updateTranscript("dummyID", StudentRecordFactory.CatherineRecord());
+//            fail();
+//        } catch(AccessDeniedException f) {
+//            //do nothing
+//        }
+//    }
 
     /**
      * Checks if the GPC can get a Student's Transcript
@@ -205,9 +199,10 @@ public class GRADSTest {
      */
     @Test
     public void testGetTranscript_asGPC() throws AccessDeniedException, DatabaseAccessException, FileNotFoundException, InvalidUserException {
-        grads.setUser("blust013");
-        StudentRecord expected = grads.getTranscript("blust013");
-        Assert.assertSame(StudentRecordFactory.SamRecord(), expected);
+        grads.setUser("tolas9999");
+        StudentRecord actual = grads.getTranscript("gayxx067");
+       //TODO: create StudentRecordFactor for gayxx067
+       // Assert.assertSame(StudentRecordFactory.SamRecord(), actual);
     }
 
     /**
@@ -218,15 +213,14 @@ public class GRADSTest {
      */
     @Test
     public void testGetOtherStudentTranscriptAsStudent() throws AccessDeniedException, DatabaseAccessException, FileNotFoundException, InvalidUserException {
-        grads.setUser("invalid");
+        grads.setUser("nguy0261");
         try {
-            StudentRecord actual = grads.getTranscript("invalid");;
+            grads.getTranscript("gayxx067");
             fail();
         }catch (AccessDeniedException ex){
             //do nothing
         }
     }
-
     /**
      * Check that a GPC cannot get a transcript of a student not in their dept.
      * @throws DatabaseAccessException
@@ -234,9 +228,9 @@ public class GRADSTest {
      */
     @Test
     public void testGetTranscriptStudentNotInDept_asGPC() throws DatabaseAccessException, FileNotFoundException, InvalidUserException {
-        grads.setUser("smith0001");
+        grads.setUser("smith0001");/* Math GPC*/
         try {
-            StudentRecord actual = grads.getTranscript("smith0001");;
+            StudentRecord actual = grads.getTranscript("nguy0261");
             fail();
         }catch (AccessDeniedException ex){
             //do nothing
@@ -249,10 +243,10 @@ public class GRADSTest {
      */
 
     @Test
-    public void testUpdateTranscript_asStudent() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
+    public void testUpdateTranscript_AsStudent() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
         grads.setUser("nguy0621");
         try {
-            StudentRecord actual = grads.getTranscript("nguy0621");
+        grads.getTranscript("nguy0621");
             fail();
         }catch (AccessDeniedException ex){
             //do nothing
@@ -266,39 +260,25 @@ public class GRADSTest {
      * @throws DatabaseAccessException
      */
     @Test
-    public void testUpdateTranscriptStudentInDept_asGPC() throws AccessDeniedException,FileNotFoundException,DatabaseAccessException{
-        //TODO: set TestID and Expected StudentRecord
-        String testID = "";
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.GRADUATE_PROGRAM_COORDINATOR).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testID).anyTimes();
-        EasyMock.replay(session);
-
-        GRADS access = new GRADS();
-        access.updateTranscript(testID,access.getTranscript(testID));
-
-//        StudentRecord actual = access.getTranscript(testID);
-//        StudentRecord expected = new StudentRecord();
-//        assertEquals(actual,expected);
-
+    public void testUpdateTranscriptStudent_InDept_asGPC() throws  FileNotFoundException, DatabaseAccessException, InvalidUserException {
+      grads.setUser("talas9999");
+        try {
+            grads.updateTranscript("gayxx067",grads.getTranscript("gayxx067"));
+        } catch (AccessDeniedException e) {
+            fail();
+        }
     }
+
     /**
      * Checks that a GPC cannot update a student record for a student no in their dept.
      * @throws FileNotFoundException
      * @throws DatabaseAccessException
      */
     @Test
-    public void testUpdateTranscriptStudentNotInDept_asGPC() throws FileNotFoundException,DatabaseAccessException{
-        //TODO: set TestID
-        String testID = "";
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.GRADUATE_PROGRAM_COORDINATOR).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testID).anyTimes();
-        EasyMock.replay(session);
-
-        GRADS access = new GRADS();
+    public void testUpdateTranscriptStudent_NotInDept_asGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
+        grads.setUser("smith0001");
         try {
-            access.updateTranscript(testID,access.getTranscript(testID));
+           grads.updateTranscript("gayxx067", grads.getTranscript("gayxx067"));
             fail();
         } catch (AccessDeniedException ex) {
             //do nothing
@@ -312,21 +292,11 @@ public class GRADSTest {
      * @throws DatabaseAccessException
      */
     @Test
-    public void testUpdateTranscript_milestone_asGPC() throws AccessDeniedException,FileNotFoundException,DatabaseAccessException{
-        //TODO: set TestID and Expected StudentRecord
-        String testID = "";
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.GRADUATE_PROGRAM_COORDINATOR).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testID).anyTimes();
-        EasyMock.replay(session);
-
-        GRADS access = new GRADS();
-        access.updateTranscript(testID,access.getTranscript(testID));
-
-//        StudentRecord actual = access.getTranscript(testID);
-//        StudentRecord expected = new StudentRecord();
-//        assertEquals(actual,expected);
-
+    public void testUpdateTranscript_Milestone() throws Exception{
+        grads.setUser("talas9999");
+        grads.updateTranscript("gayxx067",grads.getTranscript("gayxx067"));
+        //TODO create StudentRecordFactor for "gayxx067" with an updated Transcript Milestone,add the assert
+        StudentRecord actual = grads.getTranscript("gayxx067");
     }
 
     /**
@@ -336,21 +306,11 @@ public class GRADSTest {
      * @throws DatabaseAccessException
      */
     @Test
-    public void testUpdateTranscript_requirement_asGPC() throws AccessDeniedException,FileNotFoundException,DatabaseAccessException{
-        //TODO: set TestID and Expected StudentRecord
-        String testID = "";
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.GRADUATE_PROGRAM_COORDINATOR).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testID).anyTimes();
-        EasyMock.replay(session);
-
-        GRADS access = new GRADS();
-        access.updateTranscript(testID,access.getTranscript(testID));
-
-//        StudentRecord actual = access.getTranscript(testID);
-//        StudentRecord expected = new StudentRecord();
-//        assertEquals(actual,expected);
-
+    public void testUpdateTranscript_Requirement() throws Exception {
+        grads.setUser("talas9999");
+        grads.updateTranscript("gayxx067", grads.getTranscript("gayxx067"));
+        //TODO create StudentRecordFactor for "gayxx067" with an updated Transcript Requirement,add the assert
+        StudentRecord actual = grads.getTranscript("gayxx067");
     }
 
     /**
@@ -360,32 +320,22 @@ public class GRADSTest {
      * @throws DatabaseAccessException
      */
     @Test
-    public void testUpdateTranscript_grade_asGPC() throws AccessDeniedException,FileNotFoundException,DatabaseAccessException{
-        //TODO: set TestID and Expected StudentRecord
-        String testID = "";
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.GRADUATE_PROGRAM_COORDINATOR).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testID).anyTimes();
-        EasyMock.replay(session);
-
-        GRADS access = new GRADS();
-        access.updateTranscript(testID,access.getTranscript(testID));
-
-//        StudentRecord actual = access.getTranscript(testID);
-//        StudentRecord expected = new StudentRecord();
-//        assertEquals(actual,expected);
-
+    public void testUpdateTranscript_Grade() throws Exception{
+        grads.setUser("talas9999");
+        grads.updateTranscript("nguy0261", grads.getTranscript("nguy0261"));
+        //TODO create StudentRecordFactor for "gayxx067" with an updated Transcript GRADE,add the assert
+        StudentRecord actual = grads.getTranscript("nguy0261");
     }
-
     /**
      * Checks that a student cannot add a note
      * @throws FileNotFoundException
      */
     @Test
     public void testAddNote() throws Exception {
-        grads.addNote("3333", "I am Xum");
-        StudentRecord studentRecord = grads.getTranscript("3333");
-        Assert.assertTrue(studentRecord.getNotes().contains("I am Xum"));
+        //TODO: Student Record Factory for gayxx067 with the updated Note,and the assert
+        grads.setUser("tolas9999");
+        grads.addNote("gayxx067", "I am Xum");
+        StudentRecord studentRecord = grads.getTranscript("gayxx067");
     }
 
     /**
@@ -394,11 +344,12 @@ public class GRADSTest {
      * @throws AccessDeniedException
      */
     @Test
-    public void testAddNote_InvalidRecord() throws DatabaseAccessException, AccessDeniedException {
+    public void testAddNote_InvalidRecord() throws  FileNotFoundException, AccessDeniedException, InvalidUserException {
+        grads.setUser("smith0001");
         try {
             grads.addNote("invalidUser", "anything");
             fail();
-        } catch (FileNotFoundException f) {
+        } catch (DatabaseAccessException ex) {
 
         }
     }
@@ -409,9 +360,10 @@ public class GRADSTest {
      * @throws AccessDeniedException
      */
     @Test
-    public void testAddNote_NullNote() throws FileNotFoundException, AccessDeniedException {
+    public void testAddNote_NullNote() throws FileNotFoundException, AccessDeniedException, InvalidUserException {
+        grads.setUser("tolas9999");
         try {
-            grads.addNote("3333", null);
+            grads.addNote("gayxx067", null);
             fail();
         } catch (DatabaseAccessException d) {
 
@@ -420,19 +372,11 @@ public class GRADSTest {
 
 
     @Test
-    public void testAddNote_asStudent() throws FileNotFoundException,DatabaseAccessException {
+    public void testAddNote_AsStudent() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
         //TODO set TestID and Note
-        String testID = "";
-        String note   = "";
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.STUDENT).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testID).anyTimes();
-        EasyMock.replay(session);
-
-        GRADS access = new GRADS();
-
+        grads.setUser("nguy0621");
         try {
-            access.addNote(testID,note);
+            grads.addNote("nguy0621","note");
             fail();
         } catch (AccessDeniedException e) {
 
@@ -445,20 +389,12 @@ public class GRADSTest {
      */
     @Test
     public void testAddNote_asGPC() throws Exception{
-        //TODO set TestID Note  and Expected StudentRecord
-        String testID = "";
-        String note   = "";
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.GRADUATE_PROGRAM_COORDINATOR).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testID).anyTimes();
-        EasyMock.replay(session);
+        //TODO: Student Record Factory for gayxx067 for updated note , asserts
+        grads.setUser("tolas9999");
+        grads.addNote("gayxx067","test note");
 
-        GRADS access = new GRADS();
-        access.addNote(testID,note);
-//        StudentRecord actual =  access.getTranscript(testID);
-//        StudentRecord expected = new StudentRecord();
-//
-//        assertEquals(actual,expected);
+        StudentRecord actual =  grads.getTranscript("gayxx067");
+
     }
 
     /**
@@ -467,13 +403,14 @@ public class GRADSTest {
      */
     @Test
     public void testGenerateProgressSummary() throws Exception {
-        ProgressSummary progressSummary = grads.generateProgressSummary("2222");
-        Assert.assertSame(StudentRecordFactory.notes(), progressSummary.getNotes());
-        Assert.assertSame(StudentRecordFactory.BenRecord().getTermBegan(), progressSummary.getTermBegan());
-        Assert.assertSame(StudentRecordFactory.BenRecord().getDegreeSought(), progressSummary.getDegreeSought());
-        Assert.assertSame(StudentRecordFactory.BenRecord().getStudent(), progressSummary.getStudent());
-        Assert.assertSame(StudentRecordFactory.professors(), progressSummary.getAdvisors());
-        Assert.assertSame(StudentRecordFactory.BenRecord().getDepartment(), progressSummary.getDepartment());
+        //TODO Add tmrw
+//        ProgressSummary progressSummary = grads.generateProgressSummary("2222");
+//        Assert.assertSame(StudentRecordFactory.notes(), progressSummary.getNotes());
+//        Assert.assertSame(StudentRecordFactory.BenRecord().getTermBegan(), progressSummary.getTermBegan());
+//        Assert.assertSame(StudentRecordFactory.BenRecord().getDegreeSought(), progressSummary.getDegreeSought());
+//        Assert.assertSame(StudentRecordFactory.BenRecord().getStudent(), progressSummary.getStudent());
+//        Assert.assertSame(StudentRecordFactory.professors(), progressSummary.getAdvisors());
+//        Assert.assertSame(StudentRecordFactory.BenRecord().getDepartment(), progressSummary.getDepartment());
     }
 
     /**
@@ -482,30 +419,31 @@ public class GRADSTest {
      * @throws AccessDeniedException
      */
     @Test
-    public void testGenerateProgressSummary_invalidUser() throws DatabaseAccessException, AccessDeniedException {
+    public void testGenerateProgressSummary_InvalidUser() throws DatabaseAccessException, AccessDeniedException, InvalidUserException, FileNotFoundException {
+        grads.setUser("invalid user");
         try {
             ProgressSummary progressSummary = grads.generateProgressSummary("InvalidUser");
             fail();
-        } catch (FileNotFoundException f) {
+        } catch (AccessDeniedException ex) {
 
         }
 
     }
 
     /**
-     * testing if the method would handle null user
+     * testing if the method would handle InvalidUser
      * @throws DatabaseAccessException
      * @throws AccessDeniedException
      */
     @Test
-    public void testGenerateProgressSummary_NullUser() throws FileNotFoundException, AccessDeniedException {
+    public void testGenerateProgressSummary_InvalidStudent_AsGPC() throws FileNotFoundException, AccessDeniedException, InvalidUserException {
+        grads.setUser("smith0001");
         try {
             ProgressSummary progressSummary = grads.generateProgressSummary("InvalidUser");
             fail();
         } catch ( DatabaseAccessException d) {
 
         }
-
     }
 
     /**
@@ -513,37 +451,23 @@ public class GRADSTest {
      * @throws Exception
      */
     @Test
-    public void testOwnGenerateProgressSummary_asStudent() throws Exception {
-        //TODO: Add inputs testID, Expected Progress Summary
-        String testId = "";
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.STUDENT).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testId).anyTimes();
-        EasyMock.replay(session);
-
-        GRADS access = new GRADS();
-        ProgressSummary actual = access.generateProgressSummary(testId);
-        ProgressSummary expected = new ProgressSummary();
-
-        assertEquals(expected, actual);
+    public void testGenerateProgressSummary_Own_AsStudent() throws InvalidUserException, FileNotFoundException, DatabaseAccessException {
+        grads.setUser("gayxx067");
+        try {
+            ProgressSummary actual = grads.generateProgressSummary("gayxx067");
+        } catch (AccessDeniedException e) {
+           fail();
+        }
     }
 
     /**
      * Checks that a GPC cannot generate a progress summary for a student outside of their dept.
      */
     @Test
-    public void testGenerateProgressSummaryOutDept_asGPC() throws FileNotFoundException,DatabaseAccessException {
-        //TODO: Add inputs testID, Expected Progress Summary
-        String testId = "";
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.STUDENT).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testId).anyTimes();
-        EasyMock.replay(session);
-
-        GRADS access = new GRADS();
-
+    public void testGenerateProgressSummary_OutDept_asGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
+        grads.setUser("smith0001");
         try {
-            access.generateProgressSummary(testId);
+            grads.generateProgressSummary("nguy0621");
             fail();
         } catch (AccessDeniedException ex) {
             //do nothing
@@ -556,18 +480,11 @@ public class GRADSTest {
      * @throws DatabaseAccessException
      */
     @Test
-    public void testGenerateOtherStudentProgress_asStudent() throws FileNotFoundException,DatabaseAccessException {
-        //TODO: Add inputs testID, Expected Progress Summary
-        String testId = "";
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.STUDENT).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testId).anyTimes();
-        EasyMock.replay(session);
-
-        GRADS access = new GRADS();
-
+    public void testGenerateProgress_OtherStudent_asStudent() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
+        //TODO: Add inputs testID, Expected Progress Summary;
+        grads.setUser("gayxx067");
         try {
-            access.generateProgressSummary(testId);
+            grads.generateProgressSummary("nguy0261");
             fail();
         } catch (AccessDeniedException ex) {
             //do nothing
@@ -579,99 +496,65 @@ public class GRADSTest {
      * @throws Exception
      */
     @Test
-    public void testGenerateProgressSummaryInDept_asGPC() throws Exception {
+    public void testGenerateProgressSummary_InDept_asGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
         //TODO: Add inputs testID, Expected Progress Summary
-        String testId = "";
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.GRADUATE_PROGRAM_COORDINATOR).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testId).anyTimes();
-        EasyMock.replay(session);
+        grads.setUser("tolas9999");
+        try {
+            ProgressSummary actual = grads.generateProgressSummary("nguy0261");
+        } catch (AccessDeniedException e) {
 
-        GRADS access = new GRADS();
-        ProgressSummary actual = access.generateProgressSummary(testId);
-        ProgressSummary expected = new ProgressSummary();
-
-        assertEquals(expected, actual);
-    }
-
-    /**
-     * test if simulate courses would return the expeccted progress summary
-     */
-    @Test
-    public void testSimulateCourses() throws Exception {
-        ProgressSummary progressSummary = grads.simulateCourses("gayxx067", StudentRecordFactory.courseTakens());
-        for(CourseTaken c : StudentRecordFactory.courseTakens()) {
-            Assert.assertTrue(checkForCourseName(c.getCourse().getName(), progressSummary.getRequirementCheckResults()));
         }
     }
 
-    /**
-     * checking to see if a class exists in the list of RequirementCheckResults
-     * @param courseName
-     * @param results
-     * @return
-     */
-    private boolean checkForCourseName(String courseName, List<RequirementCheckResult> results) {
-        for(RequirementCheckResult r : results) {
-            if(courseName.equals(r.getName())) {
-                return true;
-            }
-        }
-        return false;
-    }
+    //TODO:Still confused about these, discuss tmrw
+//    /**
+//     * test if simulate courses would return the expected progress summary
+//     */
+//    @Test
+//    public void testSimulateCourses() throws Exception {
+//        ProgressSummary progressSummary = grads.simulateCourses("gayxx067", StudentRecordFactory.courseTakens());
+//        for(CourseTaken c : StudentRecordFactory.courseTakens()) {
+//            Assert.assertTrue(checkForCourseName(c.getCourse().getName(), progressSummary.getRequirementCheckResults()));
+//        }
+//    }
+//
+//    /**
+//     * checking to see if a class exists in the list of RequirementCheckResults
+//     * @param courseName
+//     * @param results
+//     * @return
+//     */
+//    private boolean checkForCourseName(String courseName, List<RequirementCheckResult> results) {
+//        for(RequirementCheckResult r : results) {
+//            if(courseName.equals(r.getName())) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+//
+//    /**
+//     * test if simulateCourses would generate grades for simulated courses
+//     */
+//    @Test
+//    public void testSimulateCourses_gradesGenerating() throws Exception {
+//        ProgressSummary progressSummary = grads.simulateCourses("gayxx067", StudentRecordFactory.courseTakens());
+//        for(RequirementCheckResult r : progressSummary.getRequirementCheckResults()) {
+//            Assert.assertNotNull(r.getDetails().getGPA());
+//        }
+//    }
 
-    /**
-     * test if simulateCourses would generate grades for simulated courses
-     */
-    @Test
-    public void testSimulateCourses_gradesGenerating() throws Exception {
-        ProgressSummary progressSummary = grads.simulateCourses("gayxx067", StudentRecordFactory.courseTakens());
-        for(RequirementCheckResult r : progressSummary.getRequirementCheckResults()) {
-            Assert.assertNotNull(r.getDetails().getGPA());
-        }
-    }
-
-    /**
-     * Checks that a student can simulate their own progress summary
-     * @throws Exception
-     */
-    @Test
-    public void testSimulateCoursesOwn_asStudent() throws Exception {
-        //TODO inputs: courseTaken list, expected Progress Summary
-        String testID = "";
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.STUDENT).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testID).anyTimes();
-        EasyMock.replay(session);
-
-        GRADS access = new GRADS();
-
-        List<CourseTaken> listCourseTaken = new ArrayList<CourseTaken>();
-        ProgressSummary actual = access.generateProgressSummary(session.getUserID());
-        ProgressSummary expected = new ProgressSummary();
-        assertEquals(expected, actual);
-    }
 
     /**
      * Checks that GPC can simulate a progress summary for a student in their dept.
      * @throws Exception
      */
     @Test
-    public void testSimulateCoursesInDept_asGPC() throws Exception {
-        //TODO inputs: courseTaken list, expected Progress Summary
-        String testID = "";
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.GRADUATE_PROGRAM_COORDINATOR).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testID).anyTimes();
-        EasyMock.replay(session);
-
-        GRADS access = new GRADS();
-
+    public void testSimulateCourses_InDept_asGPC() throws Exception {
+        //TODO inputs: courseTaken list, StudentRecordFactor for user new student record,assert
+        grads.setUser("tolas9999");
         List<CourseTaken> courses = new ArrayList<CourseTaken>();
-        ProgressSummary actual = access.simulateCourses(session.getUserID(), courses);
-        ProgressSummary expected = new ProgressSummary();
-
-        assertEquals(expected, actual);
+        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
     }
 
     /**
@@ -680,20 +563,13 @@ public class GRADSTest {
      * @throws DatabaseAccessException
      */
     @Test
-    public void testSimulateCoursesOutDept_asGPC() throws FileNotFoundException,DatabaseAccessException{
-        //TODO inputs: courseTaken list, expected Progress Summary
-        String testID = "";
+    public void testSimulateCoursesOutDept_asGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
+        //TODO inputs: courseTaken list
+        String testID = "smith0002";
         List<CourseTaken> courses = new ArrayList<CourseTaken>();
-
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.GRADUATE_PROGRAM_COORDINATOR).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testID).anyTimes();
-        EasyMock.replay(session);
-
-        GRADS access = new GRADS();
-
+        grads.setUser(testID);
         try {
-            access.simulateCourses(session.getUserID(),courses);
+            grads.simulateCourses("desil1337",courses);
             fail();
         } catch (Exception ex) {
             //do nothing
@@ -706,20 +582,12 @@ public class GRADSTest {
      * @throws DatabaseAccessException
      */
     @Test
-    public void testSimulateCoursesOtherStudent_asStudent() throws FileNotFoundException,DatabaseAccessException{
-        //TODO inputs: courseTaken list, expected Progress Summary
-        String testID = "";
+    public void testSimulateCourses_OtherStudent_AsStudent() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
+
         List<CourseTaken> courses = new ArrayList<CourseTaken>();
-
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.STUDENT).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testID).anyTimes();
-        EasyMock.replay(session);
-
-        GRADS access = new GRADS();
-
+        grads.setUser("desil1337");
         try {
-            access.simulateCourses(session.getUserID(),courses);
+           grads.simulateCourses("nguy0261",courses);
             fail();
         } catch (Exception ex) {
             //do nothing
@@ -731,20 +599,12 @@ public class GRADSTest {
      * @throws Exception
      */
     @Test
-    public void testSimulateCourses_retakenCourse_asStudent() throws Exception {
-        //TODO inputs: courseTaken list, expected Progress Summary
-        String testID = "";
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.STUDENT).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testID).anyTimes();
-        EasyMock.replay(session);
+    public void testSimulateCourses_RetakenCourse_asStudent() throws Exception {
+        //TODO inputs: courseTaken list, expected Factory Progress Summary, assert
+        grads.setUser("gayxx067");
+        List<CourseTaken> courses = new ArrayList<CourseTaken>();
+        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
 
-        GRADS access = new GRADS();
-
-        List<CourseTaken> listCourseTaken = new ArrayList<CourseTaken>();
-        ProgressSummary actual = access.generateProgressSummary(session.getUserID());
-        ProgressSummary expected = new ProgressSummary();
-        assertEquals(expected, actual);
     }
 
     /**
@@ -752,20 +612,24 @@ public class GRADSTest {
      * @throws Exception
      */
     @Test
-    public void testSimulateCourses_noGradeInput_asStudent() throws Exception {
+    public void testSimulateCourses_NoGradeInput_asStudent() throws Exception {
         //TODO inputs: courseTaken list, expected Progress Summary
-        String testID = "";
-        Session session = EasyMock.createMock(Session.class);
-        EasyMock.expect(session.getCurrentUserType()).andReturn(UserType.STUDENT).anyTimes();
-        EasyMock.expect(session.getUserID()).andReturn(testID).anyTimes();
-        EasyMock.replay(session);
+        grads.setUser("gayxx067");
+        List<CourseTaken> courses = new ArrayList<CourseTaken>();
+        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
 
-        GRADS access = new GRADS();
-
-        List<CourseTaken> listCourseTaken = new ArrayList<CourseTaken>();
-        ProgressSummary actual = access.generateProgressSummary(session.getUserID());
-        ProgressSummary expected = new ProgressSummary();
-        assertEquals(expected, actual);
     }
 
+    /**
+     * Checks simulate courses takes with
+     * @throws Exception
+     */
+    @Test
+    public void testSimulateCourses_FailingGradeInput_asStudent() throws Exception {
+        //TODO inputs: courseTaken list, expected Progress Summary
+        grads.setUser("gayxx067");
+        List<CourseTaken> courses = new ArrayList<CourseTaken>();
+        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
+
+    }
 }

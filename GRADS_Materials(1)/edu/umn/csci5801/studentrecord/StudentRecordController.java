@@ -27,7 +27,8 @@ public class StudentRecordController {
      * @throws DatabaseAccessException
      */
     public static StudentRecord getTranscript(String studentID)
-            throws DatabaseAccessException, FileNotFoundException {
+            throws DatabaseAccessException {
+
         return StudentDAO.getStudentByID(studentID);
     }
 
@@ -38,7 +39,7 @@ public class StudentRecordController {
      * @throws DatabaseAccessException
      */
     public static ProgressSummary generateProgressSummary(String studentID)
-            throws DatabaseAccessException, FileNotFoundException {
+            throws DatabaseAccessException {
         return simulateCourses(studentID, new ArrayList<CourseTaken>());
     }
 
@@ -50,7 +51,7 @@ public class StudentRecordController {
      * @throws DatabaseAccessException
      */
     public static ProgressSummary simulateCourses(String studentID, List<CourseTaken> courses)
-            throws DatabaseAccessException, FileNotFoundException {
+            throws DatabaseAccessException {
         ProgressSummary summary = new ProgressSummary();
 
         //TODO: fill in
@@ -103,7 +104,7 @@ public class StudentRecordController {
      * @param transcript
      * @throws DatabaseAccessException
      */
-    public static void updateStudentRecord(String studentID, StudentRecord transcript) throws DatabaseAccessException, FileNotFoundException {
+    public static void updateStudentRecord(String studentID, StudentRecord transcript) throws DatabaseAccessException {
         StudentDAO.updateStudentRecord(studentID, transcript);
     }
 
@@ -113,7 +114,7 @@ public class StudentRecordController {
      * @param note
      * @throws DatabaseAccessException
      */
-    public static void addNote(String studentID, String note) throws DatabaseAccessException, FileNotFoundException {
+    public static void addNote(String studentID, String note) throws DatabaseAccessException {
         StudentRecord studentRecord = StudentDAO.getStudentByID(studentID);
         List<String> notes = studentRecord.getNotes();
         notes.add(note);
@@ -128,7 +129,7 @@ public class StudentRecordController {
      * @return
      * @throws DatabaseAccessException
      */
-    public static List<String> getStudentIDsByDepartment(Department gpcDepartment) throws DatabaseAccessException, FileNotFoundException {
+    public static List<String> getStudentIDsByDepartment(Department gpcDepartment) throws DatabaseAccessException {
 
         final List<StudentRecord> studentList;
         final List<String> idList = new ArrayList<String>();

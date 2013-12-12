@@ -1,21 +1,15 @@
 package edu.umn.csci5801;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.umn.csci5801.access.AccessController;
 import edu.umn.csci5801.access.AccessDeniedException;
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.db.FileAccess;
-import edu.umn.csci5801.db.StudentDAO;
 import edu.umn.csci5801.db.UserDAO;
 import edu.umn.csci5801.session.InvalidUserException;
-import edu.umn.csci5801.session.User;
-import edu.umn.csci5801.session.Users;
 import edu.umn.csci5801.studentrecord.StudentRecordController;
 import edu.umn.csci5801.studentrecord.program.Department;
-import edu.umn.csci5801.studentrecord.transcript.Course;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
 import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
 import edu.umn.csci5801.studentrecord.StudentRecord;
@@ -27,18 +21,23 @@ public class GRADS implements GRADSIntf {
     private AccessController access;
 
     /**
+     * Creates a GRADS(Graduation Requirement Assessment Data System) instance. GRADS
+     * is a program which allows users to see student records, and check on student progress.
      *
-     * @param studentsFilePath
-     * @param coursesFilePath
-     * @param usersFilePath
-     * @throws FileNotFoundException
+     * Students are able to check their own progress, and simulate the effect of taking particular
+     * courses on their student record and progress.
+     *
+     * In addition, GPCs are able to access this program to do anything a student can do, as well as
+     * add notes to a student's record, or make changes to a student's record.
+     *
+     * @param studentsFilePath path to the students JSON database
+     * @param coursesFilePath path to the courses JSON database
+     * @param usersFilePath path to the users JSON database
+     * @throws DatabaseAccessException if the databases file locations were invalid, or some other problem came up
+     *             in initializing the database files.
      */
-    public GRADS(String studentsFilePath, String coursesFilePath, String usersFilePath) throws FileNotFoundException {
-        try {
+    public GRADS(String studentsFilePath, String coursesFilePath, String usersFilePath) throws DatabaseAccessException{
             FileAccess.initialize(studentsFilePath, coursesFilePath, usersFilePath);
-        } catch (DatabaseAccessException e) {
-            //do nothing, this will not fail on the first call
-        }
     }
 
     /**
@@ -81,13 +80,15 @@ public class GRADS implements GRADSIntf {
 
     /**
      * retrieves the transcript corresponding to the given studentID.
+     *
      * @param studentID  the identifier of the student, for which we want a transcript.
      * @return StudentRecord corresponding to the userID
-     * @throws Exception if the data could not be retrieved, or if the current user
-     *      does not have access to the desired record.
+     * @throws AccessDeniedException if the current user does not have access to the desired record.
+     * @throws DatabaseAccessException if the data could not be retrieved from the database
      */
     @Override
-    public StudentRecord getTranscript(String studentID) throws AccessDeniedException,DatabaseAccessException,FileNotFoundException {
+    public StudentRecord getTranscript(String studentID)
+            throws AccessDeniedException, DatabaseAccessException {
 
         access.checkUserCanAccessStudentRecord(studentID);
         return StudentRecordController.getTranscript(studentID);
@@ -98,10 +99,12 @@ public class GRADS implements GRADSIntf {
      *
      * @param studentID the ID of the student, whose student record we want to overwrite.
      * @param transcript the new student record
-     * @throws Exception if the user does not have access, or updating failed
+     * @throws AccessDeniedException if the current user does not have access to the desired record.
+     * @throws DatabaseAccessException if the data could not be updated in the database
      */
     @Override
-    public void updateTranscript(String studentID, StudentRecord transcript) throws AccessDeniedException,DatabaseAccessException,FileNotFoundException {
+    public void updateTranscript(String studentID, StudentRecord transcript)
+            throws AccessDeniedException,DatabaseAccessException {
 
         access.checkUserCanEditRecord(studentID);
         StudentRecordController.updateStudentRecord(studentID, transcript);
@@ -112,10 +115,13 @@ public class GRADS implements GRADSIntf {
      *
      * @param studentID the student ID to add a new note for.
      * @param note the note to append
-     * @throws Exception if the user does not have access or adding the note failed
+     * @throws AccessDeniedException if the current user does not have access to
+     *      add notes to the student's record.
+     * @throws DatabaseAccessException if the note failed being added to the database
      */
     @Override
-    public void addNote(String studentID, String note) throws AccessDeniedException,DatabaseAccessException,FileNotFoundException{
+    public void addNote(String studentID, String note)
+            throws AccessDeniedException, DatabaseAccessException{
 
         access.checkUserCanEditRecord(this.getUser());
         StudentRecordController.addNote(studentID, note);
@@ -126,11 +132,14 @@ public class GRADS implements GRADSIntf {
      * generates and returns a progress summary for the given student
      *
      * @param studentID the student to generate the record for.
-     * @return
-     * @throws Exception
+     * @return the current progress summary for the given student
+     * @throws AccessDeniedException if the current user does not have permission
+     *      to access the student's record.
+     * @throws DatabaseAccessException if the data could not be retrieved from the database
      */
     @Override
-    public ProgressSummary generateProgressSummary(String studentID) throws AccessDeniedException,DatabaseAccessException,FileNotFoundException {
+    public ProgressSummary generateProgressSummary(String studentID)
+            throws AccessDeniedException, DatabaseAccessException {
 
         access.checkUserCanAccessStudentRecord(studentID);
         return StudentRecordController.generateProgressSummary(studentID);
@@ -144,11 +153,14 @@ public class GRADS implements GRADSIntf {
      * @param courses a list of the prospective courses.
      * @return ProgressSummary, what the student's record would look like after taking and passing
      *      the supplied list of courses.
-     * @throws Exception the user does not have permission to do this, or generating the
-     *      summary failed for the given reason.
+     * @throws AccessDeniedException if the current user does not have permission
+     *      to access the student's record.
+     * @throws DatabaseAccessException if the data could not be retrieved from the database
      */
     @Override
-    public ProgressSummary simulateCourses(String studentID, List<CourseTaken> courses) throws AccessDeniedException,DatabaseAccessException,FileNotFoundException {
+    public ProgressSummary simulateCourses(String studentID, List<CourseTaken> courses)
+            throws AccessDeniedException, DatabaseAccessException {
+
         access.checkUserCanAccessStudentRecord(studentID);
         return StudentRecordController.simulateCourses(studentID, courses);
     }

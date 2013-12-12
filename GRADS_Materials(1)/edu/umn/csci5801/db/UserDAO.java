@@ -21,13 +21,11 @@ import java.util.List;
  */
 public class UserDAO {
 
-    public static Users getUserByID(String userFile, String userID) {
+    public static Users getUserByID(String userID) throws DatabaseAccessException{
         List<Users> usersList=null;
-        try {
-            usersList= FileAccess.getUserJSON(userFile);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+
+        usersList= FileAccess.getInstance().getUserJSON();
+
         Users currentUser=null;
         for (Users user: usersList){
             if (userID.equals(user.getUser().getId())){

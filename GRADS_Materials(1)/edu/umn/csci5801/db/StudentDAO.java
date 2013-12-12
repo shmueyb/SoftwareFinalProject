@@ -19,10 +19,10 @@ import java.util.List;
  */
 public class StudentDAO {
 
-    public static void updateStudentRecord(String studentID, StudentRecord record, String studentRecordsFile) throws FileNotFoundException, DatabaseAccessException {
+    public static void updateStudentRecord(String studentID, StudentRecord record) throws FileNotFoundException, DatabaseAccessException {
         //TODO: get all students, find this one, replace with updated version, convert to JSON, save using FileAccess.java
-        List<StudentRecord> allStudents = getAllStudents(studentRecordsFile);
-        List<StudentRecord> newRecord=allStudents;
+        List<StudentRecord> allStudents = getAllStudents();
+        List<StudentRecord> newRecord = allStudents;
 
         for (int counter=0; counter < allStudents.size(); counter++){
 
@@ -31,13 +31,13 @@ public class StudentDAO {
                 newRecord.add(counter,record);
             }
         }
-        FileAccess.writeStudentsJSON(studentRecordsFile,newRecord);
+        FileAccess.getInstance().writeStudentsJSON(newRecord);
     }
 
-    public static List<StudentRecord> getAllStudents(String studentRecordsFile) throws DatabaseAccessException, FileNotFoundException {
+    public static List<StudentRecord> getAllStudents() throws DatabaseAccessException, FileNotFoundException {
         List<StudentRecord> studentList;
         Gson gson = new Gson();
-        studentList = FileAccess.getStudentsJSON(studentRecordsFile);
+        studentList = FileAccess.getInstance().getStudentsJSON();
 
         Type type = new TypeToken<ArrayList<StudentRecord>>(){}.getType();
 
@@ -46,8 +46,8 @@ public class StudentDAO {
         return studentList;
     }
 
-    public static List<StudentRecord> getStudentsByDepartment(String studentRecordsFile, Department dept) throws DatabaseAccessException, FileNotFoundException {
-        List<StudentRecord> fullStudentList= getAllStudents(studentRecordsFile);
+    public static List<StudentRecord> getStudentsByDepartment(Department dept) throws DatabaseAccessException, FileNotFoundException {
+        List<StudentRecord> fullStudentList= getAllStudents();
         List<StudentRecord> filteredStudentList = new ArrayList<StudentRecord>();
 
         for(StudentRecord student: fullStudentList) {
@@ -59,8 +59,8 @@ public class StudentDAO {
         return filteredStudentList;
     }
 
-    public static StudentRecord getStudentByID(String studentRecordsFile, String studentID) throws DatabaseAccessException, FileNotFoundException {
-        List<StudentRecord> fullStudentList = getAllStudents(studentRecordsFile);
+    public static StudentRecord getStudentByID(String studentID) throws DatabaseAccessException, FileNotFoundException {
+        List<StudentRecord> fullStudentList = getAllStudents();
 
         for (StudentRecord studentRecord: fullStudentList) {
             if (studentRecord.getStudent().getId().equals(studentID)) {

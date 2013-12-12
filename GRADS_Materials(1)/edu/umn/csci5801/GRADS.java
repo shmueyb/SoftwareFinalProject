@@ -25,26 +25,20 @@ public class GRADS implements GRADSIntf {
 
     private Session currentSession;
     private AccessController access;
-    private String studentRecords;
-    private String users;
-    private String courses;
 
-    public GRADS() {
-        String databaseLocation = "Grads_Materials/Data/";
-
+    /**
+     *
+     * @param studentsFilePath
+     * @param coursesFilePath
+     * @param usersFilePath
+     * @throws FileNotFoundException
+     */
+    public GRADS(String studentsFilePath, String coursesFilePath, String usersFilePath) throws FileNotFoundException {
         try {
-            FileAccess.initialize(databaseLocation);
+            FileAccess.initialize(studentsFilePath, coursesFilePath, usersFilePath);
         } catch (DatabaseAccessException e) {
             //do nothing, this will not fail on the first call
         }
-    }
-
-    public GRADS(String studentsFileName, String coursesFileName, String usersFileName) throws FileNotFoundException {
-        studentRecords = studentsFileName;
-        courses= coursesFileName;
-        users = usersFileName;
-
-
     }
 
     /**
@@ -54,8 +48,8 @@ public class GRADS implements GRADSIntf {
      * @throws InvalidUserException if there was a problem with the given userID
      */
     @Override
-    public void setUser(String userID) throws InvalidUserException {
-        currentSession = new Session(userID, this.getUsers());
+    public void setUser(String userID) throws InvalidUserException, DatabaseAccessException {
+        currentSession = new Session(userID);
         access = new AccessController(currentSession);
     }
 
@@ -80,9 +74,9 @@ public class GRADS implements GRADSIntf {
     public List<String> getStudentIDs() throws Exception {
 
         access.checkUserCanGetListOfStudentIDs();
-        Department gpcDepartment = UserDAO.getUserByID(this.getUsers(),currentSession.getUserID()).getDepartment();
+        Department gpcDepartment = UserDAO.getUserByID(currentSession.getUserID()).getDepartment();
 
-        return StudentRecordController.getStudentIDsByDepartment(this.getStudentRecords(), gpcDepartment);
+        return StudentRecordController.getStudentIDsByDepartment(gpcDepartment);
     }
 
     /**
@@ -96,7 +90,7 @@ public class GRADS implements GRADSIntf {
     public StudentRecord getTranscript(String studentID) throws AccessDeniedException,DatabaseAccessException,FileNotFoundException {
 
         access.checkUserCanAccessStudentRecord(studentID);
-        return StudentRecordController.getTranscript(this.getStudentRecords(), studentID);
+        return StudentRecordController.getTranscript(studentID);
     }
 
     /**
@@ -110,7 +104,7 @@ public class GRADS implements GRADSIntf {
     public void updateTranscript(String studentID, StudentRecord transcript) throws AccessDeniedException,DatabaseAccessException,FileNotFoundException {
 
         access.checkUserCanEditRecord(studentID);
-        StudentRecordController.updateStudentRecord(studentID, transcript, this.getStudentRecords());
+        StudentRecordController.updateStudentRecord(studentID, transcript);
     }
 
     /**
@@ -124,7 +118,7 @@ public class GRADS implements GRADSIntf {
     public void addNote(String studentID, String note) throws AccessDeniedException,DatabaseAccessException,FileNotFoundException{
 
         access.checkUserCanEditRecord(this.getUser());
-        StudentRecordController.addNote(this.getStudentRecords(), studentID, note);
+        StudentRecordController.addNote(studentID, note);
 
     }
 
@@ -139,7 +133,7 @@ public class GRADS implements GRADSIntf {
     public ProgressSummary generateProgressSummary(String studentID) throws AccessDeniedException,DatabaseAccessException,FileNotFoundException {
 
         access.checkUserCanAccessStudentRecord(studentID);
-        return StudentRecordController.generateProgressSummary(this.getStudentRecords(), studentID);
+        return StudentRecordController.generateProgressSummary(studentID);
     }
 
     /**
@@ -156,30 +150,6 @@ public class GRADS implements GRADSIntf {
     @Override
     public ProgressSummary simulateCourses(String studentID, List<CourseTaken> courses) throws AccessDeniedException,DatabaseAccessException,FileNotFoundException {
         access.checkUserCanAccessStudentRecord(studentID);
-        return StudentRecordController.simulateCourses(this.getStudentRecords(), studentID, courses);
-    }
-
-    public String getStudentRecords() {
-        return studentRecords;
-    }
-
-    public void setStudentRecords(String studentRecords) {
-        this.studentRecords = studentRecords;
-    }
-
-    public String getUsers() {
-        return users;
-    }
-
-    public void setUsers(String users) {
-        this.users = users;
-    }
-
-    public String getCourses() {
-        return courses;
-    }
-
-    public void setCourses(String courses) {
-        this.courses = courses;
+        return StudentRecordController.simulateCourses(studentID, courses);
     }
 }

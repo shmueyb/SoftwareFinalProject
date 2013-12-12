@@ -20,15 +20,13 @@ import edu.umn.csci5801.studentrecord.transcript.Term;
 /**
  */
 public class StudentRecordFactory {
-    static private Student Trang = new Student("Trang", "Nguye,", "1111");
-    static private Student Ben = new Student("Ben", "Hagaman", "2222");
-    static private Student Xum = new Student("Xum", "Giang", "3333");
-    static private Student Catherine = new Student("Katherine", "Reed", "4444");
-    static private Student Sam     = new Student ("Sam", "Blustin", "5555");
-    static private Department math = Department.MATH;
+    static private Student Luan = new Student("Luan", "Nguyen", "nguy0621");
+    static private Student Greg = new Student("Gregory", "Gay", "gayxx067");
+    static private Student Ian = new Student("Ian", "De Silva", "desil1337");
+    //TODO: add these below to users.txt
+    static private Student Catherine = new Student("Catherine", "Reed", "1111");
+
     static private Department CompSci = Department.COMPUTER_SCIENCE;
-    static private Term fall = new Term(Semester.FALL, 2014);
-    static private Term spring = new Term(Semester.SPRING, 2014);
 
     /**
      *
@@ -37,11 +35,10 @@ public class StudentRecordFactory {
      */
     public static List<StudentRecord> createRecords() throws Exception{
         List<StudentRecord> list = new LinkedList<StudentRecord>();
-        list.add(TrangRecord());
-        list.add(BenRecord());
-        list.add(XumRecord());
+        list.add(LuanRecord());
+        list.add(GregRecord());
+        list.add(IanRecord());
         list.add(CatherineRecord());
-        list.add(SamRecord());
         return list;
     }
 
@@ -58,148 +55,203 @@ public class StudentRecordFactory {
     }
 
     /**
-     * generating example milestones
-     * @return: list of milestones
+     * generating Luan's record
+     * @return Luan's record
      */
-    public static List<MilestoneSet> milestones() {
-        List<MilestoneSet> milestoneSets = new LinkedList<MilestoneSet>();
-        milestoneSets.add(new MilestoneSet(Milestone.DEFENSE_PASSED, fall));
-        milestoneSets.add(new MilestoneSet(Milestone.DPF_APPROVED, fall));
-        milestoneSets.add(new MilestoneSet(Milestone.DPF_SUBMITTED, fall));
-        milestoneSets.add(new MilestoneSet(Milestone.GRADUATION_PACKET_REQUESTED, fall));
-        milestoneSets.add(new MilestoneSet(Milestone.ORAL_PE_PASSED, fall));
-        milestoneSets.add(new MilestoneSet(Milestone.PRELIM_COMMITTEE_APPOINTED,spring));
-        milestoneSets.add(new MilestoneSet(Milestone.PROPOSAL_PASSED,spring));
-        milestoneSets.add(new MilestoneSet(Milestone.THESIS_APPROVED,spring));
-        milestoneSets.add(new MilestoneSet(Milestone.TRACKING_FORM_APPROVED,spring));
-        return milestoneSets;
-    }
-
-    /**
-     * generating a list of : professors, committee, advisors
-     * @return: list of professors
-     */
-    public static List<Professor> professors() {
-        List<Professor> professors = new LinkedList<Professor>();
-        Professor professor1 = new Professor("Youself", "Saad", math);
-        Professor professor2 = new Professor("Nick","Harper", CompSci);
-        Professor professor = new Professor("Anand", "Tripathy", CompSci);
-        Professor professor3 = new Professor("Albert", "Eistein", math);
-        Professor professor4 = new Professor("Luc", "Nelson", CompSci);
-        professors.add(professor);
-        professors.add(professor1);
-        professors.add(professor2);
-        professors.add(professor3);
-        professors.add(professor4);
-        return professors;
-    }
-
-    /**
-     * generating a list of courses
-     * @return: list of courses taken
-     */
-    public static List<CourseTaken> courseTakens() {
-        CourseTaken courseTaken = new CourseTaken(new Course("Developing the Interactive Web", "csci5117", "3", CourseArea.APPLICATIONS), fall, Grade.A);
-        CourseTaken courseTaken1 = new CourseTaken(new Course("Aritificial Intelligence", "csci5511", "3", CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE), fall, Grade.A);
-        CourseTaken courseTaken2 = new CourseTaken(new Course("SoftWare Engineer", "csci5801", "3", CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE), fall, Grade.A);
-        CourseTaken courseTaken3 = new CourseTaken(new Course("Programming Language", "csci5106", "3", CourseArea.THEORY_ALGORITHMS), fall, Grade.A);
-        List<CourseTaken> courseTakenList = new LinkedList<CourseTaken>();
-        courseTakenList.add(courseTaken);
-        courseTakenList.add(courseTaken1);
-        courseTakenList.add(courseTaken2);
-        courseTakenList.add(courseTaken3);
-        return  courseTakenList;
-    }
-
-    /**
-     * generating Trang's record
-     * @return Trang's record
-     */
-    public static StudentRecord TrangRecord() {
+    public static StudentRecord LuanRecord() {
         return  new StudentRecord.StudentRecordBuilder()
-                .student(Trang)
-                .department(CompSci)
-                .degreeSought(Degree.MS_A)
-                .termBegan(fall)
-                .advisors(professors())
-                .committee(professors())
-                .coursesTaken(courseTakens())
-                .milesstoneSet(milestones())
-                .notes(notes())
-                .build();
-    }
-
-    /**
-     * generating Ben's record
-     * @return Ben's record
-     */
-    public static StudentRecord BenRecord() {
-        return new StudentRecord.StudentRecordBuilder()
-                .student(Ben)
-                .department(math)
-                .degreeSought(Degree.MS_A)
-                .termBegan(spring)
-                .advisors(professors())
-                .committee(professors())
-                .coursesTaken(courseTakens())
-                .milesstoneSet(milestones())
-                .notes(notes())
-                .build();
-    }
-
-    /**
-     * generating Xum's record
-     * @return: Xum's record
-     */
-    public static StudentRecord XumRecord() {
-        return new StudentRecord.StudentRecordBuilder()
-                .student(Xum)
-                .department(math)
-                .degreeSought(Degree.MS_B)
-                .termBegan(spring)
-                .advisors(professors())
-                .committee(professors())
-                .coursesTaken(courseTakens())
-                .milesstoneSet(milestones())
-                .notes(notes())
-                .build();
-    }
-
-    /**
-     * generating Sam's record
-     * @return Sam's record
-     */
-    public static StudentRecord SamRecord() {
-        return new StudentRecord.StudentRecordBuilder()
-                .student(Sam)
+                .student(Luan)
                 .department(CompSci)
                 .degreeSought(Degree.PHD)
-                .termBegan(spring)
-                .advisors(professors())
-                .committee(professors())
-                .coursesTaken(courseTakens())
-                .milesstoneSet(milestones())
+                .termBegan(new Term(Semester.SPRING, 2008))
+                .advisors(LuanAdvisors())
+                .committee(LuanCommittee())
+                .coursesTaken(LuanCoursesTaken())
+                .milesstoneSet(LuanMilestones())
                 .notes(notes())
                 .build();
     }
 
+    public static List<Professor> LuanAdvisors() {
+        List<Professor> advisors = new LinkedList<Professor>();
+        advisors.add(new Professor("william", "Schuler", Department.COMPUTER_SCIENCE));
+        return advisors;
+    }
+
+    public static List<Professor> LuanCommittee() {
+        List<Professor> committee = new LinkedList<Professor>();
+        committee.add(new Professor("Maria", "Gini", Department.COMPUTER_SCIENCE));
+        return committee;
+    }
+
+    public static List<CourseTaken> LuanCoursesTaken() {
+        List<CourseTaken> courseTakens = new LinkedList<CourseTaken>();
+        courseTakens.add(new CourseTaken
+                (new Course("Advanced Algorithms and Data Structures", "csci5421", "3", CourseArea.THEORY_ALGORITHMS),
+                        new Term(Semester.SPRING, 2008), Grade.A));
+        courseTakens.add(new CourseTaken
+                (new Course("Machine Learning", "csci5525", "3", CourseArea.APPLICATIONS),
+                        new Term(Semester.SPRING, 2008), Grade.A));
+        courseTakens.add(new CourseTaken
+                (new Course("Operating System", "csci5103", "3", CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE),
+                        new Term(Semester.SUMMER, 2008), Grade.B));
+        return courseTakens;
+    }
+
+    public static List<MilestoneSet> LuanMilestones() {
+        List<MilestoneSet> milestoneSets = new LinkedList<MilestoneSet>();
+        milestoneSets.add(new MilestoneSet(Milestone.DEFENSE_PASSED, new Term(Semester.FALL, 2014)));
+
+        return  milestoneSets;
+    }
     /**
-     * generating Catherine's record
-     * @return Catherine's record
+     * generating Greg's record
+     * @return Greg's record
+     */
+    public static StudentRecord GregRecord() {
+        return  new StudentRecord.StudentRecordBuilder()
+                .student(Greg)
+                .department(CompSci)
+                .degreeSought(Degree.MS_A)
+                .termBegan(new Term(Semester.SPRING, 2009))
+                .advisors(GregAdvisors())
+                .committee(GregCommittee())
+                .coursesTaken(GregCoursesTaken())
+                .milesstoneSet(GregMilestones())
+                .notes(notes())
+                .build();
+    }
+
+    public static List<Professor> GregAdvisors() {
+        List<Professor> advisors = new LinkedList<Professor>();
+        advisors.add(new Professor("Mats", "Heidahl", Department.COMPUTER_SCIENCE));
+        return advisors;
+    }
+
+    public static List<Professor> GregCommittee() {
+        List<Professor> committee = new LinkedList<Professor>();
+        committee.add(new Professor("John", "Doe", Department.COMPUTER_SCIENCE));
+        return committee;
+    }
+
+    public static List<CourseTaken> GregCoursesTaken() {
+        List<CourseTaken> courseTakens = new LinkedList<CourseTaken>();
+        courseTakens.add(new CourseTaken
+                (new Course("Introduction to Distributed Systems", "csci5105", "3", CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE),
+                        new Term(Semester.SPRING, 2009), Grade.A));
+        courseTakens.add(new CourseTaken
+                (new Course("Programming Languages", "csci5106", "3", CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE),
+                        new Term(Semester.FALL, 2009), Grade.B));
+        courseTakens.add(new CourseTaken
+                (new Course("Introduction to Computer Security", "csci5271", "3", CourseArea.APPLICATIONS),
+                        new Term(Semester.SUMMER, 2010), Grade.C));
+        return courseTakens;
+    }
+
+    public static List<MilestoneSet> GregMilestones() {
+        List<MilestoneSet> milestoneSets = new LinkedList<MilestoneSet>();
+        milestoneSets.add(new MilestoneSet(Milestone.THESIS_APPROVED, new Term(Semester.FALL, 2014)));
+        return  milestoneSets;
+    }
+    /**
+     * generating Ian's record
+     * @return: Ian's record
+     */
+    public static StudentRecord IanRecord() {
+        return  new StudentRecord.StudentRecordBuilder()
+                .student(Ian)
+                .department(CompSci)
+                .degreeSought(Degree.MS_B)
+                .termBegan(new Term(Semester.SPRING, 2010))
+                .advisors(IanAdvisors())
+                .committee(IanCommittee())
+                .coursesTaken(IanCoursesTaken())
+                .milesstoneSet(IanMilestones())
+                .notes(notes())
+                .build();
+    }
+
+    public static List<Professor> IanAdvisors() {
+        List<Professor> advisors = new LinkedList<Professor>();
+        advisors.add(new Professor("Luc", "Nelson", Department.COMPUTER_SCIENCE));
+        return advisors;
+    }
+
+    public static List<Professor> IanCommittee() {
+        List<Professor> committee = new LinkedList<Professor>();
+        committee.add(new Professor("Steve", "Jensen", Department.COMPUTER_SCIENCE));
+        return committee;
+    }
+
+    public static List<CourseTaken> IanCoursesTaken() {
+        List<CourseTaken> courseTakens = new LinkedList<CourseTaken>();
+        courseTakens.add(new CourseTaken
+                (new Course("Data Communications and Computer Networks", "csci5211", "3", CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE),
+                        new Term(Semester.SPRING, 2010), Grade.C));
+        courseTakens.add(new CourseTaken
+                (new Course("Analysis of Numberial Algorithms", "csci5301", "3", CourseArea.THEORY_ALGORITHMS),
+                        new Term(Semester.FALL, 2010), Grade.B));
+        courseTakens.add(new CourseTaken
+                (new Course("Introduction to Computer Security", "scsi5302", "3", CourseArea.APPLICATIONS),
+                        new Term(Semester.SUMMER, 2010), Grade.A));
+        return courseTakens;
+    }
+
+    public static List<MilestoneSet> IanMilestones() {
+        List<MilestoneSet> milestoneSets = new LinkedList<MilestoneSet>();
+        milestoneSets.add(new MilestoneSet(Milestone.DPF_APPROVED, new Term(Semester.FALL, 2014)));
+        return  milestoneSets;
+    }
+
+    /**
+     * Catherine's record
+     * @return
      */
     public static StudentRecord CatherineRecord() {
-        return new StudentRecord.StudentRecordBuilder()
+        return  new StudentRecord.StudentRecordBuilder()
                 .student(Catherine)
                 .department(CompSci)
-                .degreeSought(Degree.PHD)
-                .termBegan(fall)
-                .advisors(professors())
-                .committee(professors())
-                .coursesTaken(courseTakens())
-                .milesstoneSet(milestones())
+                .degreeSought(Degree.MS_C)
+                .termBegan(new Term(Semester.SPRING, 2011))
+                .advisors(CatherineAdvisors())
+                .committee(CatherineCommittee())
+                .coursesTaken(CatherineCoursesTaken())
+                .milesstoneSet(CatherineMilestones())
                 .notes(notes())
                 .build();
-
     }
+
+    public static List<Professor> CatherineAdvisors() {
+        List<Professor> advisors = new LinkedList<Professor>();
+        advisors.add(new Professor("John", "Harper", Department.COMPUTER_SCIENCE));
+        return advisors;
+    }
+
+    public static List<Professor> CatherineCommittee() {
+        List<Professor> committee = new LinkedList<Professor>();
+        committee.add(new Professor("Matt", "Hein", Department.COMPUTER_SCIENCE));
+        return committee;
+    }
+
+    public static List<CourseTaken> CatherineCoursesTaken() {
+        List<CourseTaken> courseTakens = new LinkedList<CourseTaken>();
+        courseTakens.add(new CourseTaken
+                (new Course("computational Complexity", "csci5403", "3", CourseArea.THEORY_ALGORITHMS),
+                        new Term(Semester.SPRING, 2011), Grade.A));
+        courseTakens.add(new CourseTaken
+                (new Course("Advanced Algorithms and Data Structures", "csci5421", "3", CourseArea.THEORY_ALGORITHMS),
+                        new Term(Semester.FALL, 2011), Grade.B));
+        courseTakens.add(new CourseTaken
+                (new Course("Modern Cryptography", "csci5471", "3", CourseArea.APPLICATIONS),
+                        new Term(Semester.SUMMER, 2011), Grade.A));
+        return courseTakens;
+    }
+
+    public static List<MilestoneSet> CatherineMilestones() {
+        List<MilestoneSet> milestoneSets = new LinkedList<MilestoneSet>();
+        milestoneSets.add(new MilestoneSet(Milestone.PRELIM_COMMITTEE_APPOINTED, new Term(Semester.FALL, 2014)));
+        return  milestoneSets;
+    }
+
 }
 

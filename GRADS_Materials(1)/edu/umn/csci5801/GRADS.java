@@ -1,24 +1,19 @@
 package edu.umn.csci5801;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.umn.csci5801.access.AccessController;
 import edu.umn.csci5801.access.AccessDeniedException;
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.db.FileAccess;
-import edu.umn.csci5801.db.StudentDAO;
 import edu.umn.csci5801.session.InvalidUserException;
-import edu.umn.csci5801.session.User;
-import edu.umn.csci5801.session.Users;
+import edu.umn.csci5801.session.Session;
+import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.studentrecord.StudentRecordController;
 import edu.umn.csci5801.studentrecord.program.Department;
-import edu.umn.csci5801.studentrecord.transcript.Course;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
 import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
-import edu.umn.csci5801.studentrecord.StudentRecord;
-import edu.umn.csci5801.session.Session;
 
 public class GRADS implements GRADSIntf {
 
@@ -42,8 +37,6 @@ public class GRADS implements GRADSIntf {
         studentRecords = studentsFileName;
         courses= coursesFileName;
         users = usersFileName;
-
-
     }
 
     /**

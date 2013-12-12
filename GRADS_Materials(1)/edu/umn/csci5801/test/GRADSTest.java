@@ -93,6 +93,7 @@ public class GRADSTest {
      */
     @Test
     public void testGetUserValidGPC()throws InvalidUserException{
+
         grads.setUser("smith0001");
         assertEquals( grads.getUser(), "smith0001");
     }
@@ -126,6 +127,7 @@ public class GRADSTest {
     @Test
     public void testGetStudentIDs_asGPC() throws Exception {
         //TODO: Grab list of students from Math Dept.
+        grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
         grads.setUser("smith0001");  /* Math Dept.*/
         List<String> actual  = grads.getStudentIDs();
         assertEquals(actual.get(0),"desil1337");

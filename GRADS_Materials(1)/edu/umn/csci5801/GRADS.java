@@ -80,7 +80,7 @@ public class GRADS implements GRADSIntf {
     public List<String> getStudentIDs() throws Exception {
 
         access.checkUserCanGetListOfStudentIDs();
-        Department gpcDepartment = UserDAO.getUserByID(this.getUser(),currentSession.getUserID()).getDepartment();
+        Department gpcDepartment = UserDAO.getUserByID(this.getUsers(),currentSession.getUserID()).getDepartment();
 
         return StudentRecordController.getStudentIDsByDepartment(this.getStudentRecords(), gpcDepartment);
     }

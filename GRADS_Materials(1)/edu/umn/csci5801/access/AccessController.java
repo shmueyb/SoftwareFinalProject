@@ -55,8 +55,11 @@ public class AccessController {
 
         } else if (currentSession.getCurrentUserType() == UserType.STUDENT) {
             //TODO: throw exception if student ID != user ID
+            throw new AccessDeniedException("User " + currentSession.getUserID() + " cannot access notes because they are not of type " +
+                    currentSession.getCurrentUserType());
         } else {
-            throw new AccessDeniedException("User " + currentSession.getUserID() + "has an invalid user type");
+            throw new AccessDeniedException("User " + currentSession.getUserID() + " has an invalid user type.  The user type" +
+                    "is: " + currentSession.getCurrentUserType());
         }
     }
 }

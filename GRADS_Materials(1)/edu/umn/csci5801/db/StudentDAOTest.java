@@ -17,15 +17,15 @@ public class StudentDAOTest {
     public void testUpdateStudentRecord() throws Exception {
         GRADS grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
         List<StudentRecord> studentRecords;
-        studentRecords = StudentDAO.getAllStudents(grads.getStudentRecords());
+        studentRecords = StudentDAO.getAllStudents();
         studentRecords.get(0).getStudent().setFirstName("Sammy");
-        StudentDAO.updateStudentRecord("nguy0621", studentRecords.get(0), grads.getStudentRecords());
-        studentRecords = StudentDAO.getAllStudents(grads.getStudentRecords());
+        StudentDAO.updateStudentRecord("nguy0621", studentRecords.get(0));
+        studentRecords = StudentDAO.getAllStudents();
         StudentRecord firstStudent=studentRecords.get(0);
         assertEquals(firstStudent.getStudent().getFirstName(), "Sammy");
          //reset
         studentRecords.get(0).getStudent().setFirstName("Luan");
-        StudentDAO.updateStudentRecord("nguy0621", studentRecords.get(0), grads.getStudentRecords() );
+        StudentDAO.updateStudentRecord("nguy0621", studentRecords.get(0) );
 
     }
 
@@ -33,7 +33,7 @@ public class StudentDAOTest {
     public void testGetAllStudents() throws Exception {
         GRADS grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
         List<StudentRecord> studentRecords;
-        studentRecords = StudentDAO.getAllStudents(grads.getStudentRecords());
+        studentRecords = StudentDAO.getAllStudents();
         StudentRecord firstStudent=studentRecords.get(0);
         assertEquals(firstStudent.getStudent().getFirstName(), "Luan");
         assertEquals(firstStudent.getDepartment(), Department.COMPUTER_SCIENCE);
@@ -47,7 +47,7 @@ public class StudentDAOTest {
     public void testGetStudentsByDepartment() throws Exception {
         GRADS grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
         List<StudentRecord> studentRecordsInDepartment;
-        studentRecordsInDepartment = StudentDAO.getStudentsByDepartment(grads.getStudentRecords(), Department.COMPUTER_SCIENCE);
+        studentRecordsInDepartment = StudentDAO.getStudentsByDepartment(Department.COMPUTER_SCIENCE);
         StudentRecord firstStudent=studentRecordsInDepartment.get(0);
         assertEquals(firstStudent.getStudent().getFirstName(), "Luan");
         assertEquals(firstStudent.getDepartment(), Department.COMPUTER_SCIENCE);
@@ -57,7 +57,7 @@ public class StudentDAOTest {
     @Test
     public void testGetStudentByID() throws Exception {
         GRADS grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
-        StudentRecord student = StudentDAO.getStudentByID(grads.getStudentRecords(), "blust013" );
+        StudentRecord student = StudentDAO.getStudentByID("blust013" );
         assertEquals(student.getStudent().getFirstName(), "Sam");
         assertEquals(student.getDepartment(), Department.MATH);
 

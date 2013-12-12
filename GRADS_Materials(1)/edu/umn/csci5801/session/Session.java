@@ -1,5 +1,9 @@
 package edu.umn.csci5801.session;
 
+import edu.umn.csci5801.db.DatabaseAccessException;
+import edu.umn.csci5801.db.UserDAO;
+
+
 /**
  * Created with IntelliJ IDEA.
  * User: Ben
@@ -15,12 +19,14 @@ public class Session {
     private final Student studentUser;
 
 
-    public Session(String userID) {
+    public Session(String userID) throws DatabaseAccessException{
         //TODO find user type and set it. Also set professor/student user based on type
         this.userID = userID;
-        currentUserType = null;
         professorUser = null;
         studentUser = null;
+
+        Users user = UserDAO.getUserByID(userID);
+        currentUserType = user.getRole();
     }
 
     public UserType getCurrentUserType() {

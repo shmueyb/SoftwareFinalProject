@@ -16,6 +16,7 @@ import edu.umn.csci5801.session.Users;
 import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.studentrecord.transcript.Course;
 
+
 /**
  * Created by us.
  * Class for specifying and accessing the JSON "database"
@@ -23,21 +24,42 @@ import edu.umn.csci5801.studentrecord.transcript.Course;
  */
 public class FileAccess {
 
-    private String path;
+    private String studentsFilePath;
+    private String coursesFilePath;
+    private String usersFilePath;
     private static FileAccess instance;
 
-    private FileAccess(String path) {
-        this.path = path;
+    /**
+     *
+     * @param studentsFilePath
+     * @param coursesFilePath
+     * @param usersFilePath
+     */
+    private FileAccess(String studentsFilePath, String coursesFilePath, String usersFilePath) {
+        this.studentsFilePath = studentsFilePath;
+        this.coursesFilePath = coursesFilePath;
+        this.usersFilePath = usersFilePath;
     }
 
-    public static List<StudentRecord> getStudentsJSON(String filename) throws FileNotFoundException {
+    /**
+     *
+     * @return
+     * @throws FileNotFoundException
+     */
+    public List<StudentRecord> getStudentsJSON() throws FileNotFoundException {
         //TODO: fill in method: read file into a single JSON string
         //GRADS_Materials/Data/students.txt
-        List<StudentRecord> studentRecords = new Gson().fromJson( new FileReader( new File(filename)), new TypeToken<List<StudentRecord>>(){}.getType());
+        List<StudentRecord> studentRecords = new Gson().fromJson(
+                                    new FileReader( new File(studentsFilePath)),
+                                    new TypeToken<List<StudentRecord>>(){}.getType());
         return studentRecords;
     }
 
-    public static void writeStudentsJSON(String jsonFileName, List<StudentRecord> newStudentRecords) {
+    /**
+     *
+     * @param newStudentRecords
+     */
+    public void writeStudentsJSON(List<StudentRecord> newStudentRecords) {
         //TODO: fill in method: overwrite path/students.txt with the supplied string
 
 
@@ -45,7 +67,7 @@ public class FileAccess {
         try
         {
             //Writer writer = new FileWriter(jsonFileName);
-            FileWriter fstream = new FileWriter(jsonFileName, false); //true tells to append data.
+            FileWriter fstream = new FileWriter(studentsFilePath, false); //true tells to append data.
             //fstream.write(newStudentFileContents);
             String newRecords = new GsonBuilder().setPrettyPrinting().create().toJson(newStudentRecords);
             //fstream.write(newRecords);
@@ -78,27 +100,58 @@ public class FileAccess {
 
     }
 
-    public static List<Course> getCourseJSON(String filename) throws FileNotFoundException {
+    /**
+     *
+     * @return
+     * @throws FileNotFoundException
+     */
+    public List<Course> getCourseJSON() throws FileNotFoundException {
         //TODO: fill in method: read file into a single JSON string
         //"GRADS_Materials/Data/courses.txt
-        List<Course> courses = new Gson().fromJson( new FileReader( new File(filename)), new TypeToken<List<Course>>(){}.getType());
+        List<Course> courses = new Gson().fromJson(
+                                    new FileReader( new File(coursesFilePath)),
+                                    new TypeToken<List<Course>>(){}.getType());
         return courses;
     }
 
-    public static List<Users> getUserJSON(String filename) throws FileNotFoundException {
+    /**
+     *
+     * @return
+     * @throws FileNotFoundException
+     */
+    public List<Users> getUserJSON() throws DatabaseAccessException {
         //TODO: fill in method: read file into a single JSON string
         //"GRADS_Materials/Data/users.txt"
-        List<Users> sessions = new Gson().fromJson( new FileReader( new File(filename)), new TypeToken<List<Users>>(){}.getType());
+        List<Users> sessions = null;
+        try {
+            sessions = new Gson().fromJson(
+                                        new FileReader(new File(usersFilePath)),
+                                        new TypeToken<List<Users>>(){}.getType());
+        } catch (FileNotFoundException e) {
+            throw new DatabaseAccessException("Invalid Path for User Database.\n" + e.getMessage());
+        }
         return sessions;
     }
 
-    public static void initialize(String rootPath) throws DatabaseAccessException{
+    /**
+     *
+     * @param studentsFilePath
+     * @param coursesFilePath
+     * @param usersFilePath
+     * @throws DatabaseAccessException
+     */
+    public static void initialize(String studentsFilePath, String coursesFilePath, String usersFilePath) throws DatabaseAccessException{
         if (instance != null) {
             throw new DatabaseAccessException("The database path may not be changed without restarting GRADS");
         }
-        instance = new FileAccess(rootPath);
+        instance = new FileAccess(studentsFilePath, coursesFilePath, usersFilePath);
     }
 
+    /**
+     *
+     * @return
+     * @throws DatabaseAccessException
+     */
     public static FileAccess getInstance() throws DatabaseAccessException{
         if (instance == null) {
             throw new DatabaseAccessException("The database has not been initialized");

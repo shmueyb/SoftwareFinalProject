@@ -26,8 +26,9 @@ public class StudentRecordController {
      * @return
      * @throws DatabaseAccessException
      */
-    public static StudentRecord getTranscript(String studentRecordsFile, String studentID) throws DatabaseAccessException, FileNotFoundException {
-        return StudentDAO.getStudentByID(studentRecordsFile, studentID);
+    public static StudentRecord getTranscript(String studentID)
+            throws DatabaseAccessException, FileNotFoundException {
+        return StudentDAO.getStudentByID(studentID);
     }
 
     /**
@@ -36,8 +37,9 @@ public class StudentRecordController {
      * @return
      * @throws DatabaseAccessException
      */
-    public static ProgressSummary generateProgressSummary(String studentRecordsFile, String studentID) throws DatabaseAccessException, FileNotFoundException {
-        return simulateCourses(studentRecordsFile, studentID, new ArrayList<CourseTaken>());
+    public static ProgressSummary generateProgressSummary(String studentID)
+            throws DatabaseAccessException, FileNotFoundException {
+        return simulateCourses(studentID, new ArrayList<CourseTaken>());
     }
 
     /**
@@ -47,12 +49,12 @@ public class StudentRecordController {
      * @return
      * @throws DatabaseAccessException
      */
-    public static ProgressSummary simulateCourses(String studentRecordsFile, String studentID,
-                                                  List<CourseTaken> courses) throws DatabaseAccessException, FileNotFoundException {
+    public static ProgressSummary simulateCourses(String studentID, List<CourseTaken> courses)
+            throws DatabaseAccessException, FileNotFoundException {
         ProgressSummary summary = new ProgressSummary();
 
         //TODO: fill in
-        StudentRecord record = StudentDAO.getStudentByID(studentRecordsFile,studentID);
+        StudentRecord record = StudentDAO.getStudentByID(studentID);
         List<RequirementCheckResult> requirementCheckResultsList = null;
         courses.addAll(record.getCoursesTaken());
 
@@ -101,8 +103,8 @@ public class StudentRecordController {
      * @param transcript
      * @throws DatabaseAccessException
      */
-    public static void updateStudentRecord(String studentID, StudentRecord transcript, String studentRecordsFile) throws DatabaseAccessException, FileNotFoundException {
-        StudentDAO.updateStudentRecord(studentID, transcript, studentRecordsFile);
+    public static void updateStudentRecord(String studentID, StudentRecord transcript) throws DatabaseAccessException, FileNotFoundException {
+        StudentDAO.updateStudentRecord(studentID, transcript);
     }
 
     /**
@@ -111,13 +113,13 @@ public class StudentRecordController {
      * @param note
      * @throws DatabaseAccessException
      */
-    public static void addNote(String studentRecordsFile, String studentID, String note) throws DatabaseAccessException, FileNotFoundException {
-        StudentRecord studentRecord = StudentDAO.getStudentByID(studentRecordsFile, studentID);
+    public static void addNote(String studentID, String note) throws DatabaseAccessException, FileNotFoundException {
+        StudentRecord studentRecord = StudentDAO.getStudentByID(studentID);
         List<String> notes = studentRecord.getNotes();
         notes.add(note);
         studentRecord.setNotes(notes);
 
-        updateStudentRecord(studentID, studentRecord, studentRecordsFile);
+        updateStudentRecord(studentID, studentRecord);
     }
 
     /**
@@ -126,12 +128,12 @@ public class StudentRecordController {
      * @return
      * @throws DatabaseAccessException
      */
-    public static List<String> getStudentIDsByDepartment(String studentRecordFile, Department gpcDepartment) throws DatabaseAccessException, FileNotFoundException {
+    public static List<String> getStudentIDsByDepartment(Department gpcDepartment) throws DatabaseAccessException, FileNotFoundException {
 
         final List<StudentRecord> studentList;
         final List<String> idList = new ArrayList<String>();
 
-        studentList = StudentDAO.getStudentsByDepartment(studentRecordFile, gpcDepartment);
+        studentList = StudentDAO.getStudentsByDepartment(gpcDepartment);
 
         for(StudentRecord studentDAO: studentList) {
             idList.add(studentDAO.getStudent().getId());

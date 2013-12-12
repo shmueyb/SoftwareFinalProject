@@ -46,12 +46,17 @@ public class FileAccess {
      * @return
      * @throws FileNotFoundException
      */
-    public List<StudentRecord> getStudentsJSON() throws FileNotFoundException {
+    public List<StudentRecord> getStudentsJSON() throws DatabaseAccessException {
         //TODO: fill in method: read file into a single JSON string
         //GRADS_Materials/Data/students.txt
-        List<StudentRecord> studentRecords = new Gson().fromJson(
-                                    new FileReader( new File(studentsFilePath)),
-                                    new TypeToken<List<StudentRecord>>(){}.getType());
+        List<StudentRecord> studentRecords = null;
+        try {
+            studentRecords = new Gson().fromJson(
+                                        new FileReader( new File(studentsFilePath)),
+                                        new TypeToken<List<StudentRecord>>(){}.getType());
+        } catch (FileNotFoundException e) {
+            throw new DatabaseAccessException(e.getMessage());
+        }
         return studentRecords;
     }
 
@@ -103,14 +108,19 @@ public class FileAccess {
     /**
      *
      * @return
-     * @throws FileNotFoundException
+     * @throws DatabaseAccessException
      */
-    public List<Course> getCourseJSON() throws FileNotFoundException {
+    public List<Course> getCourseJSON() throws DatabaseAccessException {
         //TODO: fill in method: read file into a single JSON string
         //"GRADS_Materials/Data/courses.txt
-        List<Course> courses = new Gson().fromJson(
-                                    new FileReader( new File(coursesFilePath)),
-                                    new TypeToken<List<Course>>(){}.getType());
+        List<Course> courses = null;
+        try {
+            courses = new Gson().fromJson(
+                                        new FileReader( new File(coursesFilePath)),
+                                        new TypeToken<List<Course>>(){}.getType());
+        } catch (FileNotFoundException e) {
+            throw new DatabaseAccessException(e.getMessage());
+        }
         return courses;
     }
 

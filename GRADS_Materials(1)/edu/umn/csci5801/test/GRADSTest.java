@@ -36,6 +36,7 @@ public class GRADSTest {
         StudentRecordFactory.instantiateTestDb();
         // init Grads
         grads = new GRADS("GRADS_Materials/Data/TestStudents.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/TestUsers.txt");
+
     }
 
     /**
@@ -227,6 +228,24 @@ public class GRADSTest {
 
         }
     }
+
+//    /**
+//     * Testing if updateTranscript would throw the correct Exception for invalid UserID
+//     * @throws DatabaseAccessException
+//     * @throws InvalidUserException
+//     * @throws AccessDeniedException
+//     */
+//    @Test
+//    public void testUpdateTranscript_InvalidID() throws DatabaseAccessException, InvalidUserException, FileNotFoundException {
+//        //TODO: Xum, GPC testing invalid ID or Student that is INVALID
+//        try {
+//            grads.updateTranscript("dummyID", StudentRecordFactory.CatherineRecord());
+//            fail();
+//        } catch(AccessDeniedException f) {
+//            //do nothing
+//        }
+//    }
+
 
     /**
      * Checks if the GPC can get a Student's Transcript

@@ -9,6 +9,7 @@ import edu.umn.csci5801.access.AccessDeniedException;
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.db.FileAccess;
 import edu.umn.csci5801.db.StudentDAO;
+import edu.umn.csci5801.db.UserDAO;
 import edu.umn.csci5801.session.InvalidUserException;
 import edu.umn.csci5801.session.User;
 import edu.umn.csci5801.session.Users;
@@ -54,7 +55,7 @@ public class GRADS implements GRADSIntf {
      */
     @Override
     public void setUser(String userID) throws InvalidUserException {
-        currentSession = new Session(userID);
+        currentSession = new Session(userID, this.getUsers());
         access = new AccessController(currentSession);
     }
 
@@ -79,7 +80,7 @@ public class GRADS implements GRADSIntf {
     public List<String> getStudentIDs() throws Exception {
 
         access.checkUserCanGetListOfStudentIDs();
-        Department gpcDepartment = currentSession.getProfessorUser().getDepartment();
+        Department gpcDepartment = UserDAO.getUserByID(this.getUser(),currentSession.getUserID()).getDepartment();
 
         return StudentRecordController.getStudentIDsByDepartment(this.getStudentRecords(), gpcDepartment);
     }
@@ -122,8 +123,9 @@ public class GRADS implements GRADSIntf {
     @Override
     public void addNote(String studentID, String note) throws AccessDeniedException,DatabaseAccessException,FileNotFoundException{
 
-        access.checkUserCanEditRecord(studentID);
+        access.checkUserCanEditRecord(this.getUser());
         StudentRecordController.addNote(this.getStudentRecords(), studentID, note);
+
     }
 
     /**

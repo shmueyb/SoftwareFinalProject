@@ -1,5 +1,7 @@
 package edu.umn.csci5801.session;
 
+import edu.umn.csci5801.db.UserDAO;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Ben
@@ -15,12 +17,14 @@ public class Session {
     private final Student studentUser;
 
 
-    public Session(String userID) {
+    public Session(String userID, String userFilename) {
         //TODO find user type and set it. Also set professor/student user based on type
         this.userID = userID;
-        currentUserType = null;
         professorUser = null;
         studentUser = null;
+
+        Users user = UserDAO.getUserByID(userFilename,userID);
+        currentUserType = user.getRole();
     }
 
     public UserType getCurrentUserType() {

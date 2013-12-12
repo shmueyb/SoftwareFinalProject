@@ -35,8 +35,9 @@ public class GRADSTest {
      * Init Grads for usage
      */
     @Before
-    public void initGrad(){
-        grads = new GRADS();
+    public void initGrad() throws FileNotFoundException {
+        grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
+
     }
 
     /**
@@ -122,11 +123,13 @@ public class GRADSTest {
      * @throws DatabaseAccessException
      * @throws FileNotFoundException
      */
-
+    @Test
     public void testGetStudentIDs_asGPC() throws Exception {
         //TODO: Grab list of students from Math Dept.
         grads.setUser("smith0001");  /* Math Dept.*/
         List<String> actual  = grads.getStudentIDs();
+        assertEquals(actual.get(0),"desil1337");
+        assertEquals(actual.size(),1);
 //        List<String> expected = null;
 //        assertEquals(expected, actual);
     }
@@ -332,7 +335,10 @@ public class GRADSTest {
     @Test
     public void testAddNote() throws Exception {
         //TODO: Student Record Factory for gayxx067 with the updated Note,and the assert
+
         grads.setUser("tolas9999");
+
+
         grads.addNote("gayxx067", "I am Xum");
         StudentRecord studentRecord = grads.getTranscript("gayxx067");
     }
@@ -358,7 +364,7 @@ public class GRADSTest {
      * @throws FileNotFoundException
      * @throws AccessDeniedException
      */
-    @Test
+    @Deprecated
     public void testAddNote_NullNote() throws FileNotFoundException, AccessDeniedException, InvalidUserException {
         grads.setUser("tolas9999");
         try {
@@ -385,6 +391,7 @@ public class GRADSTest {
     /**
      * Checks that a GPC can add a note
      * @throws Exception
+     *
      */
     @Test
     public void testAddNote_asGPC() throws Exception{

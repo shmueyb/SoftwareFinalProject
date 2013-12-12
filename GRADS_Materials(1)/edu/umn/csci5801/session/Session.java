@@ -2,7 +2,7 @@ package edu.umn.csci5801.session;
 
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.db.UserDAO;
-import sun.plugin.converter.util.FileAccessException;
+
 
 /**
  * Created with IntelliJ IDEA.

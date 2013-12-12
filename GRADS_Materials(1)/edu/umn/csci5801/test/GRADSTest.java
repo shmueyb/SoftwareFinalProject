@@ -46,7 +46,11 @@ public class GRADSTest {
      */
     @Test
     public void testSetUserValidID() throws InvalidUserException {
-        grads.setUser("nguy0621");
+        try {
+            grads.setUser("nguy0621");
+        } catch (DatabaseAccessException e) {
+            e.printStackTrace();
+        }
         Assert.assertSame("nguy0621", grads.getUser());
     }
 
@@ -55,12 +59,17 @@ public class GRADSTest {
      */
     @Test
     public void testSetUserInvalidUser(){
-        try {
-            grads.setUser("invalid");
-            fail();
-        } catch (InvalidUserException e) {
+            try {
+                try {
+                    grads.setUser("invalid");
+                } catch (DatabaseAccessException e) {
+                    e.printStackTrace();
+                }
+                fail();
+            } catch (InvalidUserException e) {
+                e.printStackTrace();
+            }
 
-        }
     }
 
     /**
@@ -70,7 +79,11 @@ public class GRADSTest {
     public void testSetUserID_Null() {
         try {
             //method supposed to check for null userID
-            grads.setUser(null);
+            try {
+                grads.setUser(null);
+            } catch (DatabaseAccessException e) {
+                e.printStackTrace();
+            }
             fail();
         } catch (InvalidUserException ex) {
         }
@@ -82,7 +95,11 @@ public class GRADSTest {
     @Test
     public void testSetUserID_Empty() {
         try {
-            grads.setUser("");
+            try {
+                grads.setUser("");
+            } catch (DatabaseAccessException e) {
+                e.printStackTrace();
+            }
             fail();
         } catch (InvalidUserException i) {
         }
@@ -92,9 +109,13 @@ public class GRADSTest {
      * Test getting the current GPC user
      */
     @Test
-    public void testGetUserValidGPC()throws InvalidUserException{
+    public void testGetUserValidGPC() throws InvalidUserException {
 
-        grads.setUser("smith0001");
+        try {
+            grads.setUser("smith0001");
+        } catch (DatabaseAccessException e) {
+            e.printStackTrace();
+        }
         assertEquals( grads.getUser(), "smith0001");
     }
     /**
@@ -102,7 +123,11 @@ public class GRADSTest {
      */
     @Test
     public void testGetUserValidStudentID() throws InvalidUserException{
-        grads.setUser("nguy0621");
+        try {
+            grads.setUser("nguy0621");
+        } catch (DatabaseAccessException e) {
+            e.printStackTrace();
+        }
         assertEquals( grads.getUser(), "nguy0621");
     }
     /**
@@ -111,7 +136,11 @@ public class GRADSTest {
     @Test
     public void testGetUserInvalidUser() {
         try {
-            grads.setUser("invalid");
+            try {
+                grads.setUser("invalid");
+            } catch (DatabaseAccessException e) {
+                e.printStackTrace();
+            }
             fail();
         } catch (InvalidUserException ex) {
             //do nothing
@@ -352,7 +381,11 @@ public class GRADSTest {
      */
     @Test
     public void testAddNote_InvalidRecord() throws  FileNotFoundException, AccessDeniedException, InvalidUserException {
-        grads.setUser("smith0001");
+        try {
+            grads.setUser("smith0001");
+        } catch (DatabaseAccessException e) {
+            e.printStackTrace();
+        }
         try {
             grads.addNote("invalidUser", "anything");
             fail();
@@ -368,7 +401,11 @@ public class GRADSTest {
      */
     @Deprecated
     public void testAddNote_NullNote() throws FileNotFoundException, AccessDeniedException, InvalidUserException {
-        grads.setUser("tolas9999");
+        try {
+            grads.setUser("tolas9999");
+        } catch (DatabaseAccessException e) {
+            e.printStackTrace();
+        }
         try {
             grads.addNote("gayxx067", null);
             fail();
@@ -445,7 +482,11 @@ public class GRADSTest {
      */
     @Test
     public void testGenerateProgressSummary_InvalidStudent_AsGPC() throws FileNotFoundException, AccessDeniedException, InvalidUserException {
-        grads.setUser("smith0001");
+        try {
+            grads.setUser("smith0001");
+        } catch (DatabaseAccessException e) {
+            e.printStackTrace();
+        }
         try {
             ProgressSummary progressSummary = grads.generateProgressSummary("InvalidUser");
             fail();

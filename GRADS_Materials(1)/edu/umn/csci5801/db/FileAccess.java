@@ -15,7 +15,7 @@ import com.google.gson.reflect.TypeToken;
 import edu.umn.csci5801.session.Users;
 import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.studentrecord.transcript.Course;
-import sun.plugin.converter.util.FileAccessException;
+
 
 /**
  * Created by us.
@@ -102,7 +102,7 @@ public class FileAccess {
      * @return
      * @throws FileNotFoundException
      */
-    public List<Users> getUserJSON() throws FileAccessException {
+    public List<Users> getUserJSON() throws DatabaseAccessException {
         //TODO: fill in method: read file into a single JSON string
         //"GRADS_Materials/Data/users.txt"
         List<Users> sessions = null;
@@ -111,7 +111,7 @@ public class FileAccess {
                                         new FileReader(new File(usersFilePath)),
                                         new TypeToken<List<Users>>(){}.getType());
         } catch (FileNotFoundException e) {
-            throw new FileAccessException("Invalid Path for User Database.\n" + e.getMessage());
+            throw new DatabaseAccessException("Invalid Path for User Database.\n" + e.getMessage());
         }
         return sessions;
     }

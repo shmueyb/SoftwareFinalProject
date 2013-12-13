@@ -1,19 +1,13 @@
 package edu.umn.csci5801.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import edu.umn.csci5801.GRADS;
-import edu.umn.csci5801.access.AccessDeniedException;
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.session.InvalidUserException;
 import edu.umn.csci5801.studentrecord.StudentRecord;
@@ -26,19 +20,6 @@ import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
  */
 
 public class GRADSTest {
-    private GRADS grads;
-
-    /**
-     * Init Grads for usage
-     */
-    @Before
-    public void initGrad() throws Exception {
-        // creating test files
-        StudentRecordFactory.instantiateTestDb();
-        // init Grads
-        grads = new GRADS("GRADS_Materials/Data/TestStudents.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/TestUsers.txt");
-
-    }
 
     /**
      * Test if userID would get set
@@ -46,12 +27,16 @@ public class GRADSTest {
      */
     @Test
     public void testSetUserValidID() throws InvalidUserException {
+        GRADS grads = null;
         try {
+            StudentRecordFactory.instantiateTestDb();
+            grads = new GRADS("GRADS_Materials/Data/TestStudents.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/TestUsers.txt");
             grads.setUser("nguy0621");
+            Assert.assertSame("nguy0621", grads.getUser());
         } catch (DatabaseAccessException e) {
-            e.printStackTrace();
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (Exception e) {
         }
-        Assert.assertSame("nguy0621", grads.getUser());
     }
 
     /**
@@ -156,7 +141,6 @@ public class GRADSTest {
     @Test
     public void testGetStudentIDs_asGPC() throws Exception {
         //TODO: Grab list of students from Math Dept.
-        grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
         grads.setUser("smith0001");  /* Math Dept.*/
         List<String> actual  = grads.getStudentIDs();
         assertEquals(actual.get(0),"desil1337");

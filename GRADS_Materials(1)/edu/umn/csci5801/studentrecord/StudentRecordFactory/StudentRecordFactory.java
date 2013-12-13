@@ -150,6 +150,41 @@ public class StudentRecordFactory {
                 .build();
     }
 
+    /**
+     * generating Greg's record
+     * @return Greg's record
+     */
+    public static StudentRecord GregRecordUpdated() {
+        return  new StudentRecord.StudentRecordBuilder()
+                .student(Greg)
+                .department(CompSci)
+                .degreeSought(Degree.MS_A)
+                .termBegan(new Term(Semester.SPRING, 2008))
+                .advisors(GregAdvisors())
+                .committee(GregCommittee())
+                .coursesTaken(GregCoursesTaken())
+                .milesstoneSet(GregMilestones())
+                .notes(notes())
+                .build();
+    }
+
+    /**
+     * generating Greg's record
+     * @return Greg's record
+     */
+    public static StudentRecord GregRecordUpdatedCourse() {
+        return  new StudentRecord.StudentRecordBuilder()
+                .student(Greg)
+                .department(CompSci)
+                .degreeSought(Degree.MS_A)
+                .termBegan(new Term(Semester.SPRING, 2008))
+                .advisors(GregAdvisors())
+                .committee(GregCommittee())
+                .coursesTaken(GregCoursesTakenUpdated())
+                .milesstoneSet(GregMilestones())
+                .notes(notes())
+                .build();
+    }
     public static List<Professor> GregAdvisors() {
         List<Professor> advisors = new LinkedList<Professor>();
         advisors.add(new Professor("Mats", "Heidahl", Department.COMPUTER_SCIENCE));
@@ -176,9 +211,27 @@ public class StudentRecordFactory {
         return courseTakens;
     }
 
+    public static List<CourseTaken> GregCoursesTakenUpdated() {
+        List<CourseTaken> courseTakens = new LinkedList<CourseTaken>();
+        courseTakens.add(new CourseTaken
+                (new Course("Introduction to Distributed Systems", "csci5105", "3", CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE),
+                        new Term(Semester.SPRING, 2009), Grade.A));
+        courseTakens.add(new CourseTaken
+                (new Course("Programming Languages", "csci5106", "3", CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE),
+                        new Term(Semester.FALL, 2009), Grade.B));
+        return courseTakens;
+    }
+
     public static List<MilestoneSet> GregMilestones() {
         List<MilestoneSet> milestoneSets = new LinkedList<MilestoneSet>();
         milestoneSets.add(new MilestoneSet(Milestone.THESIS_APPROVED, new Term(Semester.FALL, 2014)));
+        return  milestoneSets;
+    }
+
+    public static List<MilestoneSet> GregMilestonesUpdated() {
+        List<MilestoneSet> milestoneSets = new LinkedList<MilestoneSet>();
+        milestoneSets.add(new MilestoneSet(Milestone.THESIS_APPROVED, new Term(Semester.FALL, 2014)));
+        milestoneSets.add(new MilestoneSet(Milestone.DEFENSE_PASSED, new Term(Semester.FALL, 2014)));
         return  milestoneSets;
     }
     /**

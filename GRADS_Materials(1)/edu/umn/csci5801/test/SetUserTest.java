@@ -16,40 +16,26 @@ import edu.umn.csci5801.studentrecord.StudentRecordFactory.StudentRecordFactory;
 public class SetUserTest {
     private static GRADS grads;
 
+
     @Before
-    public void init() {
+    public void initGrad() throws Exception {
+        // creating test files
+        StudentRecordFactory.instantiateTestDb();
+        // init Grads
+        if(grads == null){
+            grads = new GRADS("GRADS_Materials/Data/TestStudents.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/TestUsers.txt");
 
-        if(grads == null) {
-            try {
-                StudentRecordFactory.instantiateTestDb();
-                grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
-
-            } catch (DatabaseAccessException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
     @Test
     public void testSetUserValidID() throws InvalidUserException {
+
         try {
             grads.setUser("nguy0621");
         } catch (DatabaseAccessException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+
         }
         Assert.assertSame("nguy0621", grads.getUser());
-    }
-
-    @Test
-    public void testSetUserInvalidUser() throws DatabaseAccessException {
-
-        try {
-            grads.setUser("invalid");
-            fail();
-        } catch (InvalidUserException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -58,6 +44,7 @@ public class SetUserTest {
     @Test
     public void testSetUserID_Null() {
         try {
+            //method supposed to check for null userID
             try {
                 grads.setUser(null);
             } catch (DatabaseAccessException e) {
@@ -67,4 +54,22 @@ public class SetUserTest {
         } catch (InvalidUserException ex) {
         }
     }
+
+    /**
+     * Test with empty parameter, setUserID should throw exception
+     */
+    @Test
+    public void testSetUserID_Empty() {
+        try {
+            try {
+                grads.setUser("");
+            } catch (DatabaseAccessException e) {
+                e.printStackTrace();
+            }
+            fail();
+        } catch (InvalidUserException i) {
+        }
+        Assert.assertSame("nguy0621", grads.getUser());
+    }
+
 }

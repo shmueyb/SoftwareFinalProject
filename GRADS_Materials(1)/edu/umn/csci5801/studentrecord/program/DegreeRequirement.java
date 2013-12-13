@@ -68,15 +68,16 @@ public class DegreeRequirement {
             Integer minCourseLevel,
             Grade minCourseGrade) {
 
-        this.requirementName = requirementName;
-        this.subRequirements = subRequirements;
-        this.applicableCourses = applicableCourses;
-        this.requiredMilestones = requiredMilestones;
+        this.requirementName = requirementName == null ? "Requirement" : requirementName;
+        this.subRequirements = subRequirements == null ? new ArrayList<DegreeRequirement>() : subRequirements;
+        this.applicableCourses = applicableCourses == null? new ArrayList<Course>() : applicableCourses;
+        this.requiredMilestones = requiredMilestones == null ? new ArrayList<Milestone>() : requiredMilestones;
 
-        this.minGPA = (minGPA == null) ? 0.0 : minGPA;
         this.isSNAllowed = (isSNAllowed == null) ? true : isSNAllowed;
         this.mustTakeAllCourses = (mustTakeAllCourses == null) ? false : mustTakeAllCourses;
         this.mayRepeatCoursesForCredit = (mayRepeatCoursesForCredit == null) ? false : mayRepeatCoursesForCredit;
+
+        this.minGPA = (minGPA == null) ? 0.0 : minGPA;
         this.minCredits = (minCredits == null) ? 0 : minCredits;
         this.minCourseCount = (minCourseCount == null) ? 0 : minCourseCount;
         this.minCourseLevel = (minCourseLevel == null) ? 0 : minCourseLevel;

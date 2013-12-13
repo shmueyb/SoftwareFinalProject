@@ -129,10 +129,14 @@ public class GRADSTest {
     @Test
     public void testGetStudentIDs_asGPC() throws Exception {
         //TODO: Grab list of students from Math Dept.
+
         grads.setUser("smith0001");  /* Math Dept.*/
+       // grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
+        grads.setUser("tolas9999");  /* Math Dept.*/
+
         List<String> actual  = grads.getStudentIDs();
-        assertEquals(actual.get(0),"desil1337");
-        assertEquals(actual.size(),1);
+        assertEquals(actual.get(0),"nguy0621");
+        assertEquals(actual.size(),4);
 //        List<String> expected = null;
 //        assertEquals(expected, actual);
     }
@@ -142,13 +146,20 @@ public class GRADSTest {
      * @throws DatabaseAccessException
      * @throws FileNotFoundException
      */
+    @Test
     public void testGetStudentIDs_AsStudent() throws DatabaseAccessException, FileNotFoundException, InvalidUserException {
         grads.setUser("gayxx067");
         try {
-            grads.getTranscript("gayxx067");
+            grads.getStudentIDs();
             fail();
         } catch (AccessDeniedException ex) {
-            //do nothing
+            ex.printStackTrace();
+        } catch (DatabaseAccessException de) {
+
+        } catch (InvalidUserException ie){
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

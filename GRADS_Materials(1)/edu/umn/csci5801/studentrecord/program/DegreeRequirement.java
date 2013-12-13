@@ -32,6 +32,22 @@ public class DegreeRequirement {
     private final Integer minCourseLevel;
     private final Grade minCourseGrade;
 
+    /**
+     * Class which represents a set of degree requirements. May contain a list of
+     * sub-requirements of the same class.
+     *
+     * @param subRequirements list of subrequirements with their own restrictions
+     * @param applicableCourses courses that are applicable to this requirement
+     * @param requiredMilestones milestones that must be passed for this requirement to pass
+     * @param minGPA minimum GPA for this requirement
+     * @param isSNAllowed this requirement does not disallow S/N grades
+     * @param mustTakeAllCourses true if all courses in applicableCourses must be taken and passed
+     * @param mayRepeatCoursesForCredit true if courses will count if they are repeated
+     * @param minCredits minimum number of credits required
+     * @param minCourseCount minimum number of courses required
+     * @param minCourseLevel minimum course level that counts (eg. 5000 allows only courses >= 5000)
+     * @param minCourseGrade minimum grade allowed for a course to count
+     */
     public DegreeRequirement(
             List<DegreeRequirement> subRequirements,
             List<Course> applicableCourses,
@@ -59,7 +75,11 @@ public class DegreeRequirement {
         this.minCourseGrade = (minCourseGrade == null) ? Grade.C : minCourseGrade;
     }
 
-
+    /**
+     * Returns all courses in this requirement and all subrequirements. Discludes duplicates.
+     *
+     * @return List of Courses that apply to this requirement.
+     */
     protected List<Course> getAllApplicableCourses() {
         List<Course> allApplicableCourses = new ArrayList<Course>();
         Map<String, Course> courseOverlapChecker = new HashMap<String, Course>();
@@ -83,6 +103,16 @@ public class DegreeRequirement {
         return allApplicableCourses;
     }
 
+    /**
+     * returns true if the required milestones and other requirements are all passed by the student
+     *
+     * @param coursesTaken courses that have been taken by the student
+     * @param milestonesPassed milestones that the student has passed
+     * @return true if all of the required courses are taken, and they pass all requirements, and the
+     *      student has passed all necessary milestones.
+     * @throws NumberFormatException if one of the courses that have been taken (or passed as a course
+     *      to simulate taking) has an invalid
+     */
     public boolean checkIsPassed(List<CourseTaken> coursesTaken, List<MilestoneSet> milestonesPassed)
             throws NumberFormatException{
         for (DegreeRequirement subRequirement: subRequirements) {
@@ -113,6 +143,13 @@ public class DegreeRequirement {
         return true;
     }
 
+    /**
+     * returns true if all required milestones are passed
+     *
+     * @param milestonesPassed list of milestones the student has passed
+     *
+     * @return true if all required milestones are passed.
+     */
     private boolean checkMilestonesPassRequirement(List<MilestoneSet> milestonesPassed) {
         if (milestonesPassed == null)
             return false;
@@ -131,6 +168,12 @@ public class DegreeRequirement {
         return true;
     }
 
+    /**
+     * returns true if the courses taken meet all course requirements for this requirement
+     *
+     * @param coursesTaken list of courses taken by the student
+     * @return true if the course requirements are met
+     */
     private boolean checkCoursesPassRequirement(List<CourseTaken> coursesTaken) {
         if (coursesTaken == null)
             return false;
@@ -182,6 +225,12 @@ public class DegreeRequirement {
         return true;
     }
 
+    /**
+     * returns a filtered list, which filters out S/N courses from the passed in list
+     *
+     * @param coursesTaken courses we wish to apply the filter to
+     * @return the filtered list
+     */
     private List<CourseTaken> filterOutSN(List<CourseTaken> coursesTaken) {
         List<CourseTaken> coursesToReturn = new ArrayList<CourseTaken>();
 
@@ -194,6 +243,13 @@ public class DegreeRequirement {
         return coursesToReturn;
     }
 
+    /**
+     * returns a list of courses taken, with courses that don't meet the minimum
+     * course level requirement out.
+     *
+     * @param coursesTaken courses we wish to filter from
+     * @return the filtered list
+     */
     private List<CourseTaken> filterOutByMinCourseLevel(List<CourseTaken> coursesTaken) {
         ArrayList<CourseTaken> coursesToReturn = new ArrayList<CourseTaken>();
 
@@ -206,11 +262,24 @@ public class DegreeRequirement {
         return coursesToReturn;
     }
 
+    /**
+     * returns a list of courses taken, with courses that don't meet the minimum course
+     * grade requirement out.
+     *
+     * @param coursesTaken courses we wish to filter from
+     * @return the filtered list
+     */
     private List<CourseTaken> filterOutByMinCourseGrade(List<CourseTaken> coursesTaken) {
         ArrayList<CourseTaken> coursesToReturn = new ArrayList<CourseTaken>();
 
         for (CourseTaken courseTaken: coursesTaken) {
-            if (courseTaken.getGrade().numericValue() >= minCourseGrade.numericValue()) {
+            if (courseTaken.getGrade().numericValue() >= minCourseGrade.numericValue()
+                    && courseTaken.getGrade().numericValue() > 0) {
+
+                coursesToReturn.add(courseTaken);
+            }
+
+            if (isSNAllowed && courseTaken.getGrade().equals(Grade.S)) {
                 coursesToReturn.add(courseTaken);
             }
         }
@@ -218,6 +287,12 @@ public class DegreeRequirement {
         return coursesToReturn;
     }
 
+    /**
+     * returns a list of courses taken, with courses that are duplicates filtered out
+     *
+     * @param coursesTaken courses we wish to filter from
+     * @return the filtered list
+     */
     private List<CourseTaken> filterOutDuplicateCourses(List<CourseTaken> coursesTaken) {
         ArrayList<String> allCourseIDs = new ArrayList<String>();
         ArrayList<String> repeatedCourseIDs = new ArrayList<String>();
@@ -259,6 +334,13 @@ public class DegreeRequirement {
         return coursesToReturn;
     }
 
+    /**
+     * returns the number of credits in the passed-in courses.
+     *
+     * @param coursesTaken courses we wish to sum the total credits of
+     * @return sum of credits in coursesTaken
+     * @throws NumberFormatException if one of the courses has an invalid number of credits (eg. a range 1-3)
+     */
     private int getNumberOfCredits(List<CourseTaken> coursesTaken) throws NumberFormatException{
         int totalCredits = 0;
 
@@ -269,6 +351,13 @@ public class DegreeRequirement {
         return totalCredits;
     }
 
+    /**
+     * calculates the total gpa of the courses passed in
+     *
+     * @param coursesTaken courses that we wish to calculate the GPA of
+     * @return the GPA calculated from all of the courses in the passed-in list
+     * @throws NumberFormatException if one of the courses has an invalid number of credits (eg. a range 1-3)
+     */
     private Double calculateGPA(List<CourseTaken> coursesTaken) throws NumberFormatException{
         Double undividedGPATotal = 0.0;
         int creditTotal = 0;
@@ -282,6 +371,12 @@ public class DegreeRequirement {
         return undividedGPATotal / ((double) creditTotal);
     }
 
+    /**
+     * returns true if coursesTaken contains all applicable courses
+     *
+     * @param coursesTaken list that we want to check the completeness of
+     * @return true of coursesTaken contains all contents in applicableCourses
+     */
     private boolean getContainsAllApplicableCourses(List<CourseTaken> coursesTaken) {
         Map<String, CourseTaken> coursesTakenMap = new HashMap<String, CourseTaken>();
 

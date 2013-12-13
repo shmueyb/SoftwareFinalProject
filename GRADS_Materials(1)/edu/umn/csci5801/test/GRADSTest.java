@@ -1,13 +1,19 @@
 package edu.umn.csci5801.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import edu.umn.csci5801.GRADS;
+import edu.umn.csci5801.access.AccessDeniedException;
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.session.InvalidUserException;
 import edu.umn.csci5801.studentrecord.StudentRecord;
@@ -20,13 +26,25 @@ import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
  */
 
 public class GRADSTest {
-
+    private static GRADS grads;
     /**
      * Test if userID would get set
      * @throws Exception
      */
 
+    @BeforeClass
+    public static void init() {
+        try {
+            StudentRecordFactory.instantiateTestDb();
+            grads = new GRADS("GRADS_Materials/Data/TestStudents.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/TestUsers.txt");
 
+        } catch (DatabaseAccessException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
     /**
      * Test setting an invalid User
      */
@@ -42,7 +60,6 @@ public class GRADSTest {
             } catch (InvalidUserException e) {
                 e.printStackTrace();
             }
-
     }
 
     /**
@@ -122,7 +139,6 @@ public class GRADSTest {
 
     /**
      * Check GPC can get list of Students in their Dept.
-     * @throws AccessDeniedException
      * @throws DatabaseAccessException
      * @throws FileNotFoundException
      */

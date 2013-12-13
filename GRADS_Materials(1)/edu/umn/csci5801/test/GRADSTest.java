@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import edu.umn.csci5801.GRADS;
@@ -26,34 +26,25 @@ import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
  */
 
 public class GRADSTest {
-    private GRADS grads;
-
-    /**
-     * Init Grads for usage
-     */
-    @Before
-    public void initGrad() throws Exception {
-        // creating test files
-        StudentRecordFactory.instantiateTestDb();
-        // init Grads
-        grads = new GRADS("GRADS_Materials/Data/TestStudents.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/TestUsers.txt");
-
-    }
-
+    private static GRADS grads;
     /**
      * Test if userID would get set
      * @throws Exception
      */
-    @Test
-    public void testSetUserValidID() throws InvalidUserException {
+
+    @BeforeClass
+    public static void init() {
         try {
-            grads.setUser("nguy0621");
+            StudentRecordFactory.instantiateTestDb();
+            grads = new GRADS("GRADS_Materials/Data/TestStudents.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/TestUsers.txt");
+
         } catch (DatabaseAccessException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        Assert.assertSame("nguy0621", grads.getUser());
-    }
 
+    }
     /**
      * Test setting an invalid User
      */
@@ -69,7 +60,6 @@ public class GRADSTest {
             } catch (InvalidUserException e) {
                 e.printStackTrace();
             }
-
     }
 
     /**
@@ -149,18 +139,20 @@ public class GRADSTest {
 
     /**
      * Check GPC can get list of Students in their Dept.
-     * @throws AccessDeniedException
      * @throws DatabaseAccessException
      * @throws FileNotFoundException
      */
     @Test
     public void testGetStudentIDs_asGPC() throws Exception {
         //TODO: Grab list of students from Math Dept.
-        grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
+
         grads.setUser("smith0001");  /* Math Dept.*/
+       // grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
+        grads.setUser("tolas9999");  /* Math Dept.*/
+
         List<String> actual  = grads.getStudentIDs();
-        assertEquals(actual.get(0),"desil1337");
-        assertEquals(actual.size(),1);
+        assertEquals(actual.get(0),"nguy0621");
+        assertEquals(actual.size(),4);
 //        List<String> expected = null;
 //        assertEquals(expected, actual);
     }
@@ -170,13 +162,20 @@ public class GRADSTest {
      * @throws DatabaseAccessException
      * @throws FileNotFoundException
      */
+    @Test
     public void testGetStudentIDs_AsStudent() throws DatabaseAccessException, FileNotFoundException, InvalidUserException {
         grads.setUser("gayxx067");
         try {
-            grads.getTranscript("gayxx067");
+            grads.getStudentIDs();
             fail();
         } catch (AccessDeniedException ex) {
-            //do nothing
+            ex.printStackTrace();
+        } catch (DatabaseAccessException de) {
+
+        } catch (InvalidUserException ie){
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

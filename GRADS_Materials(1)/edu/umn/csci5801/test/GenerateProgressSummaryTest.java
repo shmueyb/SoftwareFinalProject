@@ -47,7 +47,7 @@ public class GenerateProgressSummaryTest {
      */
     @Test
     public void testGenerateProgressSummary_PHD() throws Exception {
-
+        grads.setUser("nguy0261");
         List<RequirementCheckResult> requirements = new ArrayList<RequirementCheckResult>();
         List<MilestoneSet>  milestones = new ArrayList<MilestoneSet>();
 
@@ -74,10 +74,10 @@ public class GenerateProgressSummaryTest {
         requirements.add(new RequirementCheckResult("GRADUATION_PACKET_REQUESTED"));
         requirements.add(new RequirementCheckResult("THESIS_SUBMITTED"));
         requirements.add(new RequirementCheckResult("THESIS_APPROVED"));
-        requirements.add(new RequirementCheckResult("DEFENSE_PASSED"),true, );
+        requirements.add(new RequirementCheckResult("DEFENSE_PASSED"));
 
 
-        Term term = new Term(Semester.FALL,2014);
+
         milestones.add(new MilestoneSet(Milestone.DEFENSE_PASSED,new Term(Semester.FALL,2014)));
 
         ProgressSummary actual =  grads.generateProgressSummary("nguy0621");
@@ -88,10 +88,60 @@ public class GenerateProgressSummaryTest {
         assertEquals(StudentRecordFactory.LuanAdvisors(),actual.getAdvisors());
         assertEquals(StudentRecordFactory.LuanCommittee(), actual.getCommittee());
         assertEquals(StudentRecordFactory.notes(),actual.getNotes());
+
+    }
+
+    /**
+     * testing if generatateProgressSummary() would return the correct result
+     * @throws Exception
+     */
+    @Test
+    public void testGenerateProgressSummary_MS_A() throws Exception {
+        grads.setUser("gayxx067");
+        List<RequirementCheckResult> requirements = new ArrayList<RequirementCheckResult>();
+        List<MilestoneSet>  milestones = new ArrayList<MilestoneSet>();
+
+
+        requirements.add(new RequirementCheckResult("BREADTH_REQUIREMENT_MS_A"));
+        requirements.add(new RequirementCheckResult("THESIS_MS_A"));
+        requirements.add(new RequirementCheckResult("COLLOQUIUM"));
+        requirements.add(new RequirementCheckResult("OUT_OF_DEPARTMENT"));
+        requirements.add(new RequirementCheckResult("INTRO_TO_RESEARCH"));
+        requirements.add(new RequirementCheckResult("TOTAL_CREDITS"));
+        requirements.add(new RequirementCheckResult("OVERALL_GPA_PHD"));
+        requirements.add(new RequirementCheckResult("BREADTH_REQUIREMENT_PHD"));
+
+
+        requirements.add(new RequirementCheckResult("PRELIM_COMMITTEE_APPOINTED"));
+        requirements.add(new RequirementCheckResult("WRITTEN_PE_SUBMITTED"));
+        requirements.add(new RequirementCheckResult("WRITTEN_PE_APPROVED"));
+        requirements.add(new RequirementCheckResult("ORAL_PE_PASSED"));
+        requirements.add(new RequirementCheckResult("DPF_SUBMITTED"));
+        requirements.add(new RequirementCheckResult("DPF_APPROVED"));
+
+        requirements.add(new RequirementCheckResult("THESIS_COMMITTEE_APPOINTED"));
+        requirements.add(new RequirementCheckResult("PROPOSAL_PASSED"));
+        requirements.add(new RequirementCheckResult("GRADUATION_PACKET_REQUESTED"));
+        requirements.add(new RequirementCheckResult("THESIS_SUBMITTED"));
+        requirements.add(new RequirementCheckResult("THESIS_APPROVED"));
+        requirements.add(new RequirementCheckResult("DEFENSE_PASSED"));
+
+
+        Term term = new Term(Semester.SPRING,2009);
+        milestones.add(new MilestoneSet(Milestone.THESIS_APPROVED,new Term(Semester.FALL,2014)));
+
+        ProgressSummary actual =  grads.generateProgressSummary("gayxx067");
+        assertEquals(new Student("Gregory", "Gay", "gayxx067"),actual.getStudent());
+        assertEquals(Department.COMPUTER_SCIENCE,actual.getDepartment());
+        assertEquals(Degree.MS_A, actual.getDegreeSought());
+        assertEquals(new Term(Semester.SPRING, 2009), actual.getTermBegan());
+        assertEquals(StudentRecordFactory.GregAdvisors(),actual.getAdvisors());
+        assertEquals(StudentRecordFactory.GregCommittee(), actual.getCommittee());
+        assertEquals(StudentRecordFactory.notes(),actual.getNotes());
         assertEquals(requirements,actual.getRequirementCheckResults());
 
     }
-     /* checking to see if a class exists in the list of RequirementCheckResults
+    /* checking to see if a class exists in the list of RequirementCheckResults
      * @param courseName
      * @param results
      * @return

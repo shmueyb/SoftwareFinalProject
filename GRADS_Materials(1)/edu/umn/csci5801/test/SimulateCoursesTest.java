@@ -4,8 +4,16 @@ package edu.umn.csci5801.test;
 import edu.umn.csci5801.GRADS;
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.session.InvalidUserException;
+import edu.umn.csci5801.session.Student;
 import edu.umn.csci5801.studentrecord.StudentRecordFactory.StudentRecordFactory;
+import edu.umn.csci5801.studentrecord.program.Degree;
+import edu.umn.csci5801.studentrecord.program.Department;
+import edu.umn.csci5801.studentrecord.requirements.Milestone;
+import edu.umn.csci5801.studentrecord.requirements.MilestoneSet;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
+import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
+import edu.umn.csci5801.studentrecord.transcript.Semester;
+import edu.umn.csci5801.studentrecord.transcript.Term;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,7 +43,6 @@ public class SimulateCoursesTest {
         }
     }
 
-//    //TODO:Still confused about these, discuss tmrw
 //    /**
 //     * test if simulate courses would return the expected progress summary
 //     */
@@ -73,14 +80,13 @@ public class SimulateCoursesTest {
 //        }
 //    }
 
-
     /**
      * checks that a GPC cannot simulate a progress summary for a student out of their dept.
      * @throws FileNotFoundException
      * @throws DatabaseAccessException
      */
     @Test
-    public void testSimulateCoursesOutDept_AsGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
+    public void testSimulateCourses_OutDept_AsGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
         //TODO inputs: courseTaken list
         String testID = "smith0002";
         List<CourseTaken> courses = new ArrayList<CourseTaken>();
@@ -92,7 +98,6 @@ public class SimulateCoursesTest {
             //do nothing
         }
     }
-
     /**
      * Checks that a student cannot simulate another student's progress summary
      * @throws FileNotFoundException
@@ -110,58 +115,70 @@ public class SimulateCoursesTest {
             //do nothing
         }
     }
+    /**
+     * Checks that GPC can simulate a progress summary for a student in their dept.
+     * @throws Exception
+     */
+    @Test
+    public void testSimulateCourses_PHD_AsGPC() throws Exception {
+        //TODO inputs: courseTaken list, StudentRecordFactor for user new student record,assert
+        grads.setUser("tolas9999");
+        List<CourseTaken> courses = new ArrayList<CourseTaken>();
+        ProgressSummary actual = grads.simulateCourses("nguy0621", courses);
+    }
 
-    //TODO: Create Users and Student Record for each type of degree,PHD= LUAN, MS_A MS_B MS_C needs records,and users
+    /**
+     * Check that simulate courses takes in account retaken course
+     * @throws Exception
+     */
+    @Test
+    public void testSimulateCourses_RetakenCourse_MS_A_AsStudent() throws Exception {
+        grads.setUser("gayxx067");
+        List<CourseTaken> courses = new ArrayList<CourseTaken>();
+        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
 
-//
-//    /**
-//     * Checks that GPC can simulate a progress summary for a student in their dept.
-//     * @throws Exception
-//     */
-//    @Test
-//    public void testSimulateCourses_PHD_AsGPC() throws Exception {
-//        //TODO inputs: courseTaken list, StudentRecordFactor for user new student record,assert
-//        grads.setUser("tolas9999");
+    }
+
+    /**
+     * Checks simulate courses takes courses without a grade input
+     * @throws Exception
+     */
+    @Test
+    public void testSimulateCourses_NoGradeInput_MS_B_AsStudent() throws Exception {
+//        grads.setUser("desil1337");
 //        List<CourseTaken> courses = new ArrayList<CourseTaken>();
-//        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
-//    }
 //
-//    /**
-//     * Check that simulate courses takes in account retaken course
-//     * @throws Exception
-//     */
-//    @Test
-//    public void testSimulateCourses_RetakenCourse_MS_A_AsStudent() throws Exception {
-//        //TODO inputs: courseTaken list, expected Factory Progress Summary, assert
-//        grads.setUser("gayxx067");
-//        List<CourseTaken> courses = new ArrayList<CourseTaken>();
-//        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
+//        ProgressSummary actual = grads.simulateCourses("desil1337", courses);
 //
-//    }
-//
-//    /**
-//     * Checks simulate courses takes courses without a grade input
-//     * @throws Exception
-//     */
-//    @Test
-//    public void testSimulateCourses_NoGradeInput_MS_B_AsStudent() throws Exception {
-//        //TODO inputs: courseTaken list, expected Progress Summary
-//        grads.setUser("gayxx067");
-//        List<CourseTaken> courses = new ArrayList<CourseTaken>();
-//        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
-//
-//    }
-//
-//    /**
-//     *
-//     * @throws Exception
-//     */
-//    @Test
-//    public void testSimulateCourses_FailingGradeInput_MS_C_AsStudent() throws Exception {
-//        //TODO inputs: courseTaken list, expected Progress Summary
-//        grads.setUser("gayxx067");
-//        List<CourseTaken> courses = new ArrayList<CourseTaken>();
-//        ProgressSummary actual = grads.simulateCourses("gayxx067", courses);
-//
-//    }
+//        assertEquals(new Student("Ian", "De Silva", "desil1337"),actual.getStudent());
+//        assertEquals(Department.COMPUTER_SCIENCE,actual.getDepartment());
+//        assertEquals(Degree.MS_C, actual.getDegreeSought());
+//        assertEquals(new Term(Semester.SPRING, 2011), actual.getTermBegan());
+//        assertEquals(StudentRecordFactory.CatherineAdvisors(),actual.getAdvisors());
+//        assertEquals(StudentRecordFactory.CatherineCommittee(), actual.getCommittee());
+//        assertEquals(StudentRecordFactory.notes(),actual.getNotes());
+
+    }
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testSimulateCourses_FailingGradeInput_MS_C_AsStudent() throws Exception {
+        grads.setUser("1111");
+        List<CourseTaken> courses = new ArrayList<CourseTaken>();
+        ProgressSummary actual = grads.simulateCourses("1111", courses);
+
+
+
+        assertEquals(new Student("Catherine", "Reed", "1111"),actual.getStudent());
+        assertEquals(Department.COMPUTER_SCIENCE,actual.getDepartment());
+        assertEquals(Degree.MS_C, actual.getDegreeSought());
+        assertEquals(new Term(Semester.SPRING, 2011), actual.getTermBegan());
+        assertEquals(StudentRecordFactory.CatherineAdvisors(),actual.getAdvisors());
+        assertEquals(StudentRecordFactory.CatherineCommittee(), actual.getCommittee());
+        assertEquals(StudentRecordFactory.notes(),actual.getNotes());
+
+
+    }
 }

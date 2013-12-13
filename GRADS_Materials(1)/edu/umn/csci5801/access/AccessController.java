@@ -1,7 +1,11 @@
 package edu.umn.csci5801.access;
 
-import edu.umn.csci5801.session.Session;
+import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.session.UserType;
+import edu.umn.csci5801.session.Session;
+import edu.umn.csci5801.studentrecord.program.Department;
+import edu.umn.csci5801.db.StudentDAO;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,8 +31,22 @@ public class AccessController {
      *
      * @param studentID
      */
-    public void checkUserCanAccessStudentRecord(String studentID) {
-        //TODO: perform check
+    public void checkUserCanAccessStudentRecord(String studentID) throws AccessDeniedException, DatabaseAccessException {
+
+        if (currentSession.getCurrentUserType() == UserType.STUDENT) {
+            if(!(currentSession.getUserID().equals(studentID))){
+                throw new AccessDeniedException("User " + currentSession.getUserID() + " is not a GPC," +
+                    "and therefore does not have access to" + studentID + "'s record.");
+            }
+        }
+        else if(currentSession.getCurrentUserType() == UserType.GRADUATE_PROGRAM_COORDINATOR){
+            Department department = currentSession.getProfessorUser().getDepartment();
+            if((department != StudentDAO.getStudentByID(studentID).getDepartment())){
+                throw new AccessDeniedException("User " + currentSession.getUserID() + " does not have access to" +
+                        studentID + "'s record because the student is outside of their department.");
+            }
+        }
+
     }
 
 

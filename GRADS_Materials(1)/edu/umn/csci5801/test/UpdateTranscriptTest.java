@@ -4,6 +4,7 @@ import edu.umn.csci5801.GRADS;
 import edu.umn.csci5801.access.AccessDeniedException;
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.session.InvalidUserException;
+import edu.umn.csci5801.session.Student;
 import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.studentrecord.StudentRecordFactory.StudentRecordFactory;
 import org.junit.Before;
@@ -49,16 +50,17 @@ public class UpdateTranscriptTest {
     }
 
     /**
-     * Checks that a GPC can update a student record for a student in their  dept.
+     * Checks that a GPC can update a student record for a student in their  dept., changed term began
      * @throws AccessDeniedException
      * @throws FileNotFoundException
      * @throws DatabaseAccessException
      */
     @Test
-    public void testUpdateTranscriptStudent_InDept_asGPC() throws  FileNotFoundException, DatabaseAccessException, InvalidUserException {
+    public void testUpdateTranscriptStudent_TermBegan_InDept_asGPC() throws  FileNotFoundException, DatabaseAccessException, InvalidUserException {
         grads.setUser("tolas9999");
         try {
-            grads.updateTranscript("gayxx067",grads.getTranscript("gayxx067"));
+            grads.updateTranscript("gayxx067",StudentRecordFactory.GregRecordUpdated());
+            assertEquals(grads.getTranscript("gayxx067"),StudentRecordFactory.GregRecordUpdated());
         } catch (AccessDeniedException e) {
             fail();
         }
@@ -73,7 +75,7 @@ public class UpdateTranscriptTest {
     public void testUpdateTranscriptStudent_NotInDept_asGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
         grads.setUser("smith0001");
         try {
-            grads.updateTranscript("gayxx067", grads.getTranscript("gayxx067"));
+            grads.updateTranscript("gayxx067",StudentRecordFactory.GregRecordUpdated());
             fail();
         } catch (AccessDeniedException ex) {
             //do nothing
@@ -89,24 +91,14 @@ public class UpdateTranscriptTest {
     @Test
     public void testUpdateTranscript_Milestone() throws Exception{
         grads.setUser("tolas9999");
-        grads.updateTranscript("gayxx067",grads.getTranscript("gayxx067"));
-        //TODO create StudentRecordFactor for "gayxx067" with an updated Transcript Milestone,add the assert
-        StudentRecord actual = grads.getTranscript("gayxx067");
+        try {
+            grads.updateTranscript("gayxx067",StudentRecordFactory.GregRecordUpdated());
+            assertEquals(grads.getTranscript("gayxx067"),StudentRecordFactory.GregRecordUpdated());
+        } catch (AccessDeniedException e) {
+            fail();
+        }
     }
 
-    /**
-     * Checks that GPC can update a Student's requirement
-     * @throws AccessDeniedException
-     * @throws FileNotFoundException
-     * @throws DatabaseAccessException
-     */
-    @Test
-    public void testUpdateTranscript_Requirement() throws Exception {
-        grads.setUser("tolas9999");
-        grads.updateTranscript("gayxx067", grads.getTranscript("gayxx067"));
-        //TODO create StudentRecordFactor for "gayxx067" with an updated Transcript Requirement,add the assert
-        StudentRecord actual = grads.getTranscript("gayxx067");
-    }
 
     /**
      * Checks that a GPC can update a student's Grade
@@ -115,10 +107,13 @@ public class UpdateTranscriptTest {
      * @throws DatabaseAccessException
      */
     @Test
-    public void testUpdateTranscript_Grade() throws Exception{
+    public void testUpdateTranscript_CourseDelete() throws Exception{
         grads.setUser("tolas9999");
-        grads.updateTranscript("nguy0261", grads.getTranscript("nguy0261"));
-        //TODO create StudentRecordFactor for "gayxx067" with an updated Transcript GRADE,add the assert
-        StudentRecord actual = grads.getTranscript("nguy0261");
+        try {
+            grads.updateTranscript("gayxx067",StudentRecordFactory.GregRecordUpdatedCourse());
+            assertEquals(grads.getTranscript("gayxx067"),StudentRecordFactory.GregRecordUpdatedCourse());
+        } catch (AccessDeniedException e) {
+            fail();
+        }
     }
 }

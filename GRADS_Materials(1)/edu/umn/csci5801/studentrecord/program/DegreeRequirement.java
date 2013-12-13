@@ -2,6 +2,8 @@ package edu.umn.csci5801.studentrecord.program;
 
 import edu.umn.csci5801.studentrecord.requirements.Milestone;
 import edu.umn.csci5801.studentrecord.requirements.MilestoneSet;
+import edu.umn.csci5801.studentrecord.requirements.RequirementCheckResult;
+import edu.umn.csci5801.studentrecord.transcript.CheckResultDetails;
 import edu.umn.csci5801.studentrecord.transcript.Course;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
 import edu.umn.csci5801.studentrecord.transcript.Grade;
@@ -20,6 +22,7 @@ import java.util.Map;
  */
 public class DegreeRequirement {
 
+    private final String requirementName;
     private final List<DegreeRequirement> subRequirements;
     private final List<Course> applicableCourses;
     private final List<Milestone> requiredMilestones;
@@ -32,10 +35,13 @@ public class DegreeRequirement {
     private final Integer minCourseLevel;
     private final Grade minCourseGrade;
 
+    private List<String> errorLog = new ArrayList<String>();
+
     /**
      * Class which represents a set of degree requirements. May contain a list of
      * sub-requirements of the same class.
      *
+     * @param requirementName name of the requirement
      * @param subRequirements list of subrequirements with their own restrictions
      * @param applicableCourses courses that are applicable to this requirement
      * @param requiredMilestones milestones that must be passed for this requirement to pass
@@ -49,6 +55,7 @@ public class DegreeRequirement {
      * @param minCourseGrade minimum grade allowed for a course to count
      */
     public DegreeRequirement(
+            String requirementName,
             List<DegreeRequirement> subRequirements,
             List<Course> applicableCourses,
             List<Milestone> requiredMilestones,
@@ -61,6 +68,7 @@ public class DegreeRequirement {
             Integer minCourseLevel,
             Grade minCourseGrade) {
 
+        this.requirementName = requirementName;
         this.subRequirements = subRequirements;
         this.applicableCourses = applicableCourses;
         this.requiredMilestones = requiredMilestones;
@@ -101,6 +109,45 @@ public class DegreeRequirement {
         }
 
         return allApplicableCourses;
+    }
+
+    public List<RequirementCheckResult> generateRequirementCheckResults(
+            List<CourseTaken> coursesTaken,
+            List<MilestoneSet> milestonesPassed) {
+
+        List<RequirementCheckResult> requirementCheckResultList = new ArrayList<RequirementCheckResult>();
+
+        for (DegreeRequirement requirement: subRequirements) {
+            List<RequirementCheckResult> subResults =
+                    requirement.generateRequirementCheckResults(coursesTaken, milestonesPassed);
+
+            for(RequirementCheckResult result: subResults) {
+                requirementCheckResultList.add(result);
+            }
+        }
+
+        List<CourseTaken> applicableCourses = coursesTaken;
+
+        if (! mayRepeatCoursesForCredit) {
+            applicableCourses = filterOutDuplicateCourses(applicableCourses);
+        }
+
+
+        CheckResultDetails checkResultDetails = new CheckResultDetails();
+        checkResultDetails.setGPA(new Float(calculateGPA(applicableCourses)));
+        checkResultDetails.setCourses(applicableCourses);
+        checkResultDetails.setOther(new ArrayList<String>());
+
+
+        RequirementCheckResult resultForThisRequirement = new RequirementCheckResult(
+                requirementName,
+                checkIsPassed(coursesTaken, milestonesPassed),
+                checkResultDetails);
+        resultForThisRequirement.setErrorMsgs(errorLog);
+
+        requirementCheckResultList.add(resultForThisRequirement);
+
+        return requirementCheckResultList;
     }
 
     /**
@@ -363,9 +410,14 @@ public class DegreeRequirement {
         int creditTotal = 0;
 
         for (CourseTaken courseTaken: coursesTaken) {
-            int courseCredits = new Integer(courseTaken.getCourse().getNumCredits());
-            creditTotal += courseCredits;
-            undividedGPATotal += courseTaken.getGrade().numericValue() * courseCredits;
+            if (! (courseTaken.getGrade().equals(Grade.N)
+                    || courseTaken.getGrade().equals(Grade.S)
+                    || courseTaken.getGrade().equals(Grade._))) {
+
+                int courseCredits = new Integer(courseTaken.getCourse().getNumCredits());
+                creditTotal += courseCredits;
+                undividedGPATotal += courseTaken.getGrade().numericValue() * courseCredits;
+            }
         }
 
         return undividedGPATotal / ((double) creditTotal);

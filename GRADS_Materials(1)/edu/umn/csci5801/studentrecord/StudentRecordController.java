@@ -1,13 +1,19 @@
 package edu.umn.csci5801.studentrecord;
 
 import edu.umn.csci5801.db.DatabaseAccessException;
+import edu.umn.csci5801.db.DegreePlanDAO;
 import edu.umn.csci5801.db.StudentDAO;
+import edu.umn.csci5801.session.Professor;
+import edu.umn.csci5801.session.Student;
+import edu.umn.csci5801.studentrecord.program.Degree;
+import edu.umn.csci5801.studentrecord.program.DegreePlan;
 import edu.umn.csci5801.studentrecord.program.Department;
 import edu.umn.csci5801.studentrecord.requirements.MilestoneSet;
 import edu.umn.csci5801.studentrecord.requirements.RequirementCheckResult;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
 import edu.umn.csci5801.studentrecord.transcript.Grade;
 import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
+import edu.umn.csci5801.studentrecord.transcript.Term;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,57 +54,52 @@ public class StudentRecordController {
      * Generates a progress summary based upon the simulation of the student taking the supplied courses.
      *
      * @param studentID ID of the student, for which we wish to generate a progress summary.
-     * @param courses the courses we'd like to include, in addition to the student's actually taken
-     *                courses, in the generated progress summary.
+     * @param coursesToAddForSimulation the courses we'd like to include, in addition to the student's
+     *                                  actually taken courses, in the generated progress summary.
      * @return ProgressSummary resulting from the simulation of taking the supplied courses.
      * @throws DatabaseAccessException if access to the databases failed.
      */
-    public static ProgressSummary simulateCourses(String studentID, List<CourseTaken> courses)
+    public static ProgressSummary simulateCourses(String studentID, List<CourseTaken> coursesToAddForSimulation)
             throws DatabaseAccessException {
         ProgressSummary summary = new ProgressSummary();
 
-        //TODO: fill in
-        StudentRecord record = StudentDAO.getStudentByID(studentID);
-        List<RequirementCheckResult> requirementCheckResultsList = null;
-        courses.addAll(record.getCoursesTaken());
+        StudentRecord studentRecord = StudentDAO.getStudentByID(studentID);
 
-        List <MilestoneSet> milestonesSet = record.getMilestonesSet();
-        summary.setStudent(record.getStudent());
-        summary.setDegreeSought(record.getDegreeSought());
-        summary.setAdvisors(record.getAdvisors());
-        summary.setCommittee(record.getCommittee());
-        summary.setNotes(record.getNotes());
-        summary.setDepartment(record.getDepartment());
-        summary.setTermBegan(record.getTermBegan());
-        boolean passed = true;
-        double totalGradePoints=0;
-        double totalCredits =0;
-        for(CourseTaken course : courses){
-            String courseName = course.getCourse().getName();
+        Student student = studentRecord.getStudent();
+        summary.setStudent(student);
 
-            if(!(course.getGrade().equals(Grade.S))||(course.getGrade().equals(Grade.N))){
+        Department dept = studentRecord.getDepartment();
+        summary.setDepartment(dept);
 
-                double grade = course.getGrade().numericValue();
-                double credits = Double.parseDouble(course.getCourse().getNumCredits());
+        Degree degree = studentRecord.getDegreeSought();
+        summary.setDegreeSought(degree);
 
-                totalGradePoints+= grade;
-                totalCredits+= credits;
+        Term termBegan = studentRecord.getTermBegan();
+        summary.setTermBegan(termBegan);
 
-                if(grade< 1.667){
+        List<Professor> advisors = studentRecord.getAdvisors();
+        summary.setAdvisors(advisors);
 
-                    passed = false;
-                }
+        List<Professor> committee = studentRecord.getCommittee();
+        summary.setCommittee(committee);
 
-            }
-            RequirementCheckResult requirementCheckResult = new RequirementCheckResult(courseName, passed);
-            requirementCheckResultsList.add(requirementCheckResult );
+        List<String> notes = studentRecord.getNotes();
+        summary.setNotes(notes);
+
+        DegreePlan degreePlan = DegreePlanDAO.getDegreePlanByDepartmentAndDegree(dept, degree);
+        List<CourseTaken> coursesToSimulate = studentRecord.getCoursesTaken();
+        for (CourseTaken courseToAdd: coursesToAddForSimulation) {
+            coursesToSimulate.add(courseToAdd);
         }
 
-        double totalGPA = totalGradePoints/totalCredits;
+        List<RequirementCheckResult> results = degreePlan.generateRequirementCheckResults(
+                coursesToSimulate,
+                studentRecord.getMilestonesSet()
+        );
+        summary.setRequirementCheckResults(results);
 
-        summary.setRequirementCheckResults(requirementCheckResultsList);
 
-        return null;
+        return summary;
     }
 
     /**

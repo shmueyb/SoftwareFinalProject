@@ -36,11 +36,21 @@ public class GetTranscriptTest {
      * @throws Exception
      */
     @Test
-    public void testGetTranscript_asGPC() throws AccessDeniedException, DatabaseAccessException, FileNotFoundException, InvalidUserException {
+    public void testGetTranscript_AsGPC() throws AccessDeniedException, DatabaseAccessException, FileNotFoundException, InvalidUserException {
         grads.setUser("tolas9999");
         StudentRecord actual = grads.getTranscript("gayxx067");
-       //TODO: create StudentRecordFactor for gayxx067
-       // Assert.assertSame(StudentRecordFactory.SamRecord(), actual);
+        assertEquals(actual,StudentRecordFactory.GregRecord());
+    }
+
+    /**
+     * Checks if the GPC can get a Student's Transcript
+     * @throws Exception
+     */
+    @Test
+    public void testGetTranscript_AsStudentC() throws AccessDeniedException, DatabaseAccessException, FileNotFoundException, InvalidUserException {
+        grads.setUser("gayxx067");
+        StudentRecord actual = grads.getTranscript("gayxx067");
+        assertEquals(actual,StudentRecordFactory.GregRecord());
     }
 
     /**

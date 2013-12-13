@@ -107,11 +107,10 @@ public class AddNoteTest {
      */
     @Test
     public void testAddNote_asGPC() throws Exception{
-        //TODO: Student Record Factory for gayxx067 for updated note , asserts
         grads.setUser("tolas9999");
         grads.addNote("gayxx067","test note");
-
         StudentRecord actual =  grads.getTranscript("gayxx067");
+        assertEquals(actual,StudentRecordFactory.GregRecord());
 
     }
 

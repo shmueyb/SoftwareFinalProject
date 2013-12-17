@@ -1,18 +1,18 @@
 package edu.umn.csci5801.test;
 
+import static org.junit.Assert.*;
+
+import java.io.FileNotFoundException;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import edu.umn.csci5801.GRADS;
 import edu.umn.csci5801.access.AccessDeniedException;
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.session.InvalidUserException;
 import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.studentrecord.StudentRecordFactory.StudentRecordFactory;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.io.FileNotFoundException;
 
 /**
  * Created by trangnguyen on 12/12/13.
@@ -72,7 +72,7 @@ public class AddNoteTest {
      * @throws FileNotFoundException
      * @throws AccessDeniedException
      */
-    @Deprecated
+    @Test
     public void testAddNote_NullNote() throws FileNotFoundException, AccessDeniedException, InvalidUserException {
         try {
             grads.setUser("tolas9999");
@@ -90,7 +90,6 @@ public class AddNoteTest {
 
     @Test
     public void testAddNote_AsStudent() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
-        //TODO set TestID and Note
         grads.setUser("nguy0621");
         try {
             grads.addNote("nguy0621","note");

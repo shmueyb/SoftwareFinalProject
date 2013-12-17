@@ -71,5 +71,21 @@ public class SetUserTest {
         }
         Assert.assertSame("nguy0621", grads.getUser());
     }
+    /**
+     * Test getting the invalid current user
+     */
+    @Test
+    public void testSetUserInvalidUser() {
+        try {
+            try {
+                grads.setUser("invalid");
+            } catch (DatabaseAccessException e) {
+                e.printStackTrace();
+            }
+            fail();
+        } catch (InvalidUserException i) {
+        }
+        Assert.assertSame("nguy0621", grads.getUser());
+    }
 
 }

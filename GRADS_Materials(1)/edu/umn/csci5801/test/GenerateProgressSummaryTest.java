@@ -1,27 +1,29 @@
 package edu.umn.csci5801.test;
 
-import edu.umn.csci5801.GRADS;
-import edu.umn.csci5801.access.AccessDeniedException;
-import edu.umn.csci5801.db.DatabaseAccessException;
-import edu.umn.csci5801.session.InvalidUserException;
-import edu.umn.csci5801.session.Student;
-import edu.umn.csci5801.studentrecord.StudentRecord;
-import edu.umn.csci5801.studentrecord.StudentRecordController;
-import edu.umn.csci5801.studentrecord.StudentRecordFactory.StudentRecordFactory;
-import edu.umn.csci5801.studentrecord.program.Degree;
-import edu.umn.csci5801.studentrecord.program.Department;
-import edu.umn.csci5801.studentrecord.requirements.Milestone;
-import edu.umn.csci5801.studentrecord.requirements.MilestoneSet;
-import edu.umn.csci5801.studentrecord.requirements.RequirementCheckResult;
-import edu.umn.csci5801.studentrecord.transcript.*;
-import org.junit.Before;
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import edu.umn.csci5801.GRADS;
+import edu.umn.csci5801.access.AccessDeniedException;
+import edu.umn.csci5801.db.DatabaseAccessException;
+import edu.umn.csci5801.session.InvalidUserException;
+import edu.umn.csci5801.session.Student;
+import edu.umn.csci5801.studentrecord.StudentRecordFactory.StudentRecordFactory;
+import edu.umn.csci5801.studentrecord.program.Degree;
+import edu.umn.csci5801.studentrecord.program.Department;
+import edu.umn.csci5801.studentrecord.requirements.Milestone;
+import edu.umn.csci5801.studentrecord.requirements.MilestoneSet;
+import edu.umn.csci5801.studentrecord.requirements.RequirementCheckResult;
+import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
+import edu.umn.csci5801.studentrecord.transcript.Semester;
+import edu.umn.csci5801.studentrecord.transcript.Term;
 
 /**
  */
@@ -46,48 +48,9 @@ public class GenerateProgressSummaryTest {
      * @throws Exception
      */
     @Test
-    public void testGenerateProgressSummary_PHD() throws Exception {
+    public void testGenerateProgressSummary_PHDStudent() throws Exception {
         grads.setUser("nguy0261");
-        List<RequirementCheckResult> requirements = new ArrayList<RequirementCheckResult>();
-        List<MilestoneSet>  milestones = new ArrayList<MilestoneSet>();
-
-
-        requirements.add(new RequirementCheckResult("BREADTH_REQUIREMENT_PHD"));
-        requirements.add(new RequirementCheckResult("THESIS_PHD"));
-        requirements.add(new RequirementCheckResult("COLLOQUIUM"));
-        requirements.add(new RequirementCheckResult("OUT_OF_DEPARTMENT"));
-        requirements.add(new RequirementCheckResult("INTRO_TO_RESEARCH"));
-        requirements.add(new RequirementCheckResult("TOTAL_CREDITS"));
-        requirements.add(new RequirementCheckResult("OVERALL_GPA_PHD"));
-        requirements.add(new RequirementCheckResult("BREADTH_REQUIREMENT_PHD"));
-
-
-        requirements.add(new RequirementCheckResult("PRELIM_COMMITTEE_APPOINTED"));
-        requirements.add(new RequirementCheckResult("WRITTEN_PE_SUBMITTED"));
-        requirements.add(new RequirementCheckResult("WRITTEN_PE_APPROVED"));
-        requirements.add(new RequirementCheckResult("ORAL_PE_PASSED"));
-        requirements.add(new RequirementCheckResult("DPF_SUBMITTED"));
-        requirements.add(new RequirementCheckResult("DPF_APPROVED"));
-
-        requirements.add(new RequirementCheckResult("THESIS_COMMITTEE_APPOINTED"));
-        requirements.add(new RequirementCheckResult("PROPOSAL_PASSED"));
-        requirements.add(new RequirementCheckResult("GRADUATION_PACKET_REQUESTED"));
-        requirements.add(new RequirementCheckResult("THESIS_SUBMITTED"));
-        requirements.add(new RequirementCheckResult("THESIS_APPROVED"));
-        requirements.add(new RequirementCheckResult("DEFENSE_PASSED"));
-
-
-
-        milestones.add(new MilestoneSet(Milestone.DEFENSE_PASSED,new Term(Semester.FALL,2014)));
-
-        ProgressSummary actual =  grads.generateProgressSummary("nguy0621");
-        assertEquals(new Student("Luan", "Nguyen", "nguy0621"),actual.getStudent());
-        assertEquals(Department.COMPUTER_SCIENCE,actual.getDepartment());
-        assertEquals(Degree.PHD, actual.getDegreeSought());
-        assertEquals(new Term(Semester.SPRING, 2014), actual.getTermBegan());
-        assertEquals(StudentRecordFactory.LuanAdvisors(),actual.getAdvisors());
-        assertEquals(StudentRecordFactory.LuanCommittee(), actual.getCommittee());
-        assertEquals(StudentRecordFactory.notes(),actual.getNotes());
+        ProgressSummary progressSummary = grads.generateProgressSummary("nguy0261");
 
     }
 

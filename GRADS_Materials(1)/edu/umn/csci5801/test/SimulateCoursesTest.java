@@ -1,6 +1,17 @@
 package edu.umn.csci5801.test;
 
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import edu.umn.csci5801.GRADS;
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.session.InvalidUserException;
@@ -8,21 +19,11 @@ import edu.umn.csci5801.session.Student;
 import edu.umn.csci5801.studentrecord.StudentRecordFactory.StudentRecordFactory;
 import edu.umn.csci5801.studentrecord.program.Degree;
 import edu.umn.csci5801.studentrecord.program.Department;
-import edu.umn.csci5801.studentrecord.requirements.Milestone;
-import edu.umn.csci5801.studentrecord.requirements.MilestoneSet;
+import edu.umn.csci5801.studentrecord.requirements.RequirementCheckResult;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
 import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
 import edu.umn.csci5801.studentrecord.transcript.Semester;
 import edu.umn.csci5801.studentrecord.transcript.Term;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-import static org.junit.Assert.fail;
 
 /**
  */
@@ -43,42 +44,42 @@ public class SimulateCoursesTest {
         }
     }
 
-//    /**
-//     * test if simulate courses would return the expected progress summary
-//     */
-//    @Test
-//    public void testSimulateCourses() throws Exception {
-//        ProgressSummary progressSummary = grads.simulateCourses("gayxx067", StudentRecordFactory.courseTakens());
-//        for(CourseTaken c : StudentRecordFactory.courseTakens()) {
-//            Assert.assertTrue(checkForCourseName(c.getCourse().getName(), progressSummary.getRequirementCheckResults()));
-//        }
-//    }
-//
-//    /**
-//     * checking to see if a class exists in the list of RequirementCheckResults
-//     * @param courseName
-//     * @param results
-//     * @return
-//     */
-//    private boolean checkForCourseName(String courseName, List<RequirementCheckResult> results) {
-//        for(RequirementCheckResult r : results) {
-//            if(courseName.equals(r.getName())) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    /**
-//     * test if simulateCourses would generate grades for simulated courses
-//     */
-//    @Test
-//    public void testSimulateCourses_gradesGenerating() throws Exception {
-//        ProgressSummary progressSummary = grads.simulateCourses("gayxx067", StudentRecordFactory.courseTakens());
-//        for(RequirementCheckResult r : progressSummary.getRequirementCheckResults()) {
-//            Assert.assertNotNull(r.getDetails().getGPA());
-//        }
-//    }
+    /**
+     * test if simulate courses would return the expected progress summary
+     */
+    @Test
+    public void testSimulateCourses() throws Exception {
+        ProgressSummary progressSummary = grads.simulateCourses("gayxx067", StudentRecordFactory.GregCoursesTaken());
+        for(CourseTaken c : StudentRecordFactory.GregCoursesTaken()) {
+            Assert.assertTrue(checkForCourseName(c.getCourse().getName(), progressSummary.getRequirementCheckResults()));
+        }
+    }
+
+    /**
+     * checking to see if a class exists in the list of RequirementCheckResults
+     * @param courseName
+     * @param results
+     * @return
+     */
+    private boolean checkForCourseName(String courseName, List<RequirementCheckResult> results) {
+        for(RequirementCheckResult r : results) {
+            if(courseName.equals(r.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * test if simulateCourses would generate grades for simulated courses
+     */
+    @Test
+    public void testSimulateCourses_gradesGenerating() throws Exception {
+        ProgressSummary progressSummary = grads.simulateCourses("gayxx067", StudentRecordFactory.GregCoursesTaken());
+        for(RequirementCheckResult r : progressSummary.getRequirementCheckResults()) {
+            Assert.assertNotNull(r.getDetails().getGPA());
+        }
+    }
 
     /**
      * checks that a GPC cannot simulate a progress summary for a student out of their dept.

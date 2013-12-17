@@ -17,16 +17,24 @@ public class Session {
     private final UserType currentUserType;
     private final Professor professorUser;
     private final Student studentUser;
+    private final User user;
 
 
     public Session(String userID) throws DatabaseAccessException{
-        //TODO find user type and set it. Also set professor/student user based on type
         this.userID = userID;
-        professorUser = null;
-        studentUser = null;
 
-        Users user = UserDAO.getUserByID(userID);
+        user = UserDAO.getUserByID(userID);
         currentUserType = user.getRole();
+
+        if (currentUserType == UserType.GRADUATE_PROGRAM_COORDINATOR) {
+            professorUser = new Professor(user.getFirstName(), user.getLastName(), user.getDepartment());
+            studentUser = null;
+        } else if (currentUserType == UserType.STUDENT) {
+            professorUser = null;
+            studentUser = new Student(user.getFirstName(), user.getLastName(), user.getID());
+        } else {
+            throw new DatabaseAccessException("Invalid user type found for user with ID: " + userID);
+        }
     }
 
     public UserType getCurrentUserType() {
@@ -39,6 +47,10 @@ public class Session {
 
     public Student getStudentUser() {
         return studentUser;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public String getUserID() {

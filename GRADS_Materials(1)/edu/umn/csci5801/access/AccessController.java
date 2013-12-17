@@ -19,8 +19,9 @@ public class AccessController {
     private Session currentSession;
 
     /**
+     * This class is used to check if the user of the system has the privileges to perform particular actions.
      *
-     * @param session
+     * @param session the session containing information on the current user.
      */
     public AccessController(Session session) {
         currentSession = session;
@@ -28,8 +29,9 @@ public class AccessController {
 
 
     /**
+     * Checks if the current user has access to view the supplied student's record.
      *
-     * @param studentID
+     * @param studentID of the student whose record the user wishes to view.
      */
     public void checkUserCanAccessStudentRecord(String studentID) throws AccessDeniedException, DatabaseAccessException {
 
@@ -45,14 +47,18 @@ public class AccessController {
                 throw new AccessDeniedException("User " + currentSession.getUserID() + " does not have access to" +
                         studentID + "'s record because the student is outside of their department.");
             }
+        } else {
+            throw new AccessDeniedException("User " + currentSession.getUserID() + " has an invalid or missing user type");
         }
 
     }
 
 
     /**
+     * Checks if the current user has permission to generate a list of student IDs. Throws an exception
+     * if they do not.
      *
-     * @throws AccessDeniedException
+     * @throws AccessDeniedException if the user is not a GPC
      */
     public void checkUserCanGetListOfStudentIDs() throws AccessDeniedException{
         if (currentSession.getCurrentUserType() != UserType.GRADUATE_PROGRAM_COORDINATOR) {
@@ -63,18 +69,25 @@ public class AccessController {
 
 
     /**
+     * Checks if the current user has access to edit the given student's record. Throws an exception if they do
+     * not have permission.
      *
-     * @param studentID
-     * @throws AccessDeniedException
+     * @param studentID of the student whose record the user wishes to change
+     * @throws AccessDeniedException if the user does not have permission to edit the student's record.
      */
-    public void checkUserCanEditRecord(String studentID) throws AccessDeniedException{
+    public void checkUserCanEditRecord(String studentID) throws AccessDeniedException, DatabaseAccessException{
         if (currentSession.getCurrentUserType() == UserType.GRADUATE_PROGRAM_COORDINATOR) {
-            //TODO: perform check on student's dept
+            Department gpcDept = currentSession.getProfessorUser().getDepartment();
+            Department studentDepartment = StudentDAO.getStudentByID(studentID).getDepartment();
+
+            if (! gpcDept.equals(studentDepartment)) {
+                throw new AccessDeniedException("The current user is not in the correct department to edit the record for" +
+                        "the student with ID: " + studentID + ".\nGPC Department: " + gpcDept + "\nStudent Department: "
+                        + studentDepartment);
+            }
 
         } else if (currentSession.getCurrentUserType() == UserType.STUDENT) {
-            //TODO: throw exception if student ID != user ID
-            throw new AccessDeniedException("User " + currentSession.getUserID() + " cannot access notes because they are not of type " +
-                    currentSession.getCurrentUserType());
+            throw new AccessDeniedException("Only GPCs may edit student records. The current user is a student");
         } else {
             throw new AccessDeniedException("User " + currentSession.getUserID() + " has an invalid user type.  The user type" +
                     "is: " + currentSession.getCurrentUserType());

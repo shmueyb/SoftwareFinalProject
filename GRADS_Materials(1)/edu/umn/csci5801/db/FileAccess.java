@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import edu.umn.csci5801.session.Users;
+import edu.umn.csci5801.session.User;
 import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.studentrecord.transcript.Course;
 
@@ -88,8 +88,8 @@ public class FileAccess {
 
     }
 
-    public static void writeUsersJSON(String jsonFileName, List<Users> newStudentRecords) {
-        BufferedWriter out = null;
+    public static void writeUsersJSON(String jsonFileName, List<User> newStudentRecords) {
+        BufferedWriter out;
         try
         {
             FileWriter fstream = new FileWriter(jsonFileName, false); //true tells to append data.
@@ -129,14 +129,14 @@ public class FileAccess {
      * @return
      * @throws FileNotFoundException
      */
-    public List<Users> getUserJSON() throws DatabaseAccessException {
+    public List<User> getUserJSON() throws DatabaseAccessException {
         //TODO: fill in method: read file into a single JSON string
         //"GRADS_Materials/Data/users.txt"
-        List<Users> sessions = null;
+        List<User> sessions = null;
         try {
             sessions = new Gson().fromJson(
                                         new FileReader(new File(usersFilePath)),
-                                        new TypeToken<List<Users>>(){}.getType());
+                                        new TypeToken<List<User>>(){}.getType());
         } catch (FileNotFoundException e) {
             throw new DatabaseAccessException("Invalid Path for User Database.\n" + e.getMessage());
         }

@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.umn.csci5801.studentrecord.transcript.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,9 +21,6 @@ import edu.umn.csci5801.studentrecord.program.Department;
 import edu.umn.csci5801.studentrecord.requirements.Milestone;
 import edu.umn.csci5801.studentrecord.requirements.MilestoneSet;
 import edu.umn.csci5801.studentrecord.requirements.RequirementCheckResult;
-import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
-import edu.umn.csci5801.studentrecord.transcript.Semester;
-import edu.umn.csci5801.studentrecord.transcript.Term;
 
 /**
  */
@@ -42,14 +40,99 @@ public class GenerateProgressSummaryTest {
         }
     }
 
+    public CheckResultDetails newCheckResultDetails(float gpa, List<CourseTaken> courses,List<String> other){
+        CheckResultDetails details = new CheckResultDetails();
+        details.setGPA(gpa);
+        details.setCourses(courses);
+        details.setOther(other);
+        return details;
+    }
+
     /**
      * testing if generatateProgressSummary() would return the correct result
      * @throws Exception
      */
     @Test
     public void testGenerateProgressSummary_PHDStudent() throws Exception {
-        grads.setUser("nguy0261");
-        ProgressSummary progressSummary = grads.generateProgressSummary("nguy0261");
+        grads.setUser("nguy0621");
+        ProgressSummary progressSummary = grads.generateProgressSummary("nguy0621");
+
+        // Create a parallel Progress Summary
+        assertEquals(new Student("Luan", "Nguyen", "nguy0621"), progressSummary.getStudent());
+        assertEquals(Department.COMPUTER_SCIENCE, progressSummary.getDepartment());
+        assertEquals(Degree.PHD, progressSummary.getDegreeSought());
+        assertEquals(new Term(Semester.SPRING, 2008), progressSummary.getTermBegan());
+        assertEquals(StudentRecordFactory.LuanAdvisors(),progressSummary.getAdvisors());
+        assertEquals(StudentRecordFactory.LuanCommittee(), progressSummary.getCommittee());
+        assertEquals(StudentRecordFactory.notes(), progressSummary.getNotes());
+        List<RequirementCheckResult> requirementCheckResultsList = progressSummary.getRequirementCheckResults();
+        List<String> others = null;
+        List<String> errorM = null;
+        CheckResultDetails details = newCheckResultDetails((float) 3.66666667, StudentRecordFactory.LuanCoursesTaken(), others);
+        RequirementCheckResult requirementCheckResult1 = new RequirementCheckResult("Theory and Algorithms",false,details);
+        requirementCheckResult1.setErrorMsgs(errorM);
+        assertEquals(requirementCheckResultsList.get(0), requirementCheckResult1);
+
+
+
+        /*    "coursesTaken": [
+            {
+                "course": {
+                "name": "Advanced Algorithms and Data Structures",
+                        "id": "csci5421",
+                        "numCredits": "3",
+                        "courseArea": "THEORY_ALGORITHMS"
+            },
+                "term": {
+                "semester": "SPRING",
+                        "year": 2008
+            },
+                "grade": "A"
+            },
+            {
+                "course": {
+                "name": "Machine Learning",
+                        "id": "csci5525",
+                        "numCredits": "3",
+                        "courseArea": "APPLICATIONS"
+            },
+                "term": {
+                "semester": "SPRING",
+                        "year": 2008
+            },
+                "grade": "A"
+            },
+            {
+                "course": {
+                "name": "Operating System",
+                        "id": "csci5103",
+                        "numCredits": "3",
+                        "courseArea": "ARCHITECTURE_SYSTEMS_SOFTWARE"
+            },
+                "term": {
+                "semester": "SUMMER",
+                        "year": 2008
+            },
+                "grade": "B"
+            }
+            ],
+            "milestonesSet": [
+            {
+                "milestone": "DEFENSE_PASSED",
+                    "term": {
+                "semester": "FALL",
+                        "year": 2014
+            }
+            }
+            ],
+            "notes": [
+            "aaddf",
+                    "aaddf",
+                    "aaddf",
+                    "aaddf",
+                    "aaddf"
+            ]
+        },*/
 
     }
 

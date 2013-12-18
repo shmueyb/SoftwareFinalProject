@@ -123,7 +123,7 @@ public class GRADS implements GRADSIntf {
     public void addNote(String studentID, String note)
             throws AccessDeniedException, DatabaseAccessException{
 
-        access.checkUserCanEditRecord(this.getUser());
+        access.checkUserCanEditRecord(studentID);
         StudentRecordController.addNote(studentID, note);
 
     }

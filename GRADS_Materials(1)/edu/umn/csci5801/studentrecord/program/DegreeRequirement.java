@@ -138,11 +138,15 @@ public class DegreeRequirement {
     protected List<CourseTaken> getPassingCourses(List<CourseTaken> coursesTaken) {
 
         List<CourseTaken> acceptedCourses = new ArrayList<CourseTaken>();
+        Map<Integer, CourseTaken> overlapChecker = new HashMap<Integer, CourseTaken>();
 
         if (onlyAllowCoursesThatPassSubReqs) {
             for (DegreeRequirement subRequirement: subRequirements) {
                 for(CourseTaken courseTaken: subRequirement.getPassingCourses(coursesTaken)) {
-                    acceptedCourses.add(courseTaken);
+                    if(! overlapChecker.containsKey(courseTaken.hashCode())){
+                        acceptedCourses.add(courseTaken);
+                        overlapChecker.put(courseTaken.hashCode(), courseTaken);
+                    }
                 }
             }
         } else {
@@ -170,15 +174,17 @@ public class DegreeRequirement {
             acceptedCourses = filterOutCoursesToExclude(acceptedCourses);
         }
 
-        if (courseDeptsToExclude != null && courseDeptsToExclude.size() <= 0) {
+        if (courseDeptsToExclude != null && courseDeptsToExclude.size() > 0) {
             acceptedCourses = filterOutExcludedDepts(acceptedCourses);
         }
 
-        if (courseDeptsToInclude != null && courseDeptsToInclude.size() <= 0) {
+        if (courseDeptsToInclude != null && courseDeptsToInclude.size() > 0) {
             acceptedCourses = filterByIncludedDepts(acceptedCourses);
         }
 
-
+        if (applicableCourses != null && applicableCourses.size() > 0) {
+            acceptedCourses = filterToApplicableCourses(acceptedCourses);
+        }
 
         return acceptedCourses;
     }
@@ -212,7 +218,8 @@ public class DegreeRequirement {
 
 
         CheckResultDetails checkResultDetails = new CheckResultDetails();
-        checkResultDetails.setGPA(new Float(calculateGPA(applicableCourses)));
+        Double gpa = (minGPA <= 0.0) ? 0 : calculateGPA(coursesTaken);
+        checkResultDetails.setGPA(new Float(gpa));
         checkResultDetails.setCourses(applicableCourses);
         checkResultDetails.setOther(new ArrayList<String>());
 
@@ -338,6 +345,10 @@ public class DegreeRequirement {
 
         if (courseDeptsToInclude != null && courseDeptsToInclude.size() <= 0) {
             acceptedCourses = filterByIncludedDepts(acceptedCourses);
+        }
+
+        if (applicableCourses != null && applicableCourses.size() > 0) {
+            acceptedCourses = filterToApplicableCourses(acceptedCourses);
         }
 
 
@@ -542,6 +553,22 @@ public class DegreeRequirement {
             if (deptsToIncludeMap.containsKey(courseID.substring(0, courseID.length()-4))) {
                 coursesToReturn.add(courseTaken);
             }
+        }
+
+        return coursesToReturn;
+    }
+
+    private List<CourseTaken> filterToApplicableCourses(List<CourseTaken> acceptedCourses) {
+        List<CourseTaken> coursesToReturn = new ArrayList<CourseTaken>();
+        Map<String, Course> courseMap = new HashMap<String, Course>();
+
+        for(Course course: applicableCourses) {
+            courseMap.put(course.getId(), course);
+        }
+
+        for(CourseTaken courseTaken: acceptedCourses) {
+            if (courseMap.containsKey(courseTaken.getCourse().getId()))
+                coursesToReturn.add(courseTaken);
         }
 
         return coursesToReturn;

@@ -31,7 +31,7 @@ public class StudentTest {
     }
 
     @Test
-    public void getID(){
+    public void getIDTest(){
         Assert.assertEquals(student.getId(), "gian0036");
     }
 
@@ -48,10 +48,9 @@ public class StudentTest {
     }
 
     @Test
-    public void setId(){
+    public void setIdTest(){
         student.setId("reeve098");
         Assert.assertEquals(student.getId(), "reeve098");
     }
-
 
 }

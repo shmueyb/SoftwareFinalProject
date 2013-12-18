@@ -143,6 +143,7 @@ public class DegreePlanDAO {
         List<Course> phdThesis = new ArrayList<Course>();
         phdThesis.add(CourseDAO.getCourseByID("csci8888"));
 
+        factory.setRequirementName("Thesis PHD");
         factory.setMinCredits(24);
         factory.setApplicableCourses(phdThesis);
         factory.setMayRepeatCoursesForCredit(true);

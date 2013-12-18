@@ -16,7 +16,6 @@ import edu.umn.csci5801.GRADS;
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.session.InvalidUserException;
 import edu.umn.csci5801.session.Student;
-import edu.umn.csci5801.studentrecord.StudentRecordFactory.StudentRecordFactory;
 import edu.umn.csci5801.studentrecord.program.Degree;
 import edu.umn.csci5801.studentrecord.program.Department;
 import edu.umn.csci5801.studentrecord.requirements.RequirementCheckResult;

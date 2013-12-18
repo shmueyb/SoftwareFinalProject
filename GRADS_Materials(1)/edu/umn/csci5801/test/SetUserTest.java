@@ -9,7 +9,6 @@ import org.junit.Test;
 import edu.umn.csci5801.GRADS;
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.session.InvalidUserException;
-import edu.umn.csci5801.studentrecord.StudentRecordFactory.StudentRecordFactory;
 
 /**
  */

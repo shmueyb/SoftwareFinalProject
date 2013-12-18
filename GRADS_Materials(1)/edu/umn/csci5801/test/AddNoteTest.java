@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import edu.umn.csci5801.GRADS;
@@ -12,7 +12,6 @@ import edu.umn.csci5801.access.AccessDeniedException;
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.session.InvalidUserException;
 import edu.umn.csci5801.studentrecord.StudentRecord;
-import edu.umn.csci5801.studentrecord.StudentRecordFactory.StudentRecordFactory;
 
 /**
  * Created by trangnguyen on 12/12/13.
@@ -23,7 +22,7 @@ public class AddNoteTest {
     /**
      * Init Grads for usage
      */
-    @Before
+    @BeforeClass
     public void initGrad() throws Exception {
         // creating test files
         StudentRecordFactory.instantiateTestDb();

@@ -17,7 +17,6 @@ import edu.umn.csci5801.access.AccessDeniedException;
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.session.InvalidUserException;
 import edu.umn.csci5801.studentrecord.StudentRecord;
-import edu.umn.csci5801.studentrecord.StudentRecordFactory.StudentRecordFactory;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
 import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
 

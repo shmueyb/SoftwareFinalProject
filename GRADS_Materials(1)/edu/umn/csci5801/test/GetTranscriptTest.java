@@ -6,7 +6,7 @@ import static org.junit.Assert.fail;
 import java.io.FileNotFoundException;
 
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import edu.umn.csci5801.GRADS;
@@ -14,7 +14,6 @@ import edu.umn.csci5801.access.AccessDeniedException;
 import edu.umn.csci5801.db.DatabaseAccessException;
 import edu.umn.csci5801.session.InvalidUserException;
 import edu.umn.csci5801.studentrecord.StudentRecord;
-import edu.umn.csci5801.studentrecord.StudentRecordFactory.StudentRecordFactory;
 
 /**
  */
@@ -24,14 +23,12 @@ public class GetTranscriptTest {
     /**
      * Init Grads for usage
      */
-    @Before
-    public void initGrad() throws Exception {
+    @BeforeClass
+    public static void initGrad() throws Exception {
         // creating test files
         StudentRecordFactory.instantiateTestDb();
-        // init Grads
-        if(grads == null){
-           grads = new GRADS("GRADS_Materials/Data/TestStudents.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/TestUsers.txt");
-        }
+        grads = new GRADS("GRADS_Materials/Data/TestStudents.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/TestUsers.txt");
+
     }
 
     /**

@@ -1,7 +1,7 @@
 package edu.umn.csci5801.WhiteBoxTest.sessionTesting;
 
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import edu.umn.csci5801.session.Person;
@@ -9,24 +9,32 @@ import edu.umn.csci5801.session.Person;
 /**
  */
 public class PersonTest {
-    private static Person person;
+    private Person person;
 
-    @BeforeClass
-    public static void init() {
+    @Before
+    public void init() {
         person = new Person("Xum", "Giang");
     }
 
     @Test
-    public void gettersTest() {
+    public void getFirstNameTest() {
         Assert.assertEquals(person.getFirstName(), "Xum");
+    }
+
+    @Test
+    public void getLastNameTest() {
         Assert.assertEquals(person.getLastName(), "Giang");
     }
 
     @Test
-    public void settersTest() {
+    public void setFirstNameTest() {
         person.setFirstName("John");
-        person.setLastName("Nguyen");
         Assert.assertEquals(person.getFirstName(), "John");
+    }
+
+    @Test
+    public void setLastNameTest() {
+        person.setLastName("Nguyen");
         Assert.assertEquals(person.getLastName(), "Nguyen");
     }
 }

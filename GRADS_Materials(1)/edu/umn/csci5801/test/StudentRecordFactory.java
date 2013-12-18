@@ -48,7 +48,7 @@ public class StudentRecordFactory {
     public static void instantiateTestDb() throws Exception {
         writeStudentsJSON("GRADS_Materials/Data/TestStudents.txt", createRecords());
         List<User> users = new Gson().fromJson( new FileReader( new File("GRADS_Materials/Data/users.txt")), new TypeToken<List<User>>(){}.getType());
-        User newUser = new User("Catherine", "Reed", "1111", UserType.STUDENT,Department.COMPUTER_SCIENCE);
+        User newUser = new User("1111", "Catherine", "Reed", UserType.STUDENT,Department.COMPUTER_SCIENCE);
         users.add(newUser);
         writeUsersJSON("GRADS_Materials/Data/TestUsers.txt", users);
 

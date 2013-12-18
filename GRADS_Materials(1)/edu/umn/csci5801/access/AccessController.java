@@ -38,7 +38,7 @@ public class AccessController {
         if (currentSession.getCurrentUserType() == UserType.STUDENT) {
             if(!(currentSession.getUserID().equals(studentID))){
                 throw new AccessDeniedException("User " + currentSession.getUserID() + " is not a GPC," +
-                    "and therefore does not have access to" + studentID + "'s record.");
+                    "and therefore does not have access to " + studentID + "'s record.");
             }
         }
         else if(currentSession.getCurrentUserType() == UserType.GRADUATE_PROGRAM_COORDINATOR){

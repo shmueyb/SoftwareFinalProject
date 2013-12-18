@@ -58,9 +58,9 @@ public class DegreeRequirement {
      * @param minCourseCount minimum number of courses required
      * @param minCourseLevel minimum course level that counts (eg. 5000 allows only courses >= 5000)
      * @param minCourseGrade minimum grade allowed for a course to count
-     * @param courseDeptsToExclude
-     * @param courseDeptsToInclude
-     * @param coursesToExclude
+     * @param courseDeptsToExclude course departments we don't want to count towards this requirement
+     * @param courseDeptsToInclude the only course departments we will allow to count towards this requirement
+     * @param coursesToExclude courses that don't count towards this requirement
      */
     public DegreeRequirement(
             String requirementName,
@@ -133,7 +133,7 @@ public class DegreeRequirement {
     /**
      * Returns a list of courses that met this requirement, and all sub-requirements
      *
-     * @return
+     * @return List of CourseTaken objects which meet this requirement and sub-requirements
      */
     protected List<CourseTaken> getPassingCourses(List<CourseTaken> coursesTaken) {
 
@@ -447,6 +447,7 @@ public class DegreeRequirement {
                 repeatedCourseIDs.add(courseID);
                 acceptedCourses.remove(courseID);
             } else {
+                acceptedCourses.put(courseID, courseTaken);
                 allCourseIDs.add(courseID);
             }
         }

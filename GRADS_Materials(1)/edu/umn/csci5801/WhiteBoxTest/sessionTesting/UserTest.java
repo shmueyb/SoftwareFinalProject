@@ -33,17 +33,17 @@ public class UserTest {
     }
 
     @Test
-    public void getID(){
+    public void getIDTest(){
         Assert.assertEquals(user.getID(), "gian0036");
     }
 
     @Test
-    public void getRole(){
+    public void getRoleTest(){
         Assert.assertEquals(user.getRole(), UserType.STUDENT);
     }
 
     @Test
-    public void getDepartment(){
+    public void getDepartmentTest(){
         Assert.assertEquals(user.getDepartment(), Department.COMPUTER_SCIENCE);
     }
 

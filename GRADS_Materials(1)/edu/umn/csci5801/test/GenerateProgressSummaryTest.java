@@ -66,13 +66,114 @@ public class GenerateProgressSummaryTest {
         assertEquals(StudentRecordFactory.LuanCommittee(), progressSummary.getCommittee());
         assertEquals(StudentRecordFactory.notes(), progressSummary.getNotes());
         List<RequirementCheckResult> requirementCheckResultsList = progressSummary.getRequirementCheckResults();
-        List<String> others = null;
-        List<String> errorM = null;
-        CheckResultDetails details = newCheckResultDetails((float) 3.66666667, StudentRecordFactory.LuanCoursesTaken(), others);
-        RequirementCheckResult requirementCheckResult1 = new RequirementCheckResult("Theory and Algorithms",false,details);
-        requirementCheckResult1.setErrorMsgs(errorM);
-        assertEquals(requirementCheckResultsList.get(0), requirementCheckResult1);
-
+        List<String> others = new ArrayList<String>();
+        List<String> errorM = new ArrayList<String>();
+        // 0
+        CheckResultDetails details = newCheckResultDetails((float) 4.0, StudentRecordFactory.LuanCoursesTaken(), others);
+        RequirementCheckResult requirementCheckResult = new RequirementCheckResult("Theory and Algorithms",false,details);
+        requirementCheckResult.setErrorMsgs(errorM);
+        assertEquals(requirementCheckResultsList.get(0).getName(), requirementCheckResult.getName());
+        assertEquals(requirementCheckResultsList.get(0).isPassed(), requirementCheckResult.isPassed());
+        assertEquals(requirementCheckResultsList.get(0).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
+        // 1
+        details = newCheckResultDetails((float) 3.0, StudentRecordFactory.LuanCoursesTaken(), others);
+        requirementCheckResult = new RequirementCheckResult("Architecture, Systems, and Software",false,details);
+        requirementCheckResult.setErrorMsgs(errorM);
+        // Name, GPA, Pass
+        assertEquals(requirementCheckResultsList.get(1).getName(), requirementCheckResult.getName());
+        assertEquals(requirementCheckResultsList.get(1).isPassed(), requirementCheckResult.isPassed());
+        assertEquals(requirementCheckResultsList.get(1).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
+        // 2
+        details = newCheckResultDetails((float) 4.0, StudentRecordFactory.LuanCoursesTaken(), others);
+        requirementCheckResult = new RequirementCheckResult("Applications",false,details);
+        requirementCheckResult.setErrorMsgs(errorM);
+        assertEquals(requirementCheckResultsList.get(2).getName(), requirementCheckResult.getName());
+        assertEquals(requirementCheckResultsList.get(2).isPassed(), requirementCheckResult.isPassed());
+        assertEquals(requirementCheckResultsList.get(2).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
+        // 3
+        details = newCheckResultDetails((float) 3.6666667, StudentRecordFactory.LuanCoursesTaken(), others);
+        requirementCheckResult = new RequirementCheckResult("Breadth Requirement",false,details);
+        requirementCheckResult.setErrorMsgs(errorM);
+        assertEquals(requirementCheckResultsList.get(3).getName(), requirementCheckResult.getName());
+        assertEquals(requirementCheckResultsList.get(3).isPassed(), requirementCheckResult.isPassed());
+        assertEquals(requirementCheckResultsList.get(3).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
+        // 4
+        details = newCheckResultDetails((float) 0.0, StudentRecordFactory.LuanCoursesTaken(), others);
+        requirementCheckResult = new RequirementCheckResult("Thesis PHD",false,details);
+        requirementCheckResult.setErrorMsgs(errorM);
+        assertEquals(requirementCheckResultsList.get(4).getName(), requirementCheckResult.getName());
+        assertEquals(requirementCheckResultsList.get(4).isPassed(), requirementCheckResult.isPassed());
+        assertEquals(requirementCheckResultsList.get(4).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
+        // 5
+        details = newCheckResultDetails((float) 0.0, StudentRecordFactory.LuanCoursesTaken(), others);
+        requirementCheckResult = new RequirementCheckResult("Colloquium",false,details);
+        requirementCheckResult.setErrorMsgs(errorM);
+        assertEquals(requirementCheckResultsList.get(5).getName(), requirementCheckResult.getName());
+        assertEquals(requirementCheckResultsList.get(5).isPassed(), requirementCheckResult.isPassed());
+        assertEquals(requirementCheckResultsList.get(5).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
+        // 6
+        details = newCheckResultDetails((float) 0.0, StudentRecordFactory.LuanCoursesTaken(), others);
+        requirementCheckResult = new RequirementCheckResult("Out of Department",false,details);
+        requirementCheckResult.setErrorMsgs(errorM);
+        assertEquals(requirementCheckResultsList.get(6).getName(), requirementCheckResult.getName());
+        assertEquals(requirementCheckResultsList.get(6).isPassed(), requirementCheckResult.isPassed());
+        assertEquals(requirementCheckResultsList.get(6).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
+        // 7
+        details = newCheckResultDetails((float) 0.0, StudentRecordFactory.LuanCoursesTaken(), others);
+        requirementCheckResult = new RequirementCheckResult("Introduction to Research",false,details);
+        requirementCheckResult.setErrorMsgs(errorM);
+        assertEquals(requirementCheckResultsList.get(7).getName(), requirementCheckResult.getName());
+        assertEquals(requirementCheckResultsList.get(7).isPassed(), requirementCheckResult.isPassed());
+        assertEquals(requirementCheckResultsList.get(7).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
+        // 8
+        details = newCheckResultDetails((float) 3.6666667, StudentRecordFactory.LuanCoursesTaken(), others);
+        requirementCheckResult = new RequirementCheckResult("16 csci Credits",false,details);
+        requirementCheckResult.setErrorMsgs(errorM);
+        assertEquals(requirementCheckResultsList.get(8).getName(), requirementCheckResult.getName());
+        assertEquals(requirementCheckResultsList.get(8).isPassed(), requirementCheckResult.isPassed());
+        assertEquals(requirementCheckResultsList.get(8).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
+        // 9
+        details = newCheckResultDetails((float) 3.6666667, StudentRecordFactory.LuanCoursesTaken(), others);
+        requirementCheckResult = new RequirementCheckResult("Total Credits",false,details);
+        requirementCheckResult.setErrorMsgs(errorM);
+        assertEquals(requirementCheckResultsList.get(9).getName(), requirementCheckResult.getName());
+        assertEquals(requirementCheckResultsList.get(9).isPassed(), requirementCheckResult.isPassed());
+        assertEquals(requirementCheckResultsList.get(9).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
+        // 10
+        details = newCheckResultDetails((float) 0.0, StudentRecordFactory.LuanCoursesTaken(), others);
+        requirementCheckResult = new RequirementCheckResult("Other Course Requirements",false,details);
+        requirementCheckResult.setErrorMsgs(errorM);
+        assertEquals(requirementCheckResultsList.get(10).getName(), requirementCheckResult.getName());
+        assertEquals(requirementCheckResultsList.get(10).isPassed(), requirementCheckResult.isPassed());
+        assertEquals(requirementCheckResultsList.get(10).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
+        // 11
+        details = newCheckResultDetails((float) 3.6666667, StudentRecordFactory.LuanCoursesTaken(), others);
+        requirementCheckResult = new RequirementCheckResult("Overall GPA",false,details);
+        requirementCheckResult.setErrorMsgs(errorM);
+        assertEquals(requirementCheckResultsList.get(11).getName(), requirementCheckResult.getName());
+        assertEquals(requirementCheckResultsList.get(11).isPassed(), requirementCheckResult.isPassed());
+        assertEquals(requirementCheckResultsList.get(11).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
+        // 12
+        details = newCheckResultDetails((float) 3.6666667, StudentRecordFactory.LuanCoursesTaken(), others);
+        requirementCheckResult = new RequirementCheckResult("In Program GPA",false,details);
+        requirementCheckResult.setErrorMsgs(errorM);
+        assertEquals(requirementCheckResultsList.get(12).getName(), requirementCheckResult.getName());
+        assertEquals(requirementCheckResultsList.get(12).isPassed(), requirementCheckResult.isPassed());
+        assertEquals(requirementCheckResultsList.get(12).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
+        // 13
+        details = newCheckResultDetails((float) 0.0, StudentRecordFactory.LuanCoursesTaken(), others);
+        requirementCheckResult = new RequirementCheckResult("Other GPA Requirements",false,details);
+        requirementCheckResult.setErrorMsgs(errorM);
+        assertEquals(requirementCheckResultsList.get(13).getName(), requirementCheckResult.getName());
+        assertEquals(requirementCheckResultsList.get(13).isPassed(), requirementCheckResult.isPassed());
+        assertEquals(requirementCheckResultsList.get(13).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
+        // 14
+        details = newCheckResultDetails((float) 0.0, StudentRecordFactory.LuanCoursesTaken(), others);
+        requirementCheckResult = new RequirementCheckResult("Milestones",false,details);
+        requirementCheckResult.setErrorMsgs(errorM);
+        assertEquals(requirementCheckResultsList.get(14).getName(), requirementCheckResult.getName());
+        assertEquals(requirementCheckResultsList.get(14).isPassed(), requirementCheckResult.isPassed());
+        assertEquals(requirementCheckResultsList.get(14).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
 
 
         /*    "coursesTaken": [

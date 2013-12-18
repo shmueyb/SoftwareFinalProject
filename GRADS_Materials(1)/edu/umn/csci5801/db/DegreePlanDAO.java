@@ -280,6 +280,9 @@ public class DegreePlanDAO {
         milestoneList.add(Milestone.THESIS_APPROVED);
         milestoneList.add(Milestone.DEFENSE_PASSED);
 
+        factory.setRequirementName("Milestones");
+        factory.setRequiredMilestones(milestoneList);
+
         DegreeRequirement milestoneReqs = factory.make();
 
 

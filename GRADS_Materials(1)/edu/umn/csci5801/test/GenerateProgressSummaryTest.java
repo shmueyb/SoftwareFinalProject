@@ -84,7 +84,7 @@ public class GenerateProgressSummaryTest {
         assertEquals(requirementCheckResultsList.get(1).isPassed(), requirementCheckResult.isPassed());
         assertEquals(requirementCheckResultsList.get(1).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
         // 2
-        details = newCheckResultDetails((float) 4.0, StudentRecordFactory.LuanCoursesTaken(), others);
+        details = newCheckResultDetails((float) 0.0, StudentRecordFactory.LuanCoursesTaken(), others);
         requirementCheckResult = new RequirementCheckResult("Applications",false,details);
         requirementCheckResult.setErrorMsgs(errorM);
         assertEquals(requirementCheckResultsList.get(2).getName(), requirementCheckResult.getName());
@@ -140,7 +140,7 @@ public class GenerateProgressSummaryTest {
         assertEquals(requirementCheckResultsList.get(9).isPassed(), requirementCheckResult.isPassed());
         assertEquals(requirementCheckResultsList.get(9).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
         // 10
-        details = newCheckResultDetails((float) 0.0, StudentRecordFactory.LuanCoursesTaken(), others);
+        details = newCheckResultDetails((float) 3.6666667, StudentRecordFactory.LuanCoursesTaken(), others);
         requirementCheckResult = new RequirementCheckResult("Other Course Requirements",false,details);
         requirementCheckResult.setErrorMsgs(errorM);
         assertEquals(requirementCheckResultsList.get(10).getName(), requirementCheckResult.getName());
@@ -161,7 +161,7 @@ public class GenerateProgressSummaryTest {
         assertEquals(requirementCheckResultsList.get(12).isPassed(), requirementCheckResult.isPassed());
         assertEquals(requirementCheckResultsList.get(12).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
         // 13
-        details = newCheckResultDetails((float) 0.0, StudentRecordFactory.LuanCoursesTaken(), others);
+        details = newCheckResultDetails((float) 3.6666667, StudentRecordFactory.LuanCoursesTaken(), others);
         requirementCheckResult = new RequirementCheckResult("Other GPA Requirements",false,details);
         requirementCheckResult.setErrorMsgs(errorM);
         assertEquals(requirementCheckResultsList.get(13).getName(), requirementCheckResult.getName());
@@ -173,7 +173,7 @@ public class GenerateProgressSummaryTest {
         requirementCheckResult.setErrorMsgs(errorM);
         assertEquals(requirementCheckResultsList.get(14).getName(), requirementCheckResult.getName());
         assertEquals(requirementCheckResultsList.get(14).isPassed(), requirementCheckResult.isPassed());
-        assertEquals(requirementCheckResultsList.get(14).getDetails().getGPA(), requirementCheckResult.getDetails().getGPA());
+
 
 
         /*    "coursesTaken": [

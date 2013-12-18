@@ -114,7 +114,7 @@ public class StudentRecordFactory {
                 (new Course("Advanced Algorithms and Data Structures", "csci5421", "3", CourseArea.THEORY_ALGORITHMS),
                         new Term(Semester.SPRING, 2008), Grade.A));
         courseTakens.add(new CourseTaken
-                (new Course("Machine Learning", "csci5525", "3", CourseArea.APPLICATIONS),
+                (new Course("Machine Learning", "csci5525", "3", CourseArea.THEORY_ALGORITHMS),
                         new Term(Semester.SPRING, 2008), Grade.A));
         courseTakens.add(new CourseTaken
                 (new Course("Operating System", "csci5103", "3", CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE),

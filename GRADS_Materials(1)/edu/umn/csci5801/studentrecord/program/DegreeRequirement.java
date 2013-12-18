@@ -216,17 +216,17 @@ public class DegreeRequirement {
             applicableCourses = filterOutDuplicateCourses(applicableCourses);
         }
 
+        applicableCourses = getPassingCourses(applicableCourses);
 
         CheckResultDetails checkResultDetails = new CheckResultDetails();
-        Double gpa = calculateGPA(coursesTaken);
-        checkResultDetails.setGPA(new Float(gpa));
+        checkResultDetails.setGPA(new Float(calculateGPA(applicableCourses)));
         checkResultDetails.setCourses(applicableCourses);
         checkResultDetails.setOther(new ArrayList<String>());
 
 
         RequirementCheckResult resultForThisRequirement = new RequirementCheckResult(
                 requirementName,
-                checkIsPassed(coursesTaken, milestonesPassed),
+                checkIsPassed(getPassingCourses(applicableCourses), milestonesPassed),
                 checkResultDetails);
         resultForThisRequirement.setErrorMsgs(errorLog);
 

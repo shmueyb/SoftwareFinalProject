@@ -15,17 +15,17 @@ import org.junit.Test;
 public class CourseAreaTest {
 
     @Test
-    public void TestMS_A() {
+    public void TestTheory() {
         Assert.assertSame(CourseArea.THEORY_ALGORITHMS.ordinal(), 0);
     }
 
     @Test
-    public void TestMS_B() {
+    public void TestArchSysSoft() {
         Assert.assertSame(CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE.ordinal(), 1);
     }
 
     @Test
-    public void TestMS_C() {
+    public void TestApp() {
         Assert.assertSame(CourseArea.APPLICATIONS.ordinal(), 2);
     }
 

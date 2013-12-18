@@ -21,16 +21,23 @@ public class DegreePlan {
     DegreeRequirement otherGPARequirements;
     DegreeRequirement milestones;
 
+    Department department;
+    Degree degree;
+
     public DegreePlan (
             DegreeRequirement breadthRequirements,
             DegreeRequirement otherCourseRequirements,
             DegreeRequirement otherGPARequirements,
-            DegreeRequirement milestones) {
+            DegreeRequirement milestones,
+            Department department,
+            Degree degree) {
 
         this.breadthRequirements = breadthRequirements;
         this.otherCourseRequirements = otherCourseRequirements;
         this.otherGPARequirements = otherGPARequirements;
         this.milestones = milestones;
+        this.department = department;
+        this.degree = degree;
     }
 
 
@@ -78,6 +85,14 @@ public class DegreePlan {
         }
 
         return requirementCheckResultList;
+    }
+
+    public Degree getDegree() {
+        return degree;
+    }
+
+    public Department getDepartment() {
+        return department;
     }
 
 

@@ -34,6 +34,9 @@ public class DegreeRequirement {
     private final Integer minCourseCount;
     private final Integer minCourseLevel;
     private final Grade minCourseGrade;
+    private final List<String> courseDeptsToExclude;
+    private final List<String> courseDeptsToInclude;
+    private final List<Course> coursesToExclude;
 
     private List<String> errorLog = new ArrayList<String>();
 
@@ -66,7 +69,10 @@ public class DegreeRequirement {
             Integer minCredits,
             Integer minCourseCount,
             Integer minCourseLevel,
-            Grade minCourseGrade) {
+            Grade minCourseGrade,
+            List<String> courseDeptsToExclude,
+            List<String> courseDeptsToInclude,
+            List<Course> coursesToExclude) {
 
         this.requirementName = requirementName == null ? "Requirement" : requirementName;
         this.subRequirements = subRequirements == null ? new ArrayList<DegreeRequirement>() : subRequirements;
@@ -82,6 +88,11 @@ public class DegreeRequirement {
         this.minCourseCount = (minCourseCount == null) ? 0 : minCourseCount;
         this.minCourseLevel = (minCourseLevel == null) ? 0 : minCourseLevel;
         this.minCourseGrade = (minCourseGrade == null) ? Grade.C : minCourseGrade;
+
+        this.courseDeptsToExclude = (courseDeptsToExclude == null) ? new ArrayList<String>() : courseDeptsToExclude;
+        this.courseDeptsToInclude = (courseDeptsToInclude == null) ? new ArrayList<String>() : courseDeptsToInclude;
+
+        this.coursesToExclude = (coursesToExclude == null) ? new ArrayList<Course>() : coursesToExclude;
     }
 
     /**
@@ -302,7 +313,10 @@ public class DegreeRequirement {
         ArrayList<CourseTaken> coursesToReturn = new ArrayList<CourseTaken>();
 
         for (CourseTaken courseTaken: coursesTaken) {
-            if (new Integer(courseTaken.getCourse().getId()) >= minCourseLevel) {
+            String courseID = courseTaken.getCourse().getId();
+            String courseNum = courseID.substring(courseID.length()-4);
+
+            if (new Integer(courseNum) >= minCourseLevel) {
                 coursesToReturn.add(courseTaken);
             }
         }

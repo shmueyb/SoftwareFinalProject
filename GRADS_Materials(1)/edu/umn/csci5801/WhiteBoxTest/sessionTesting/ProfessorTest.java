@@ -44,5 +44,7 @@ public class ProfessorTest {
         Assert.assertEquals(professor.hashCode(), (31 + Department.MATH.hashCode()));
         Professor newProf = new Professor("Jon", "Doe", null);
         Assert.assertEquals(newProf.hashCode(), 31 );
+        Professor newProf2 = new Professor("asfa", "afads", Department.MATH);
+        Assert.assertEquals(professor.hashCode(), newProf2.hashCode());
     }
 }

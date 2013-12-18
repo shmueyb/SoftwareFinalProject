@@ -34,7 +34,6 @@ public class StudentRecordFactory {
     static private Student Luan = new Student("Luan", "Nguyen", "nguy0621");
     static private Student Greg = new Student("Gregory", "Gay", "gayxx067");
     static private Student Ian = new Student("Ian", "De Silva", "desil1337");
-    //TODO: add these below to users.txt
     static private Student Catherine = new Student("Catherine", "Reed", "1111");
 
     static private Department CompSci = Department.COMPUTER_SCIENCE;

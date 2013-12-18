@@ -1,15 +1,14 @@
 package edu.umn.csci5801.db;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.umn.csci5801.studentrecord.program.Degree;
 import edu.umn.csci5801.studentrecord.program.DegreePlan;
 import edu.umn.csci5801.studentrecord.program.DegreeRequirement;
 import edu.umn.csci5801.studentrecord.program.Department;
-import edu.umn.csci5801.studentrecord.requirements.Milestone;
 import edu.umn.csci5801.studentrecord.transcript.Course;
 import edu.umn.csci5801.studentrecord.transcript.Grade;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,8 +25,6 @@ public class DegreePlanDAO {
 
     private static List<DegreePlan> getAllDegreePlans() {
         List<DegreePlan> allPlans = new ArrayList<DegreePlan>();
-
-        //TODO
 
         return allPlans;
     }

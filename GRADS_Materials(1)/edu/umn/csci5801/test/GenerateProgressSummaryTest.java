@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import edu.umn.csci5801.studentrecord.transcript.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -284,38 +285,6 @@ public class GenerateProgressSummaryTest {
         assertEquals(StudentRecordFactory.GregAdvisors(),actual.getAdvisors());
         assertEquals(StudentRecordFactory.GregCommittee(), actual.getCommittee());
         assertEquals(StudentRecordFactory.notes(),actual.getNotes());
-        assertEquals(requirements,actual.getRequirementCheckResults());
-
-    }
-    /* checking to see if a class exists in the list of RequirementCheckResults
-     * @param courseName
-     * @param results
-     * @return
-     */
-    private boolean checkForCourseName(String courseName, List< RequirementCheckResult > results) {
-        for(RequirementCheckResult r : results) {
-            if(courseName.equals(r.getName())) {
-                return true;
-            }
-        }
-        return false;
-
-    }
-
-    /**
-     * testing if the method would handle invalid user
-     * @throws DatabaseAccessException
-     * @throws AccessDeniedException
-     */
-    @Test
-    public void testGenerateProgressSummary_InvalidUser() throws DatabaseAccessException, AccessDeniedException, InvalidUserException, FileNotFoundException {
-        grads.setUser("invalid user");
-        try {
-            ProgressSummary progressSummary = grads.generateProgressSummary("InvalidUser");
-            fail();
-        } catch (AccessDeniedException ex) {
-
-        }
 
     }
 
@@ -386,17 +355,22 @@ public class GenerateProgressSummaryTest {
 
     /**
      * Checks that GPC can generate a progress summary for a student in their dept.
+     * @throws AccessDeniedException 
      * @throws Exception
      */
     @Test
-    public void testGenerateProgressSummary_InDept_AsGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
+    public void testGenerateProgressSummary_InDept_AsGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException, AccessDeniedException {
         //TODO: Add inputs testID, Expected Progress Summary
         grads.setUser("tolas9999");
-        try {
-            ProgressSummary actual = grads.generateProgressSummary("nguy0261");
-        } catch (AccessDeniedException e) {
+        ProgressSummary actual = grads.generateProgressSummary("nguy0621");
+        assertEquals(actual.getStudent(), new Student("Luan", "Nguyen", "nguy0621"));
+        assertEquals(actual.getAdvisors(), StudentRecordFactory.LuanAdvisors());
+        assertEquals(actual.getCommittee(), StudentRecordFactory.LuanCommittee());
+        assertEquals(actual.getDegreeSought(), StudentRecordFactory.LuanRecord().getDegreeSought());
+        assertEquals(actual.getDepartment(), Department.COMPUTER_SCIENCE);
+        assertEquals(actual.getNotes(), StudentRecordFactory.LuanRecord().getNotes());
+        assertEquals(actual.getTermBegan(), StudentRecordFactory.LuanRecord().getTermBegan());
 
-        }
     }
 
 }

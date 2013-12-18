@@ -23,7 +23,7 @@ public class AddNoteTest {
      * Init Grads for usage
      */
     @BeforeClass
-    public void initGrad() throws Exception {
+    public static void initGrad() throws Exception {
         // creating test files
         StudentRecordFactory.instantiateTestDb();
         // init Grads

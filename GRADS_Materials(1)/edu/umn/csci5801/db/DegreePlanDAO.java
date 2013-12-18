@@ -132,6 +132,7 @@ public class DegreePlanDAO {
         factory.setSNAllowed(false);
         factory.setMinCourseCount(5);
         factory.setMinGPA(3.45);
+        factory.setOnlyAllowCoursesThatPassSubReqs(true);
 
         breadth = factory.make();
 

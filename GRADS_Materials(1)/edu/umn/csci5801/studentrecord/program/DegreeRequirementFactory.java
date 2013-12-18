@@ -20,6 +20,7 @@ public class DegreeRequirementFactory {
     private boolean isSNAllowed;
     private boolean mustTakeAllCourses;
     private boolean mayRepeatCoursesForCredit;
+    private boolean onlyAllowCoursesThatPassSubReqs;
     private Integer minCredits;
     private Integer minCourseCount;
     private Integer minCourseLevel;
@@ -42,6 +43,7 @@ public class DegreeRequirementFactory {
                 isSNAllowed,
                 mustTakeAllCourses,
                 mayRepeatCoursesForCredit,
+                onlyAllowCoursesThatPassSubReqs,
                 minCredits,
                 minCourseCount,
                 minCourseLevel,
@@ -111,6 +113,10 @@ public class DegreeRequirementFactory {
 
     public void setCoursesToExclude(List<Course> coursesToExclude) {
         this.coursesToExclude = coursesToExclude;
+    }
+
+    public void setOnlyAllowCoursesThatPassSubReqs(boolean onlyAllow) {
+        onlyAllowCoursesThatPassSubReqs = onlyAllow;
     }
 
 

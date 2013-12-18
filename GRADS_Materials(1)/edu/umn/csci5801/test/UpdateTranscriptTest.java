@@ -40,13 +40,12 @@ public class UpdateTranscriptTest {
     public void testUpdateTranscript_AsStudent() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
         grads.setUser("nguy0621");
         try {
-            grads.getTranscript("nguy0621");
+            grads.updateTranscript("nguy0621",grads.getTranscript("nguy0621"));
             fail();
         }catch (AccessDeniedException ex){
             //do nothing
         }
     }
-
     /**
      * Checks that a GPC can update a student record for a student in their  dept., changed term began
      * @throws AccessDeniedException
@@ -63,7 +62,6 @@ public class UpdateTranscriptTest {
             fail();
         }
     }
-
     /**
      * Checks that a GPC cannot update a student record for a student no in their dept.
      * @throws FileNotFoundException
@@ -79,7 +77,6 @@ public class UpdateTranscriptTest {
             //do nothing
         }
     }
-
     /**
      * Checks that a GPC can update a student's milestone
      * @throws AccessDeniedException
@@ -96,8 +93,6 @@ public class UpdateTranscriptTest {
             fail();
         }
     }
-
-
     /**
      * Checks that a GPC can update a student's Grade
      * @throws AccessDeniedException

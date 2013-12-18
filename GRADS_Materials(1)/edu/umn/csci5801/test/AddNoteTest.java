@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import edu.umn.csci5801.GRADS;
@@ -22,7 +22,7 @@ public class AddNoteTest {
     /**
      * Init Grads for usage
      */
-    @BeforeClass
+    @Before
     public void initGrad() throws Exception {
         // creating test files
         StudentRecordFactory.instantiateTestDb();
@@ -38,7 +38,6 @@ public class AddNoteTest {
      */
     @Test
     public void testAddNote() throws Exception {
-        //TODO: Student Record Factory for gayxx067 with the updated Note,and the assert
         grads.setUser("tolas9999");
         grads.addNote("gayxx067", "I am Xum");
         StudentRecord studentRecord = grads.getTranscript("gayxx067");

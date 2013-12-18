@@ -101,7 +101,9 @@ public class GetTranscriptTest {
     @Test
     public void testGetTranscriptInvalidID() throws InvalidUserException, DatabaseAccessException, FileNotFoundException {
         try {
-            StudentRecord studentRecord = grads.getTranscript("invalid");
+        	grads.setUser("nguy0621");
+            grads.getTranscript("invalid");
+            fail(); 
         } catch (AccessDeniedException e) {
             //do nothing
         }

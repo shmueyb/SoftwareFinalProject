@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.io.FileNotFoundException;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import edu.umn.csci5801.GRADS;
@@ -22,14 +23,13 @@ public class AddNoteTest {
     /**
      * Init Grads for usage
      */
-    @Before
-    public void initGrad() throws Exception {
-        // creating test files
+
+    @BeforeClass
+    public static void initGrad() throws Exception {
         StudentRecordFactory.instantiateTestDb();
         // init Grads
-        if(grads == null){
-             grads = new GRADS("GRADS_Materials/Data/TestStudents.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/TestUsers.txt");
-        }
+        grads = new GRADS("GRADS_Materials/Data/TestStudents.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/TestUsers.txt");
+        
     }
 
     /**

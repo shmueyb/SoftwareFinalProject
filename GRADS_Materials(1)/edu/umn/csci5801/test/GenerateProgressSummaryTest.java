@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import edu.umn.csci5801.studentrecord.transcript.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -699,6 +700,7 @@ public class GenerateProgressSummaryTest {
 
         }
 
+
     }
 
     /**
@@ -768,12 +770,14 @@ public class GenerateProgressSummaryTest {
 
     /**
      * Checks that GPC can generate a progress summary for a student in their dept.
+     * @throws AccessDeniedException 
      * @throws Exception
      */
     @Test
-    public void testGenerateProgressSummary_InDept_AsGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
+    public void testGenerateProgressSummary_InDept_AsGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException, AccessDeniedException {
         //TODO: Add inputs testID, Expected Progress Summary
         grads.setUser("tolas9999");
+
         try {
             ProgressSummary actual = grads.generateProgressSummary("nguy0621");
             // Create a parallel Progress Summary
@@ -895,6 +899,7 @@ public class GenerateProgressSummaryTest {
         } catch (AccessDeniedException e) {
 
         }
+
     }
 
 }

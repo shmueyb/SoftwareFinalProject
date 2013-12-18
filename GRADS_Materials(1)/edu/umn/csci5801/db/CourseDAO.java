@@ -1,6 +1,6 @@
 package edu.umn.csci5801.db;
 
-import edu.umn.csci5801.session.Users;
+
 import edu.umn.csci5801.studentrecord.transcript.Course;
 
 import java.util.List;

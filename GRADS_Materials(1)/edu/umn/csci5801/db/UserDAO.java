@@ -1,15 +1,7 @@
 package edu.umn.csci5801.db;
 
-import com.google.gson.JsonObject;
-import edu.umn.csci5801.session.Person;
-import edu.umn.csci5801.session.Student;
 import edu.umn.csci5801.session.User;
-import edu.umn.csci5801.session.Users;
-import edu.umn.csci5801.studentrecord.program.Department;
-import edu.umn.csci5801.studentrecord.transcript.StudentInfo;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,14 +13,12 @@ import java.util.List;
  */
 public class UserDAO {
 
-    public static Users getUserByID(String userID) throws DatabaseAccessException{
-        List<Users> usersList=null;
+    public static User getUserByID(String userID) throws DatabaseAccessException{
+        List<User> usersList = FileAccess.getInstance().getUserJSON();
 
-        usersList= FileAccess.getInstance().getUserJSON();
-
-        Users currentUser=null;
-        for (Users user: usersList){
-            if (userID.equals(user.getUser().getId())){
+        User currentUser=null;
+        for (User user: usersList){
+            if (userID.equals(user.getID())){
                 currentUser=user;
             }
         }

@@ -214,6 +214,7 @@ public class DegreePlanDAO {
 
         factory.setMinCredits(31);
         factory.setSubRequirements(totalCreditsSubReqs);
+        factory.setCoursesToExclude(phdThesis);
         factory.setRequirementName("Total Credits");
 
         DegreeRequirement totalCredits = factory.make();

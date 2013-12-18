@@ -572,10 +572,20 @@ public class DegreeRequirement {
      * @throws NumberFormatException if one of the courses has an invalid number of credits (eg. a range 1-3)
      */
     private Double calculateGPA(List<CourseTaken> coursesTaken) throws NumberFormatException{
+
+        List<CourseTaken> applicableCourses = getPassingCourses(coursesTaken);
+
+        if (minCourseCount > 0) {
+            applicableCourses = getBestCoursesForMinCount(coursesTaken);
+        } else if (minCredits > 0) {
+            applicableCourses = getBestCoursesForMinCredits(coursesTaken);
+        }
+
+
         Double undividedGPATotal = 0.0;
         int creditTotal = 0;
 
-        for (CourseTaken courseTaken: coursesTaken) {
+        for (CourseTaken courseTaken: applicableCourses) {
             if (! (courseTaken.getGrade().equals(Grade.N)
                     || courseTaken.getGrade().equals(Grade.S)
                     || courseTaken.getGrade().equals(Grade._))) {
@@ -609,6 +619,125 @@ public class DegreeRequirement {
         }
 
         return true;
+    }
+
+    /**
+     *
+     * @param coursesTaken
+     * @return
+     */
+    private List<CourseTaken> getBestCoursesForMinCount(List<CourseTaken> coursesTaken) {
+        List<CourseTaken> AList = new ArrayList<CourseTaken>();
+        List<CourseTaken> BList = new ArrayList<CourseTaken>();
+        List<CourseTaken> CList = new ArrayList<CourseTaken>();
+        List<CourseTaken> DList = new ArrayList<CourseTaken>();
+        List<CourseTaken> FList = new ArrayList<CourseTaken>();
+        List<CourseTaken> SList = new ArrayList<CourseTaken>();
+        List<CourseTaken> _List = new ArrayList<CourseTaken>();
+
+        List<CourseTaken> listToReturn = new ArrayList<CourseTaken>();
+
+        for(CourseTaken courseTaken: coursesTaken) {
+            if (courseTaken.getGrade().equals(Grade.A)){
+                AList.add(courseTaken);
+            } else if (courseTaken.getGrade().equals(Grade.B)){
+                BList.add(courseTaken);
+            } else if (courseTaken.getGrade().equals(Grade.C)){
+                CList.add(courseTaken);
+            } else if (courseTaken.getGrade().equals(Grade.D)){
+                DList.add(courseTaken);
+            } else if (courseTaken.getGrade().equals(Grade.F)){
+                FList.add(courseTaken);
+            }  else if (courseTaken.getGrade().equals(Grade.S)){
+                SList.add(courseTaken);
+            } else if (courseTaken.getGrade().equals(Grade._)){
+                _List.add(courseTaken);
+            }
+        }
+
+        for (int n=0; n < minCourseCount; n++) {
+            if (AList.size() > 0) {
+                listToReturn.add(AList.remove(0));
+            } else if (BList.size() > 0) {
+                listToReturn.add(BList.remove(0));
+            } else if (CList.size() > 0) {
+                listToReturn.add(CList.remove(0));
+            } else if (SList.size() > 0) {
+                listToReturn.add(SList.remove(0));
+            } else if (_List.size() > 0) {
+                listToReturn.add(_List.remove(0));
+            } else if (DList.size() > 0) {
+                listToReturn.add(DList.remove(0));
+            } else if (FList.size() > 0) {
+                listToReturn.add(FList.remove(0));
+            } else {
+                break;
+            }
+        }
+
+        return listToReturn;
+    }
+
+    /**
+     *
+     * @param coursesTaken
+     * @return
+     */
+    private List<CourseTaken> getBestCoursesForMinCredits(List<CourseTaken> coursesTaken) {
+        List<CourseTaken> AList = new ArrayList<CourseTaken>();
+        List<CourseTaken> BList = new ArrayList<CourseTaken>();
+        List<CourseTaken> CList = new ArrayList<CourseTaken>();
+        List<CourseTaken> DList = new ArrayList<CourseTaken>();
+        List<CourseTaken> FList = new ArrayList<CourseTaken>();
+        List<CourseTaken> SList = new ArrayList<CourseTaken>();
+        List<CourseTaken> _List = new ArrayList<CourseTaken>();
+
+        List<CourseTaken> listToReturn = new ArrayList<CourseTaken>();
+
+        for(CourseTaken courseTaken: coursesTaken) {
+            if (courseTaken.getGrade().equals(Grade.A)){
+                AList.add(courseTaken);
+            } else if (courseTaken.getGrade().equals(Grade.B)){
+                BList.add(courseTaken);
+            } else if (courseTaken.getGrade().equals(Grade.C)){
+                CList.add(courseTaken);
+            } else if (courseTaken.getGrade().equals(Grade.D)){
+                DList.add(courseTaken);
+            } else if (courseTaken.getGrade().equals(Grade.F)){
+                FList.add(courseTaken);
+            }  else if (courseTaken.getGrade().equals(Grade.S)){
+                SList.add(courseTaken);
+            } else if (courseTaken.getGrade().equals(Grade._)){
+                _List.add(courseTaken);
+            }
+        }
+
+        int n = 0;
+
+        while (n < minCredits) {
+            CourseTaken courseToAdd;
+            if (AList.size() > 0) {
+                courseToAdd = AList.remove(0);
+            } else if (BList.size() > 0) {
+                courseToAdd = BList.remove(0);
+            } else if (CList.size() > 0) {
+                courseToAdd = CList.remove(0);
+            } else if (SList.size() > 0) {
+                courseToAdd = SList.remove(0);
+            } else if (_List.size() > 0) {
+                courseToAdd = _List.remove(0);
+            } else if (DList.size() > 0) {
+                courseToAdd = DList.remove(0);
+            } else if (FList.size() > 0) {
+                courseToAdd = FList.remove(0);
+            } else {
+                break;
+            }
+            listToReturn.add(courseToAdd);
+            n += new Integer(courseToAdd.getCourse().getNumCredits());
+        }
+
+        return listToReturn;
     }
 
 

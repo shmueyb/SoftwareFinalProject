@@ -43,37 +43,13 @@ public class SimulateCoursesTest {
         }
     }
 
-    /**
-     * test if simulate courses would return the expected progress summary
-     */
-    @Test
-    public void testSimulateCourses() throws Exception {
-        ProgressSummary progressSummary = grads.simulateCourses("gayxx067", StudentRecordFactory.GregCoursesTaken());
-        for(CourseTaken c : StudentRecordFactory.GregCoursesTaken()) {
-            Assert.assertTrue(checkForCourseName(c.getCourse().getName(), progressSummary.getRequirementCheckResults()));
-        }
-    }
-
-    /**
-     * checking to see if a class exists in the list of RequirementCheckResults
-     * @param courseName
-     * @param results
-     * @return
-     */
-    private boolean checkForCourseName(String courseName, List<RequirementCheckResult> results) {
-        for(RequirementCheckResult r : results) {
-            if(courseName.equals(r.getName())) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     /**
      * test if simulateCourses would generate grades for simulated courses
      */
     @Test
     public void testSimulateCourses_gradesGenerating() throws Exception {
+        grads.setUser("gayxx067");
         ProgressSummary progressSummary = grads.simulateCourses("gayxx067", StudentRecordFactory.GregCoursesTaken());
         for(RequirementCheckResult r : progressSummary.getRequirementCheckResults()) {
             Assert.assertNotNull(r.getDetails().getGPA());
@@ -88,7 +64,7 @@ public class SimulateCoursesTest {
     @Test
     public void testSimulateCourses_OutDept_AsGPC() throws FileNotFoundException, DatabaseAccessException, InvalidUserException {
         //TODO inputs: courseTaken list
-        String testID = "smith0002";
+        String testID = "smith0001";
         List<CourseTaken> courses = new ArrayList<CourseTaken>();
         grads.setUser(testID);
         try {

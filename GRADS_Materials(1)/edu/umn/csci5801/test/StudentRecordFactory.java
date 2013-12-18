@@ -35,6 +35,7 @@ public class StudentRecordFactory {
     static private Student Greg = new Student("Gregory", "Gay", "gayxx067");
     static private Student Ian = new Student("Ian", "De Silva", "desil1337");
     static private Student Catherine = new Student("Catherine", "Reed", "1111");
+    static private Student PhdStudent = new Student("PHD", "Student", "phd333");
 
     static private Department CompSci = Department.COMPUTER_SCIENCE;
 
@@ -49,6 +50,8 @@ public class StudentRecordFactory {
         List<User> users = new Gson().fromJson( new FileReader( new File("GRADS_Materials/Data/users.txt")), new TypeToken<List<User>>(){}.getType());
         User newUser = new User("1111", "Catherine", "Reed", UserType.STUDENT,Department.COMPUTER_SCIENCE);
         users.add(newUser);
+        newUser = new User("phd333", "Student", "PHD", UserType.STUDENT,Department.COMPUTER_SCIENCE);
+        users.add(newUser);
         writeUsersJSON("GRADS_Materials/Data/TestUsers.txt", users);
 
     }
@@ -59,6 +62,7 @@ public class StudentRecordFactory {
         list.add(GregRecord());
         list.add(IanRecord());
         list.add(CatherineRecord());
+        list.add(PHDRecord());
         return list;
     }
 
@@ -263,13 +267,19 @@ public class StudentRecordFactory {
         List<CourseTaken> courseTakens = new LinkedList<CourseTaken>();
         courseTakens.add(new CourseTaken
                 (new Course("Data Communications and Computer Networks", "csci5211", "3", CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE),
-                        new Term(Semester.SPRING, 2010), Grade.C));
+                        new Term(Semester.SPRING, 2010), Grade.B));
         courseTakens.add(new CourseTaken
-                (new Course("Analysis of Numberial Algorithms", "csci5301", "3", CourseArea.THEORY_ALGORITHMS),
+                (new Course("Modern Cryptography", "csci5471", "3", CourseArea.APPLICATIONS),
                         new Term(Semester.FALL, 2010), Grade.B));
         courseTakens.add(new CourseTaken
-                (new Course("Introduction to Computer Security", "scsi5302", "3", CourseArea.APPLICATIONS),
+                (new Course("Analysis of Numerical Algorithms", "csci5302", "3", CourseArea.THEORY_ALGORITHMS),
                         new Term(Semester.SUMMER, 2010), Grade.A));
+        courseTakens.add(new CourseTaken
+                (new Course("Computer Science Colloquium", "csci8970", "1", null),
+                        new Term(Semester.SPRING, 2010), Grade.S));
+        courseTakens.add(new CourseTaken
+                (new Course("Plan B Project", "csci8760", "3", null),
+                        new Term(Semester.SPRING, 2010), Grade.A));
         return courseTakens;
     }
 
@@ -359,6 +369,73 @@ public class StudentRecordFactory {
             System.err.println("Error: " + e.getMessage());
         }
 
+    }
+
+    /**
+     * generating PHD's record
+     * @return Luan's record
+     */
+    public static StudentRecord PHDRecord() {
+        return  new StudentRecord.StudentRecordBuilder()
+                .student(PhdStudent)
+                .department(CompSci)
+                .degreeSought(Degree.PHD)
+                .termBegan(new Term(Semester.SPRING, 2008))
+                .advisors(PHDAdvisors())
+                .committee(PHDCommittee())
+                .coursesTaken(PHDCoursesTaken())
+                .milesstoneSet(PHDMilestones())
+                .notes(notes())
+                .build();
+    }
+
+    public static List<Professor> PHDAdvisors() {
+        List<Professor> advisors = new LinkedList<Professor>();
+        advisors.add(new Professor("William", "Schuler", Department.COMPUTER_SCIENCE));
+        return advisors;
+    }
+
+    public static List<Professor> PHDCommittee() {
+        List<Professor> committee = new LinkedList<Professor>();
+        committee.add(new Professor("Maria", "Gini", Department.COMPUTER_SCIENCE));
+        return committee;
+    }
+
+    public static List<CourseTaken> PHDCoursesTaken() {
+        List<CourseTaken> courseTakens = new LinkedList<CourseTaken>();
+        courseTakens.add(new CourseTaken
+                (new Course("Advanced Algorithms and Data Structures", "csci5421", "3", CourseArea.THEORY_ALGORITHMS),
+                        new Term(Semester.SPRING, 2008), Grade.A));
+        courseTakens.add(new CourseTaken
+                (new Course("Machine Learning", "csci5525", "3", CourseArea.THEORY_ALGORITHMS),
+                        new Term(Semester.SPRING, 2008), Grade.B));
+        courseTakens.add(new CourseTaken
+                (new Course("Operating System", "csci5103", "3", CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE),
+                        new Term(Semester.SUMMER, 2008), Grade.B));
+        courseTakens.add(new CourseTaken
+                (new Course("System Modeling and Performance Evaluation", "csci5104", "3", CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE),
+                        new Term(Semester.SUMMER, 2008), Grade.A));
+        courseTakens.add(new CourseTaken
+                (new Course("User Interface Design, Implementation, and Evaluation", "csci5115", "3", CourseArea.APPLICATIONS),
+                        new Term(Semester.SUMMER, 2008), Grade.A));
+        courseTakens.add(new CourseTaken
+                (new Course("Computer Science Colloquium", "csci8970", "1", null),
+                        new Term(Semester.SPRING, 2010), Grade.S));
+        courseTakens.add(new CourseTaken
+                (new Course("Introduction to Research in Computer Science I", "csci8001", "1", null),
+                        new Term(Semester.SPRING, 2010), Grade.S));
+        courseTakens.add(new CourseTaken
+                (new Course("Introduction to Research in Computer Science II", "csci8002", "2", null),
+                        new Term(Semester.SPRING, 2010), Grade.S));
+
+        return courseTakens;
+    }
+
+    public static List<MilestoneSet> PHDMilestones() {
+        List<MilestoneSet> milestoneSets = new LinkedList<MilestoneSet>();
+        milestoneSets.add(new MilestoneSet(Milestone.DEFENSE_PASSED, new Term(Semester.FALL, 2014)));
+
+        return  milestoneSets;
     }
 
 }

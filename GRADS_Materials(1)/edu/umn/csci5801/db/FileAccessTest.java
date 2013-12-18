@@ -2,7 +2,7 @@ package edu.umn.csci5801.db;
 
 import edu.umn.csci5801.GRADS;
 import edu.umn.csci5801.session.UserType;
-import edu.umn.csci5801.session.Users;
+import edu.umn.csci5801.session.User;
 import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.studentrecord.program.Department;
 import edu.umn.csci5801.studentrecord.transcript.Course;
@@ -68,10 +68,10 @@ public class FileAccessTest {
     @Test
     public void testGetUserJSON() throws Exception {
         GRADS grads = new GRADS("GRADS_Materials/Data/students.txt", "GRADS_Materials/Data/courses.txt", "GRADS_Materials/Data/users.txt");
-        List<Users> users;
+        List<User> users;
         users = FileAccess.getInstance().getUserJSON();
-        Users firstSession=users.get(0);
-        assertEquals(firstSession.getUser().getId(), "nguy0621");
+        User firstSession=users.get(0);
+        assertEquals(firstSession.getID(), "nguy0621");
         assertEquals(firstSession.getRole(), UserType.STUDENT);
         assertEquals(firstSession.getDepartment(), Department.COMPUTER_SCIENCE);
     }

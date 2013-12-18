@@ -218,7 +218,7 @@ public class DegreeRequirement {
 
 
         CheckResultDetails checkResultDetails = new CheckResultDetails();
-        Double gpa = (minGPA <= 0.0) ? 0 : calculateGPA(coursesTaken);
+        Double gpa = calculateGPA(coursesTaken);
         checkResultDetails.setGPA(new Float(gpa));
         checkResultDetails.setCourses(applicableCourses);
         checkResultDetails.setOther(new ArrayList<String>());
@@ -623,7 +623,7 @@ public class DegreeRequirement {
             }
         }
 
-        return undividedGPATotal / ((double) creditTotal);
+        return (creditTotal == 0) ? 0.0 : undividedGPATotal / ((double) creditTotal);
     }
 
     /**

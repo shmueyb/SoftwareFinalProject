@@ -32,14 +32,12 @@ public class SessionTest {
     @Test
     public void getProfessorUserTest() {
         Assert.assertEquals(session.getProfessorUser(), new Professor("Georgane", "Tolaas", Department.COMPUTER_SCIENCE));
-        Assert.assertNotEquals(session.getStudentUser(), new Professor("Georgane", "Tolaas", Department.COMPUTER_SCIENCE));
     }
 
     @Test
     public void getUserTest_student() throws Exception{
         Session session2 = new Session("nguy0621");
         Assert.assertEquals(session2.getStudentUser(), new Student("Luan", "Nguyen", "nguy0621"));
-        Assert.assertNotEquals(session2.getProfessorUser(), new Student("Luan", "Nguyen", "nguy0621"));
     }
     @Test
     public void getUser() throws Exception{

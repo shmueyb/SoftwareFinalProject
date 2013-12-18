@@ -61,7 +61,7 @@ public class GetTranscriptTest {
      */
     @Test
     public void testGetOtherStudentTranscriptAsStudent() throws AccessDeniedException, DatabaseAccessException, FileNotFoundException, InvalidUserException {
-        grads.setUser("nguy0261");
+        grads.setUser("nguy0621");
         try {
             grads.getTranscript("gayxx067");
             fail();
@@ -78,7 +78,7 @@ public class GetTranscriptTest {
     public void testGetTranscriptStudentNotInDept_asGPC() throws DatabaseAccessException, FileNotFoundException, InvalidUserException {
         grads.setUser("smith0001");/* Math GPC*/
         try {
-            StudentRecord actual = grads.getTranscript("nguy0261");
+            StudentRecord actual = grads.getTranscript("nguy0621");
             fail();
         }catch (AccessDeniedException ex){
             //do nothing
@@ -92,7 +92,7 @@ public class GetTranscriptTest {
     public void testGetTranscript() throws Exception {
         grads.setUser("nguy0621");
         StudentRecord Luan= grads.getTranscript("nguy0621");
-        Assert.assertSame(StudentRecordFactory.LuanRecord(), Luan);
+        Assert.assertEquals(StudentRecordFactory.LuanRecord(), Luan);
     }
 
     /**

@@ -1,14 +1,16 @@
 package edu.umn.csci5801.db;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.umn.csci5801.studentrecord.program.Degree;
 import edu.umn.csci5801.studentrecord.program.DegreePlan;
 import edu.umn.csci5801.studentrecord.program.DegreeRequirement;
+import edu.umn.csci5801.studentrecord.program.DegreeRequirementFactory;
 import edu.umn.csci5801.studentrecord.program.Department;
+import edu.umn.csci5801.studentrecord.requirements.Milestone;
 import edu.umn.csci5801.studentrecord.transcript.Course;
-import edu.umn.csci5801.studentrecord.transcript.Grade;
 
 /**
  * Created with IntelliJ IDEA.
@@ -43,6 +45,9 @@ public class DegreePlanDAO {
         List<Course> theoryAlgsCourses = new ArrayList<Course>();
         List<Course> aSSCourses = new ArrayList<Course>();
         List<Course> appCourses = new ArrayList<Course>();
+
+        List<String> onlyCSCI = new ArrayList<String>();
+        onlyCSCI.add("csci");
 
         theoryAlgsCourses.add(CourseDAO.getCourseByID("csci5302"));
         theoryAlgsCourses.add(CourseDAO.getCourseByID("csci5304"));
@@ -84,159 +89,216 @@ public class DegreePlanDAO {
         appCourses.add(CourseDAO.getCourseByID("csci5619"));
         appCourses.add(CourseDAO.getCourseByID("csci5707"));
 
-        theoryAlgs = new DegreeRequirement(
-                "Theory and Algorithms",
-                null,
-                theoryAlgsCourses,
-                null,
-                null,
-                false,
-                false,
-                false,
-                0,
-                1,
-                5000,
-                Grade.C
-        );
 
-        archSS = new DegreeRequirement(
-                "Architecture, Systems, and Software",
-                null,
-                aSSCourses,
-                null,
-                null,
-                false,
-                false,
-                false,
-                0,
-                1,
-                5000,
-                Grade.C
-        );
+        DegreeRequirementFactory factory = new DegreeRequirementFactory();
 
-        apps = new DegreeRequirement(
-                "Applications",
-                null,
-                appCourses,
-                null,
-                null,
-                false,
-                false,
-                false,
-                0,
-                1,
-                5000,
-                Grade.C
-        );
+        factory.setRequirementName("Theory and Algorithms");
+        factory.setApplicableCourses(theoryAlgsCourses);
+        factory.setMinCourseCount(1);
+        factory.setSNAllowed(false);
+
+        theoryAlgs = factory.make();
+
+
+
+        factory = new DegreeRequirementFactory();
+
+        factory.setRequirementName("Architecture, Systems, and Software");
+        factory.setApplicableCourses(aSSCourses);
+        factory.setSNAllowed(false);
+        factory.setMinCourseCount(1);
+
+        archSS = factory.make();
+
+
+
+        factory = new DegreeRequirementFactory();
+
+        factory.setRequirementName("Applications");
+        factory.setApplicableCourses(appCourses);
+        factory.setSNAllowed(false);
+        factory.setMinCourseCount(1);
+
+        apps = factory.make();
+
+
+        factory = new DegreeRequirementFactory();
 
         List<DegreeRequirement> breadthSubReqs = new ArrayList<DegreeRequirement>();
         breadthSubReqs.add(theoryAlgs);
         breadthSubReqs.add(archSS);
         breadthSubReqs.add(apps);
 
-        breadth = new DegreeRequirement(
-                "Breadth Requirement",
-                breadthSubReqs,
-                null,
-                null,
-                3.45,
-                false,
-                false,
-                false,
-                0,
-                5,
-                5000,
-                Grade.C
-        );
+        factory.setRequirementName("Breadth Requirement");
+        factory.setSubRequirements(breadthSubReqs);
+        factory.setSNAllowed(false);
+        factory.setMinCourseCount(5);
+        factory.setMinGPA(3.45);
+        factory.setOnlyAllowCoursesThatPassSubReqs(true);
 
+        breadth = factory.make();
+
+
+
+        factory = new DegreeRequirementFactory();
 
         List<Course> phdThesis = new ArrayList<Course>();
         phdThesis.add(CourseDAO.getCourseByID("csci8888"));
 
-        DegreeRequirement thesisReq = new DegreeRequirement(
-                "Thesis PHD",
-                null,
-                phdThesis,
-                null,
-                null,
-                true,
-                false,
-                false,
-                24,
-                0,
-                5000,
-                Grade.C);
+        factory.setRequirementName("Thesis PHD");
+        factory.setMinCredits(24);
+        factory.setApplicableCourses(phdThesis);
+        factory.setMayRepeatCoursesForCredit(true);
 
+        DegreeRequirement thesisReq = factory.make();
+
+
+
+        factory = new DegreeRequirementFactory();
 
         List<Course> colloqList = new ArrayList<Course>();
-        colloqList.add(CourseDAO.getCourseByID("csci"));
+        colloqList.add(CourseDAO.getCourseByID("csci8970"));
 
-        DegreeRequirement colloq = new DegreeRequirement(
-                "Colloquium",
-                null,
-                colloqList,
-                null,
-                null,
-                true,
-                false,
-                false,
-                0,
-                1,
-                5000,
-                Grade.F);
+        factory.setRequirementName("Colloquium");
+        factory.setApplicableCourses(colloqList);
+        factory.setMustTakeAllCourses(true);
 
+        DegreeRequirement colloq = factory.make();
+
+
+
+        factory = new DegreeRequirementFactory();
+
+        factory.setMinCredits(6);
+        factory.setCourseDeptsToExclude(onlyCSCI);
+        factory.setMinCourseLevel(5000);
+        factory.setRequirementName("Out of Department");
+
+        DegreeRequirement outOfDept = factory.make();
+
+
+
+        factory = new DegreeRequirementFactory();
+
+        ArrayList<Course> introResearchCourses = new ArrayList<Course>();
+        introResearchCourses.add(CourseDAO.getCourseByID("csci8001"));
+        introResearchCourses.add(CourseDAO.getCourseByID("csci8002"));
+
+        factory.setApplicableCourses(introResearchCourses);
+        factory.setMustTakeAllCourses(true);
+        factory.setSNAllowed(true);
+        factory.setMinCourseLevel(5000);
+        factory.setRequirementName("Introduction to Research");
+
+        DegreeRequirement introToResearch = factory.make();
+
+
+
+        factory = new DegreeRequirementFactory();
+
+        List<Course> thesisCredits = new ArrayList<Course>();
+        thesisCredits.add(CourseDAO.getCourseByID("csci8888"));
+        thesisCredits.add(CourseDAO.getCourseByID("csci8777"));
+
+        factory.setCoursesToExclude(thesisCredits);
+        factory.setMinCredits(16);
+        factory.setCourseDeptsToInclude(onlyCSCI);
+        factory.setMinCourseLevel(5000);
+        factory.setRequirementName("16 csci Credits");
+
+        DegreeRequirement csci16Credits = factory.make();
+
+
+
+        factory = new DegreeRequirementFactory();
+        List<DegreeRequirement> totalCreditsSubReqs = new ArrayList<DegreeRequirement>();
+        totalCreditsSubReqs.add(csci16Credits);
+
+        factory.setMinCredits(31);
+        factory.setSubRequirements(totalCreditsSubReqs);
+        factory.setCoursesToExclude(phdThesis);
+        factory.setRequirementName("Total Credits");
+
+        DegreeRequirement totalCredits = factory.make();
+
+
+
+        factory = new DegreeRequirementFactory();
 
         List<DegreeRequirement> otherReqList = new ArrayList<DegreeRequirement>();
         otherReqList.add(thesisReq);
         otherReqList.add(colloq);
+        otherReqList.add(outOfDept);
+        otherReqList.add(introToResearch);
+        otherReqList.add(totalCredits);
 
-        DegreeRequirement otherReqs = new DegreeRequirement(
-                "Other Requirements",
-                otherReqList,
-                null,
-                null,
-                3.45,
-                false,
-                false,
-                false,
-                31,
-                0,
-                5000,
-                Grade.C);
+        factory.setSubRequirements(otherReqList);
+        factory.setRequirementName("Other Course Requirements");
 
-        DegreeRequirement otherGPARequirements = new DegreeRequirement(
-                "OtherGPARequirements",
-                null,
-                null,
-                null,
-                3.45,
-                false,
-                false,
-                false,
-                0,
-                0,
-                5000,
-                Grade.C);
+        DegreeRequirement otherReqs = factory.make();
 
-        DegreeRequirement milestoneReqs = new DegreeRequirement(
-                "milestoneReqs",
-                null,
-                null,
-                null,
-                null,
-                false,
-                false,
-                false,
-                0,
-                0,
-                5000,
-                Grade.C);
+
+
+        factory = new DegreeRequirementFactory();
+
+        factory.setRequirementName("Overall GPA");
+        factory.setMinGPA(3.45);
+
+        DegreeRequirement overallGPA = factory.make();
+
+
+
+        factory = new DegreeRequirementFactory();
+
+        factory.setRequirementName("In Program GPA");
+        factory.setMinGPA(3.45);
+
+        DegreeRequirement inProgramGPA = factory.make();
+
+
+
+        factory = new DegreeRequirementFactory();
+
+        List<DegreeRequirement> otherGPAReqs = new ArrayList<DegreeRequirement>();
+        otherGPAReqs.add(overallGPA);
+        otherGPAReqs.add(inProgramGPA);
+
+        factory.setRequirementName("Other GPA Requirements");
+        factory.setSubRequirements(otherGPAReqs);
+
+        DegreeRequirement otherGPARequirements = factory.make();
+
+
+        factory = new DegreeRequirementFactory();
+
+        List<Milestone> milestoneList = new ArrayList<Milestone>();
+        milestoneList.add(Milestone.PRELIM_COMMITTEE_APPOINTED);
+        milestoneList.add(Milestone.WRITTEN_PE_SUBMITTED);
+        milestoneList.add(Milestone.WRITTEN_PE_APPROVED);
+        milestoneList.add(Milestone.ORAL_PE_PASSED);
+        milestoneList.add(Milestone.DPF_SUBMITTED);
+        milestoneList.add(Milestone.DPF_APPROVED);
+        milestoneList.add(Milestone.THESIS_COMMITTEE_APPOINTED);
+        milestoneList.add(Milestone.PROPOSAL_PASSED);
+        milestoneList.add(Milestone.GRADUATION_PACKET_REQUESTED);
+        milestoneList.add(Milestone.THESIS_SUBMITTED);
+        milestoneList.add(Milestone.THESIS_APPROVED);
+        milestoneList.add(Milestone.DEFENSE_PASSED);
+
+        factory.setRequirementName("Milestones");
+        factory.setRequiredMilestones(milestoneList);
+
+        DegreeRequirement milestoneReqs = factory.make();
+
+
 
         DegreePlan phDDegreePlan = new DegreePlan(
                 breadth,
                 otherReqs,
                 otherGPARequirements,
-                milestoneReqs);
+                milestoneReqs,
+                Department.COMPUTER_SCIENCE,
+                Degree.PHD);
 
         return phDDegreePlan;
     }

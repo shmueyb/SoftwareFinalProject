@@ -1,6 +1,10 @@
-package edu.umn.csci5801.test;
+package edu.umn.csci5801.studentrecord.StudentRecordFactory;
 
-import java.io.BufferedWriter;
+public class StudentRecordFactory{
+
+}
+
+/*import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -16,6 +20,7 @@ import edu.umn.csci5801.session.Professor;
 import edu.umn.csci5801.session.Student;
 import edu.umn.csci5801.session.User;
 import edu.umn.csci5801.session.UserType;
+import edu.umn.csci5801.session.Users;
 import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.studentrecord.program.Degree;
 import edu.umn.csci5801.studentrecord.program.Department;
@@ -29,11 +34,12 @@ import edu.umn.csci5801.studentrecord.transcript.Semester;
 import edu.umn.csci5801.studentrecord.transcript.Term;
 
 /**
- */
+ *
 public class StudentRecordFactory {
     static private Student Luan = new Student("Luan", "Nguyen", "nguy0621");
     static private Student Greg = new Student("Gregory", "Gay", "gayxx067");
     static private Student Ian = new Student("Ian", "De Silva", "desil1337");
+    //TODO: add these below to users.txt
     static private Student Catherine = new Student("Catherine", "Reed", "1111");
 
     static private Department CompSci = Department.COMPUTER_SCIENCE;
@@ -42,13 +48,16 @@ public class StudentRecordFactory {
      *
      * @return: a list of student records for database
      * @throws Exception
-     */
+     *
 
     public static void instantiateTestDb() throws Exception {
         writeStudentsJSON("GRADS_Materials/Data/TestStudents.txt", createRecords());
-        List<User> users = new Gson().fromJson( new FileReader( new File("GRADS_Materials/Data/users.txt")), new TypeToken<List<User>>(){}.getType());
-        User newUser = new User("1111", "Catherine", "Reed", UserType.STUDENT,Department.COMPUTER_SCIENCE);
-        users.add(newUser);
+        List<Users> users = new Gson().fromJson( new FileReader( new File("GRADS_Materials/Data/users.txt")), new TypeToken<List<Users>>(){}.getType());
+        User newUser = new User();
+        newUser.setFirstName("Catherine");
+        newUser.setLastName("Reed");
+        newUser.setId("1111");
+        users.add(new Users(newUser, UserType.STUDENT, Department.COMPUTER_SCIENCE));
         writeUsersJSON("GRADS_Materials/Data/TestUsers.txt", users);
 
     }
@@ -68,7 +77,7 @@ public class StudentRecordFactory {
     /**
      *
      * @return: dummy list of notes
-     */
+     *
     public static List<String> notes() {
         List<String> notes = new LinkedList<String>();
         for (int i = 0; i<5;i++) {
@@ -80,7 +89,7 @@ public class StudentRecordFactory {
     /**
      * generating Luan's record
      * @return Luan's record
-     */
+     *
     public static StudentRecord LuanRecord() {
         return  new StudentRecord.StudentRecordBuilder()
                 .student(Luan)
@@ -113,7 +122,7 @@ public class StudentRecordFactory {
                 (new Course("Advanced Algorithms and Data Structures", "csci5421", "3", CourseArea.THEORY_ALGORITHMS),
                         new Term(Semester.SPRING, 2008), Grade.A));
         courseTakens.add(new CourseTaken
-                (new Course("Machine Learning", "csci5525", "3", CourseArea.THEORY_ALGORITHMS),
+                (new Course("Machine Learning", "csci5525", "3", CourseArea.APPLICATIONS),
                         new Term(Semester.SPRING, 2008), Grade.A));
         courseTakens.add(new CourseTaken
                 (new Course("Operating System", "csci5103", "3", CourseArea.ARCHITECTURE_SYSTEMS_SOFTWARE),
@@ -129,8 +138,8 @@ public class StudentRecordFactory {
     }
     /**
      * generating Greg's record
-     * @return Greg's record
-     */
+     * @reurn Greg's record
+     *
     public static StudentRecord GregRecord() {
         return  new StudentRecord.StudentRecordBuilder()
                 .student(Greg)
@@ -148,7 +157,7 @@ public class StudentRecordFactory {
     /**
      * generating Greg's record
      * @return Greg's record
-     */
+     *
     public static StudentRecord GregRecordUpdated() {
         return  new StudentRecord.StudentRecordBuilder()
                 .student(Greg)
@@ -166,7 +175,7 @@ public class StudentRecordFactory {
     /**
      * generating Greg's record
      * @return Greg's record
-     */
+     *
     public static StudentRecord GregRecordUpdatedCourse() {
         return  new StudentRecord.StudentRecordBuilder()
                 .student(Greg)
@@ -232,7 +241,7 @@ public class StudentRecordFactory {
     /**
      * generating Ian's record
      * @return: Ian's record
-     */
+     *
     public static StudentRecord IanRecord() {
         return  new StudentRecord.StudentRecordBuilder()
                 .student(Ian)
@@ -282,7 +291,7 @@ public class StudentRecordFactory {
     /**
      * Catherine's record
      * @return
-     */
+     *
     public static StudentRecord CatherineRecord() {
         return  new StudentRecord.StudentRecordBuilder()
                 .student(Catherine)
@@ -344,7 +353,7 @@ public class StudentRecordFactory {
             System.err.println("Error: " + e.getMessage());
         }
     }
-    public static void writeUsersJSON(String jsonFileName, List<User> newStudentRecords) {
+    public static void writeUsersJSON(String jsonFileName, List<Users> newStudentRecords) {
         BufferedWriter out = null;
         try
         {
@@ -362,4 +371,4 @@ public class StudentRecordFactory {
     }
 
 }
-
+*/

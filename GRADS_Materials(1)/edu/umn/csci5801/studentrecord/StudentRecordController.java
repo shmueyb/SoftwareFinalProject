@@ -8,18 +8,23 @@ import edu.umn.csci5801.session.Student;
 import edu.umn.csci5801.studentrecord.program.Degree;
 import edu.umn.csci5801.studentrecord.program.DegreePlan;
 import edu.umn.csci5801.studentrecord.program.Department;
-import edu.umn.csci5801.studentrecord.requirements.MilestoneSet;
 import edu.umn.csci5801.studentrecord.requirements.RequirementCheckResult;
 import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
-import edu.umn.csci5801.studentrecord.transcript.Grade;
 import edu.umn.csci5801.studentrecord.transcript.ProgressSummary;
 import edu.umn.csci5801.studentrecord.transcript.Term;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * Authors: Ben Hagaman, Sam Blustin, Catherine Reeves, Xum Giang, Trang Nguyen
+ * @author Ben Hagaman
+ * @author Sam Blustin
+ * @author Catherine Reeves
+ * @author Xum Giang
+ * @author Trang Nguyen
+ *
+ * StudentRecordController.java
  *
  * StudentRecordController handles requests specific to student records, including progress
  * summary generation.

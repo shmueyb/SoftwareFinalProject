@@ -7,8 +7,19 @@ import edu.umn.csci5801.studentrecord.transcript.Grade;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * Created by Ben on 12/17/13.
+ * @author Ben Hagaman
+ * @author Sam Blustin
+ * @author Catherine Reeves
+ * @author Xum Giang
+ * @author Trang Nguyen
+ *
+ * DegreeRequirementFactory.java
+ *
+ * This class is only used to create new Degree Requirements.
+ * This is only used as a replacement to the JSON Database of requirements,
+ * to make the setting up of requirements easier.
  */
 public class DegreeRequirementFactory {
 

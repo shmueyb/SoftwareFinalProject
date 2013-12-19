@@ -59,6 +59,10 @@ public class DegreePlanDAO {
         throw new DatabaseAccessException("No DegreePlan found for Dept: " + dept + ", Degree: " + degree + ".");
     }
 
+
+
+
+
     /**
      * Returns the PhD degree requirements. (This would normally be in a JSON database, but for the sake of time, and overall
      * quality of the program, we decided to just save it in here, as we found it very unlikely that it would be changed during

@@ -685,23 +685,6 @@ public class GenerateProgressSummaryTest {
 
     }
 
-    /**
-     * testing if the method would handle invalid user
-     * @throws DatabaseAccessException
-     * @throws AccessDeniedException
-     */
-    @Test
-    public void testGenerateProgressSummary_InvalidUser() throws DatabaseAccessException, AccessDeniedException, InvalidUserException, FileNotFoundException {
-        grads.setUser("invalid user");
-        try {
-            ProgressSummary progressSummary = grads.generateProgressSummary("InvalidUser");
-            fail();
-        } catch (AccessDeniedException ex) {
-
-        }
-
-
-    }
 
     /**
      * testing if the method would handle InvalidUser

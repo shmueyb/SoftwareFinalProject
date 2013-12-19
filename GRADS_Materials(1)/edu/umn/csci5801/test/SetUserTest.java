@@ -45,8 +45,12 @@ public class SetUserTest {
         try {
             //method supposed to check for null userID
             try {
-                grads.setUser(null);
-            } catch (DatabaseAccessException e) {
+                try {
+                    grads.setUser(null);
+                } catch (DatabaseAccessException e) {
+                    e.printStackTrace();
+                }
+            } catch (NullPointerException e) {
                 e.printStackTrace();
             }
             fail();
@@ -62,8 +66,10 @@ public class SetUserTest {
         try {
             try {
                 grads.setUser("");
+
             } catch (DatabaseAccessException e) {
                 e.printStackTrace();
+
             }
             fail();
         } catch (InvalidUserException i) {

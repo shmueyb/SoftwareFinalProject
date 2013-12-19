@@ -43,7 +43,7 @@ public class GetStudentIDsTest {
         Assert.assertTrue(actual.contains("gayxx067"));
         Assert.assertTrue(actual.contains("desil1337"));
         Assert.assertTrue(actual.contains("1111"));
-        Assert.assertSame(actual.size(), 4);
+        Assert.assertSame(actual.size(), 5);
     }
 
     /**

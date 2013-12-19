@@ -195,12 +195,38 @@ public class DegreeRequirement {
 
     /**
      * Returns the minimum courses that this requirement needs to pass.
-     * @param originalList
-     * @return
+     *
+     * @param originalList the original list of courses.
+     * @return the List of courses needed to pass this requirement.
      */
     protected List<CourseTaken> getMinimumNecessaryCourses(List<CourseTaken> originalList) {
-        //TODO
-        return originalList;
+        List<CourseTaken> necessaryCourses = new ArrayList<CourseTaken>();
+
+        for (DegreeRequirement subReq: subRequirements) {
+            for (CourseTaken course: subReq.getMinimumNecessaryCourses(originalList)) {
+                necessaryCourses.add(course);
+            }
+        }
+
+        necessaryCourses = filterOutDuplicateCourses(necessaryCourses);
+
+       List<CourseTaken> extraCourses = getPassingCourses(originalList);
+
+        if (minCourseCount > 0) {
+            extraCourses = getBestCoursesForMinCount(originalList);
+        }
+
+        if (minCredits > 0) {
+            extraCourses = getBestCoursesForMinCredits(necessaryCourses);
+        }
+
+        while ((minCourseCount > necessaryCourses.size()
+                 || minCredits > getNumberOfCredits(necessaryCourses))
+               && (!extraCourses.isEmpty())){
+            necessaryCourses.add(extraCourses.get(0));
+        }
+
+        return necessaryCourses;
     }
 
     /**
@@ -627,9 +653,9 @@ public class DegreeRequirement {
         List<CourseTaken> applicableCourses = getPassingCourses(coursesTaken);
 
         if (minCourseCount > 0) {
-            applicableCourses = getBestCoursesForMinCount(coursesTaken);
+            applicableCourses = getMinimumNecessaryCourses(coursesTaken);
         } else if (minCredits > 0) {
-            applicableCourses = getBestCoursesForMinCredits(coursesTaken);
+            applicableCourses = getMinimumNecessaryCourses(coursesTaken);
         }
 
 

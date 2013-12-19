@@ -196,6 +196,8 @@ public class DegreeRequirement {
     /**
      * Returns the minimum courses that this requirement needs to pass.
      *
+     * (Didn't work, so this was abandoned. Not used)
+     *
      * @param originalList the original list of courses.
      * @return the List of courses needed to pass this requirement.
      */
@@ -653,9 +655,9 @@ public class DegreeRequirement {
         List<CourseTaken> applicableCourses = getPassingCourses(coursesTaken);
 
         if (minCourseCount > 0) {
-            applicableCourses = getMinimumNecessaryCourses(coursesTaken);
+            applicableCourses = getBestCoursesForMinCount(coursesTaken);
         } else if (minCredits > 0) {
-            applicableCourses = getMinimumNecessaryCourses(coursesTaken);
+            applicableCourses = getBestCoursesForMinCredits(coursesTaken);
         }
 
 

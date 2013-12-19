@@ -7,12 +7,17 @@ import edu.umn.csci5801.studentrecord.transcript.CourseTaken;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * Created with IntelliJ IDEA.
- * User: Ben
- * Date: 12/12/13
- * Time: 12:52 PM
- * To change this template use File | Settings | File Templates.
+ * @author Ben Hagaman
+ * @author Sam Blustin
+ * @author Catherine Reeves
+ * @author Xum Giang
+ * @author Trang Nguyen
+ *
+ * DegreePlan.java
+ *
+ * This class represents a degree plan that students may have.
  */
 public class DegreePlan {
 
@@ -24,6 +29,14 @@ public class DegreePlan {
     Department department;
     Degree degree;
 
+    /**
+     * @param breadthRequirements the breadth requirements for the degree plan.
+     * @param otherCourseRequirements the other course requirements for the degree plan.
+     * @param otherGPARequirements the other GPA requirements for the degree plan.
+     * @param milestones the milestones for the degree plan.
+     * @param department the department that the degree plan is in.
+     * @param degree the degree that the degree plan is for.
+     */
     public DegreePlan (
             DegreeRequirement breadthRequirements,
             DegreeRequirement otherCourseRequirements,
@@ -40,7 +53,13 @@ public class DegreePlan {
         this.degree = degree;
     }
 
-
+    /**
+     * Checks if the student passed the degree plan, given the courses taken.
+     *
+     * @param coursesTaken the courses that
+     * @param milestonesPassed
+     * @return
+     */
     public boolean getIsStudentPassed(List<CourseTaken> coursesTaken, List<MilestoneSet> milestonesPassed) {
         if (! breadthRequirements.checkIsPassed(coursesTaken, milestonesPassed))
             return false;

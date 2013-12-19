@@ -16,9 +16,15 @@ import edu.umn.csci5801.session.User;
 import edu.umn.csci5801.studentrecord.StudentRecord;
 import edu.umn.csci5801.studentrecord.transcript.Course;
 
-
 /**
- * Created by us.
+ * @author Ben Hagaman
+ * @author Sam Blustin
+ * @author Catherine Reeves
+ * @author Xum Giang
+ * @author Trang Nguyen
+ *
+ * FileAccess.java
+ *
  * Class for specifying and accessing the JSON "database"
  * Used to read and write the database files.
  */
@@ -133,9 +139,9 @@ public class FileAccess {
     public static void initialize(String studentsFilePath, String coursesFilePath, String usersFilePath) throws DatabaseAccessException{
         //if (instance != null) {
 
-            // - typically we would keep this here for a production system, but since it could throw off
-            //   testing a lot if you initialize GRADS twice on the same JVM, we decided to comment it out
-            //   to save you the pain if it broke your tests.
+            // : typically we would keep this here for a production system, but since it could throw off
+            // : testing a lot if you initialize GRADS twice on the same JVM, we decided to comment it out
+            // : to save you the pain if it broke your tests.
 
             //throw new DatabaseAccessException("The database path may not be changed without restarting GRADS");
         //}

@@ -41,7 +41,7 @@ public class GenerateProgressSummaryTest {
         }
     }
 
-    public CheckResultDetails newCheckResultDetails(float gpa, List<CourseTaken> courses,List<String> other){
+    private CheckResultDetails newCheckResultDetails(float gpa, List<CourseTaken> courses,List<String> other){
         CheckResultDetails details = new CheckResultDetails();
         details.setGPA(gpa);
         details.setCourses(courses);

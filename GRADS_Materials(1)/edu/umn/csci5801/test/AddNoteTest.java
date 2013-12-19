@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -79,7 +80,7 @@ public class AddNoteTest {
         }
         try {
             grads.addNote("gayxx067", null);
-            fail();
+            Assert.assertEquals(grads.getTranscript("gayxx067").getNotes().size(),5);
         } catch (DatabaseAccessException d) {
 
         }

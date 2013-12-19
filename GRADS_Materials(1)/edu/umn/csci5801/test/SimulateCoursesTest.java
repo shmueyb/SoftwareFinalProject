@@ -49,10 +49,25 @@ public class SimulateCoursesTest {
      */
     @Test
     public void testSimulateCourses_gradesGenerating() throws Exception {
-        grads.setUser("gayxx067");
-        ProgressSummary progressSummary = grads.simulateCourses("gayxx067", StudentRecordFactory.GregCoursesTaken());
+        grads.setUser("nguy0621");
+        ProgressSummary progressSummary = grads.simulateCourses("nguy0621", StudentRecordFactory.LuanCoursesTaken());
         for(RequirementCheckResult r : progressSummary.getRequirementCheckResults()) {
             Assert.assertNotNull(r.getDetails().getGPA());
+        }
+    }
+
+    @Test
+    public void testSimulateCourses_checkRequirementNowPassed() throws Exception {
+        grads.setUser("nguy0621");
+        ProgressSummary progressSummary = grads.simulateCourses("nguy0621", StudentRecordFactory.PHDCoursesTaken());
+        for(RequirementCheckResult r : progressSummary.getRequirementCheckResults()) {
+            if (r.getName().equals("Breadth Requirement")){
+                Assert.assertTrue(r.isPassed());
+            }
+            else if (r.getName().equals("Colloquium")){
+                Assert.assertTrue(r.isPassed());
+            }
+
         }
     }
 

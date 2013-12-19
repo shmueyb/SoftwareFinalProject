@@ -6,15 +6,29 @@ import edu.umn.csci5801.studentrecord.transcript.Course;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Ben
- * Date: 12/8/13
- * Time: 4:26 AM
- * To change this template use File | Settings | File Templates.
+ * @author Ben Hagaman
+ * @author Sam Blustin
+ * @author Catherine Reeves
+ * @author Xum Giang
+ * @author Trang Nguyen
+ *
+ * CourseDAO.java
+ *
+ * This class abstracts the course database information into Course objects.
+ * There are general methods for interacting with the database.
  */
 public class CourseDAO {
+
+    /**
+     * Retrieves the course object in the course database corresponding to a courseID, if it exists.
+     *
+     * @param courseID the courseID of the course we wish to retrieve.
+     * @return the Course we wish to retrieve.
+     * @throws DatabaseAccessException If the course is not found,
+     *         or there is a problem with accessing the database.
+     */
     public static Course getCourseByID(String courseID) throws DatabaseAccessException{
-        List<Course> courseList=null;
+        List<Course> courseList;
 
         courseList= FileAccess.getInstance().getCourseJSON();
 

@@ -121,6 +121,10 @@ public class StudentRecordController {
      * @throws DatabaseAccessException if access to the database failed.
      */
     public static void addNote(String studentID, String note) throws DatabaseAccessException {
+        if (note == null) {
+            return;
+        }
+
         StudentRecord studentRecord = StudentDAO.getStudentByID(studentID);
         List<String> notes = studentRecord.getNotes();
         notes.add(note);

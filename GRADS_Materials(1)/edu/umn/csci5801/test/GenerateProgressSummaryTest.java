@@ -316,7 +316,7 @@ public class GenerateProgressSummaryTest {
         ProgressSummary progressSummary = grads.generateProgressSummary("gayxx067");
 
         // Create a parallel Progress Summary
-        assertEquals(new Student("Gregory", "Gay", "nguy0621"), progressSummary.getStudent());
+        assertEquals(new Student("Gregory", "Gay", "nguy0621").getId(), progressSummary.getStudent().getId());
         assertEquals(Department.COMPUTER_SCIENCE, progressSummary.getDepartment());
         assertEquals(Degree.MS_A, progressSummary.getDegreeSought());
         assertEquals(new Term(Semester.SPRING, 2009), progressSummary.getTermBegan());

@@ -30,10 +30,11 @@ public class FileAccess {
     private static FileAccess instance;
 
     /**
+     * Private constructor for the singleton FileAccess object
      *
-     * @param studentsFilePath
-     * @param coursesFilePath
-     * @param usersFilePath
+     * @param studentsFilePath the path to the Students JSON database
+     * @param coursesFilePath the path to the Courses JSON database
+     * @param usersFilePath the path to the Users JSON database
      */
     private FileAccess(String studentsFilePath, String coursesFilePath, String usersFilePath) {
         this.studentsFilePath = studentsFilePath;
@@ -42,125 +43,114 @@ public class FileAccess {
     }
 
     /**
+     * Returns the full list of students in the students database.
      *
-     * @return
-     * @throws FileNotFoundException
+     * @return List of students in the students database
+     * @throws DatabaseAccessException if there was an error when attempting to read from the database
      */
     public List<StudentRecord> getStudentsJSON() throws DatabaseAccessException {
-        //TODO: fill in method: read file into a single JSON string
-        //GRADS_Materials/Data/students.txt
-        List<StudentRecord> studentRecords = null;
+        List<StudentRecord> studentRecords;
         try {
             studentRecords = new Gson().fromJson(
                                         new FileReader( new File(studentsFilePath)),
                                         new TypeToken<List<StudentRecord>>(){}.getType());
         } catch (FileNotFoundException e) {
-            throw new DatabaseAccessException(e.getMessage());
+            throw new DatabaseAccessException("An error occured while writing to the students database:\n"
+                    + e.getMessage());
         }
         return studentRecords;
     }
 
     /**
+     * Re-writes the students database to represent the list of students passed in
      *
-     * @param newStudentRecords
+     * @param newStudentRecords the records we wish to write to a JSON file, and replace the students database file with.
      */
-    public void writeStudentsJSON(List<StudentRecord> newStudentRecords) {
-        //TODO: fill in method: overwrite path/students.txt with the supplied string
-
-
-        BufferedWriter out = null;
-        try
-        {
-            //Writer writer = new FileWriter(jsonFileName);
-            FileWriter fstream = new FileWriter(studentsFilePath, false); //true tells to append data.
-            //fstream.write(newStudentFileContents);
-            String newRecords = new GsonBuilder().setPrettyPrinting().create().toJson(newStudentRecords);
-            //fstream.write(newRecords);
-            //fstream.write("Does this even work?");
-            out = new BufferedWriter(fstream);
-            out.write(newRecords);
-            out.close();
-        }
-        catch (IOException e)
-        {
-            System.err.println("Error: " + e.getMessage());
-        }
-
-    }
-
-    public static void writeUsersJSON(String jsonFileName, List<User> newStudentRecords) {
+    public void writeStudentsJSON(List<StudentRecord> newStudentRecords) throws DatabaseAccessException{
         BufferedWriter out;
-        try
-        {
-            FileWriter fstream = new FileWriter(jsonFileName, false); //true tells to append data.
+        try {
+            FileWriter fstream = new FileWriter(studentsFilePath, false);
             String newRecords = new GsonBuilder().setPrettyPrinting().create().toJson(newStudentRecords);
             out = new BufferedWriter(fstream);
             out.write(newRecords);
             out.close();
-        }
-        catch (IOException e)
+        } catch (IOException e)
         {
-            System.err.println("Error: " + e.getMessage());
+            throw new DatabaseAccessException("An error occured while writing to the students database:\n"
+                    + e.getMessage());
         }
 
     }
 
     /**
+     * Returns the full list of courses in the courses database.
      *
-     * @return
-     * @throws DatabaseAccessException
+     * @return List of courses in the courses database
+     * @throws DatabaseAccessException if there was an error when attempting to read from the database
      */
     public List<Course> getCourseJSON() throws DatabaseAccessException {
-        //TODO: fill in method: read file into a single JSON string
-        //"GRADS_Materials/Data/courses.txt
-        List<Course> courses = null;
+        List<Course> courses;
         try {
             courses = new Gson().fromJson(
                                         new FileReader( new File(coursesFilePath)),
                                         new TypeToken<List<Course>>(){}.getType());
-        } catch (FileNotFoundException e) {
-            throw new DatabaseAccessException(e.getMessage());
+        } catch (Exception e) {
+            throw new DatabaseAccessException("An error occured while trying to read from the courses database.\n"
+                    + e.getMessage());
         }
         return courses;
     }
 
     /**
+     * Returns the full list of users in the user database.
      *
-     * @return
-     * @throws FileNotFoundException
+     * @return List of users in the user database
+     * @throws DatabaseAccessException if there was an error when attempting to read from the database
      */
     public List<User> getUserJSON() throws DatabaseAccessException {
-        //TODO: fill in method: read file into a single JSON string
-        //"GRADS_Materials/Data/users.txt"
-        List<User> sessions = null;
+        List<User> users;
         try {
-            sessions = new Gson().fromJson(
+            users = new Gson().fromJson(
                                         new FileReader(new File(usersFilePath)),
                                         new TypeToken<List<User>>(){}.getType());
-        } catch (FileNotFoundException e) {
-            throw new DatabaseAccessException("Invalid Path for User Database.\n" + e.getMessage());
+        } catch (Exception e) {
+            throw new DatabaseAccessException("An error occured while trying to read from the user database.\n"
+                    + e.getMessage());
         }
-        return sessions;
+        return users;
     }
 
     /**
+     * Initializes the singleton FileAccess object. Sets the database paths to use during the execution of this instance
+     * of GRADS. (Note: not actually a singleton currently to prevent errors while testing GRADS)
      *
-     * @param studentsFilePath
-     * @param coursesFilePath
-     * @param usersFilePath
-     * @throws DatabaseAccessException
+     * @param studentsFilePath the path to the Students JSON database
+     * @param coursesFilePath the path to the Courses JSON database
+     * @param usersFilePath the path to the Users JSON database
+     * @throws DatabaseAccessException if there is an attempt to initialize FileAccess twice. This is to prevent
+     *         someone from changing the databases being used during execution, as this could be a dangerous operation.
      */
     public static void initialize(String studentsFilePath, String coursesFilePath, String usersFilePath) throws DatabaseAccessException{
-        if (instance != null) {
-            throw new DatabaseAccessException("The database path may not be changed without restarting GRADS");
-        }
+        //if (instance != null) {
+
+            // - typically we would keep this here for a production system, but since it could throw off
+            //   testing a lot if you initialize GRADS twice on the same JVM, we decided to comment it out
+            //   to save you the pain if it broke your tests.
+
+            //throw new DatabaseAccessException("The database path may not be changed without restarting GRADS");
+        //}
         instance = new FileAccess(studentsFilePath, coursesFilePath, usersFilePath);
     }
 
     /**
+     * returns the singleton instance of FileAccess. Must be initialized before getting the instance
      *
-     * @return
-     * @throws DatabaseAccessException
+     * Note: this is not actually a singleton here because of the reason mentioned in initialize(). In
+     *       case GRADS is tested by creating several instances of GRADS on the same jvm, we wanted to
+     *       ensure there aren't problems with testing it.
+     *
+     * @return the initialized instance of FileAccess
+     * @throws DatabaseAccessException if FileAccess has not been initialized.
      */
     public static FileAccess getInstance() throws DatabaseAccessException{
         if (instance == null) {

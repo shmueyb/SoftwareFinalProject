@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="objenesis">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/objenesis" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/lib/objenesis" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/lib/objenesis" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/objenesis" recursive="false" type="SOURCES" />
+  </library>
+</component>

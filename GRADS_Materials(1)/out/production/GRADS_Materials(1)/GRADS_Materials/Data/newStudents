@@ -1,0 +1,932 @@
+[
+  {
+    "student": {
+      "id": "1111",
+      "firstName": "Trang",
+      "lastName": "Nguye,"
+    },
+    "department": "COMPUTER_SCIENCE",
+    "degreeSought": "MS_A",
+    "termBegan": {
+      "semester": "FALL",
+      "year": 2014
+    },
+    "advisors": [
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Anand",
+        "lastName": "Tripathy"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Youself",
+        "lastName": "Saad"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Nick",
+        "lastName": "Harper"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Albert",
+        "lastName": "Eistein"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Luc",
+        "lastName": "Nelson"
+      }
+    ],
+    "committee": [
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Anand",
+        "lastName": "Tripathy"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Youself",
+        "lastName": "Saad"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Nick",
+        "lastName": "Harper"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Albert",
+        "lastName": "Eistein"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Luc",
+        "lastName": "Nelson"
+      }
+    ],
+    "coursesTaken": [
+      {
+        "course": {
+          "name": "Developing the Interactive Web",
+          "id": "csci5117",
+          "numCredits": "3",
+          "courseArea": "APPLICATIONS"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      },
+      {
+        "course": {
+          "name": "Aritificial Intelligence",
+          "id": "csci5511",
+          "numCredits": "3",
+          "courseArea": "ARCHITECTURE_SYSTEMS_SOFTWARE"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      },
+      {
+        "course": {
+          "name": "SoftWare Engineer",
+          "id": "csci5801",
+          "numCredits": "3",
+          "courseArea": "ARCHITECTURE_SYSTEMS_SOFTWARE"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      },
+      {
+        "course": {
+          "name": "Programming Language",
+          "id": "csci5106",
+          "numCredits": "3",
+          "courseArea": "THEORY_ALGORITHMS"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      }
+    ],
+    "milestonesSet": [
+      {
+        "milestone": "DEFENSE_PASSED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "DPF_APPROVED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "DPF_SUBMITTED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "GRADUATION_PACKET_REQUESTED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "ORAL_PE_PASSED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "PRELIM_COMMITTEE_APPOINTED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "PROPOSAL_PASSED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "THESIS_APPROVED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "TRACKING_FORM_APPROVED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      }
+    ]
+  },
+  {
+    "student": {
+      "id": "2222",
+      "firstName": "Ben",
+      "lastName": "Hagaman"
+    },
+    "department": "MATH",
+    "degreeSought": "MS_A",
+    "termBegan": {
+      "semester": "SPRING",
+      "year": 2014
+    },
+    "advisors": [
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Anand",
+        "lastName": "Tripathy"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Youself",
+        "lastName": "Saad"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Nick",
+        "lastName": "Harper"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Albert",
+        "lastName": "Eistein"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Luc",
+        "lastName": "Nelson"
+      }
+    ],
+    "committee": [
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Anand",
+        "lastName": "Tripathy"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Youself",
+        "lastName": "Saad"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Nick",
+        "lastName": "Harper"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Albert",
+        "lastName": "Eistein"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Luc",
+        "lastName": "Nelson"
+      }
+    ],
+    "coursesTaken": [
+      {
+        "course": {
+          "name": "Developing the Interactive Web",
+          "id": "csci5117",
+          "numCredits": "3",
+          "courseArea": "APPLICATIONS"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      },
+      {
+        "course": {
+          "name": "Aritificial Intelligence",
+          "id": "csci5511",
+          "numCredits": "3",
+          "courseArea": "ARCHITECTURE_SYSTEMS_SOFTWARE"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      },
+      {
+        "course": {
+          "name": "SoftWare Engineer",
+          "id": "csci5801",
+          "numCredits": "3",
+          "courseArea": "ARCHITECTURE_SYSTEMS_SOFTWARE"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      },
+      {
+        "course": {
+          "name": "Programming Language",
+          "id": "csci5106",
+          "numCredits": "3",
+          "courseArea": "THEORY_ALGORITHMS"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      }
+    ],
+    "milestonesSet": [
+      {
+        "milestone": "DEFENSE_PASSED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "DPF_APPROVED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "DPF_SUBMITTED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "GRADUATION_PACKET_REQUESTED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "ORAL_PE_PASSED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "PRELIM_COMMITTEE_APPOINTED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "PROPOSAL_PASSED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "THESIS_APPROVED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "TRACKING_FORM_APPROVED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      }
+    ]
+  },
+  {
+    "student": {
+      "id": "3333",
+      "firstName": "Xum",
+      "lastName": "Giang"
+    },
+    "department": "MATH",
+    "degreeSought": "MS_B",
+    "termBegan": {
+      "semester": "SPRING",
+      "year": 2014
+    },
+    "advisors": [
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Anand",
+        "lastName": "Tripathy"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Youself",
+        "lastName": "Saad"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Nick",
+        "lastName": "Harper"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Albert",
+        "lastName": "Eistein"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Luc",
+        "lastName": "Nelson"
+      }
+    ],
+    "committee": [
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Anand",
+        "lastName": "Tripathy"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Youself",
+        "lastName": "Saad"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Nick",
+        "lastName": "Harper"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Albert",
+        "lastName": "Eistein"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Luc",
+        "lastName": "Nelson"
+      }
+    ],
+    "coursesTaken": [
+      {
+        "course": {
+          "name": "Developing the Interactive Web",
+          "id": "csci5117",
+          "numCredits": "3",
+          "courseArea": "APPLICATIONS"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      },
+      {
+        "course": {
+          "name": "Aritificial Intelligence",
+          "id": "csci5511",
+          "numCredits": "3",
+          "courseArea": "ARCHITECTURE_SYSTEMS_SOFTWARE"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      },
+      {
+        "course": {
+          "name": "SoftWare Engineer",
+          "id": "csci5801",
+          "numCredits": "3",
+          "courseArea": "ARCHITECTURE_SYSTEMS_SOFTWARE"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      },
+      {
+        "course": {
+          "name": "Programming Language",
+          "id": "csci5106",
+          "numCredits": "3",
+          "courseArea": "THEORY_ALGORITHMS"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      }
+    ],
+    "milestonesSet": [
+      {
+        "milestone": "DEFENSE_PASSED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "DPF_APPROVED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "DPF_SUBMITTED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "GRADUATION_PACKET_REQUESTED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "ORAL_PE_PASSED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "PRELIM_COMMITTEE_APPOINTED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "PROPOSAL_PASSED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "THESIS_APPROVED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "TRACKING_FORM_APPROVED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      }
+    ]
+  },
+  {
+    "student": {
+      "id": "4444",
+      "firstName": "Katherine",
+      "lastName": "Reed"
+    },
+    "department": "COMPUTER_SCIENCE",
+    "degreeSought": "PHD",
+    "termBegan": {
+      "semester": "SPRING",
+      "year": 2014
+    },
+    "advisors": [
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Anand",
+        "lastName": "Tripathy"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Youself",
+        "lastName": "Saad"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Nick",
+        "lastName": "Harper"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Albert",
+        "lastName": "Eistein"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Luc",
+        "lastName": "Nelson"
+      }
+    ],
+    "committee": [
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Anand",
+        "lastName": "Tripathy"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Youself",
+        "lastName": "Saad"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Nick",
+        "lastName": "Harper"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Albert",
+        "lastName": "Eistein"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Luc",
+        "lastName": "Nelson"
+      }
+    ],
+    "coursesTaken": [
+      {
+        "course": {
+          "name": "Developing the Interactive Web",
+          "id": "csci5117",
+          "numCredits": "3",
+          "courseArea": "APPLICATIONS"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      },
+      {
+        "course": {
+          "name": "Aritificial Intelligence",
+          "id": "csci5511",
+          "numCredits": "3",
+          "courseArea": "ARCHITECTURE_SYSTEMS_SOFTWARE"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      },
+      {
+        "course": {
+          "name": "SoftWare Engineer",
+          "id": "csci5801",
+          "numCredits": "3",
+          "courseArea": "ARCHITECTURE_SYSTEMS_SOFTWARE"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      },
+      {
+        "course": {
+          "name": "Programming Language",
+          "id": "csci5106",
+          "numCredits": "3",
+          "courseArea": "THEORY_ALGORITHMS"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      }
+    ],
+    "milestonesSet": [
+      {
+        "milestone": "DEFENSE_PASSED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "DPF_APPROVED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "DPF_SUBMITTED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "GRADUATION_PACKET_REQUESTED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "ORAL_PE_PASSED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "PRELIM_COMMITTEE_APPOINTED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "PROPOSAL_PASSED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "THESIS_APPROVED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "TRACKING_FORM_APPROVED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      }
+    ]
+  },
+  {
+    "student": {
+      "id": "5555",
+      "firstName": "Sam",
+      "lastName": "Blustin"
+    },
+    "department": "COMPUTER_SCIENCE",
+    "degreeSought": "PHD",
+    "termBegan": {
+      "semester": "SPRING",
+      "year": 2014
+    },
+    "advisors": [
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Anand",
+        "lastName": "Tripathy"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Youself",
+        "lastName": "Saad"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Nick",
+        "lastName": "Harper"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Albert",
+        "lastName": "Eistein"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Luc",
+        "lastName": "Nelson"
+      }
+    ],
+    "committee": [
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Anand",
+        "lastName": "Tripathy"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Youself",
+        "lastName": "Saad"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Nick",
+        "lastName": "Harper"
+      },
+      {
+        "department": "MATH",
+        "firstName": "Albert",
+        "lastName": "Eistein"
+      },
+      {
+        "department": "COMPUTER_SCIENCE",
+        "firstName": "Luc",
+        "lastName": "Nelson"
+      }
+    ],
+    "coursesTaken": [
+      {
+        "course": {
+          "name": "Developing the Interactive Web",
+          "id": "csci5117",
+          "numCredits": "3",
+          "courseArea": "APPLICATIONS"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      },
+      {
+        "course": {
+          "name": "Aritificial Intelligence",
+          "id": "csci5511",
+          "numCredits": "3",
+          "courseArea": "ARCHITECTURE_SYSTEMS_SOFTWARE"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      },
+      {
+        "course": {
+          "name": "SoftWare Engineer",
+          "id": "csci5801",
+          "numCredits": "3",
+          "courseArea": "ARCHITECTURE_SYSTEMS_SOFTWARE"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      },
+      {
+        "course": {
+          "name": "Programming Language",
+          "id": "csci5106",
+          "numCredits": "3",
+          "courseArea": "THEORY_ALGORITHMS"
+        },
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        },
+        "grade": "A"
+      }
+    ],
+    "milestonesSet": [
+      {
+        "milestone": "DEFENSE_PASSED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "DPF_APPROVED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "DPF_SUBMITTED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "GRADUATION_PACKET_REQUESTED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "ORAL_PE_PASSED",
+        "term": {
+          "semester": "FALL",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "PRELIM_COMMITTEE_APPOINTED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "PROPOSAL_PASSED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "THESIS_APPROVED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      },
+      {
+        "milestone": "TRACKING_FORM_APPROVED",
+        "term": {
+          "semester": "SPRING",
+          "year": 2014
+        }
+      }
+    ]
+  }
+]

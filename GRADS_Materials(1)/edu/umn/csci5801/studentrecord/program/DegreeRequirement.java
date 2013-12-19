@@ -170,7 +170,7 @@ public class DegreeRequirement {
             acceptedCourses = filterOutDuplicateCourses(acceptedCourses);
         }
 
-        if (coursesToExclude != null && coursesToExclude.size() <= 0) {
+        if (coursesToExclude != null && coursesToExclude.size() > 0) {
             acceptedCourses = filterOutCoursesToExclude(acceptedCourses);
         }
 
@@ -335,15 +335,15 @@ public class DegreeRequirement {
             acceptedCourses = filterOutDuplicateCourses(acceptedCourses);
         }
 
-        if (coursesToExclude != null && coursesToExclude.size() <= 0) {
+        if (coursesToExclude != null && coursesToExclude.size() > 0) {
             acceptedCourses = filterOutCoursesToExclude(acceptedCourses);
         }
 
-        if (courseDeptsToExclude != null && courseDeptsToExclude.size() <= 0) {
+        if (courseDeptsToExclude != null && courseDeptsToExclude.size() > 0) {
             acceptedCourses = filterOutExcludedDepts(acceptedCourses);
         }
 
-        if (courseDeptsToInclude != null && courseDeptsToInclude.size() <= 0) {
+        if (courseDeptsToInclude != null && courseDeptsToInclude.size() > 0) {
             acceptedCourses = filterByIncludedDepts(acceptedCourses);
         }
 

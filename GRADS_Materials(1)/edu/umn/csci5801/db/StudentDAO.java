@@ -11,41 +11,59 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Ben
- * Date: 12/8/13
- * Time: 2:04 AM
- * To change this template use File | Settings | File Templates.
+ * @author Ben Hagaman
+ * @author Sam Blustin
+ * @author Catherine Reeves
+ * @author Xum Giang
+ * @author Trang Nguyen
+ *
+ * StudentDAO.java
+ *
+ * This class abstracts the students database information into Student objects.
+ * There are general methods for interacting with the database.
  */
 public class StudentDAO {
 
+    /**
+     * Updates the student record of the given student to the record given in the database.
+     *
+     * @param studentID the ID of the student, for whom we wish to update the student record.
+     * @param record the record we wish to update to.
+     * @throws DatabaseAccessException if updating the database failed.
+     */
     public static void updateStudentRecord(String studentID, StudentRecord record) throws DatabaseAccessException {
-        //TODO: get all students, find this one, replace with updated version, convert to JSON, save using FileAccess.java
         List<StudentRecord> allStudents = getAllStudents();
-        List<StudentRecord> newRecord = allStudents;
 
         for (int counter=0; counter < allStudents.size(); counter++){
 
             if (studentID.equals(allStudents.get(counter).getStudent().getId())){
-                newRecord.remove(counter);
-                newRecord.add(counter,record);
+                allStudents.remove(counter);
+                allStudents.add(counter,record);
             }
         }
-        FileAccess.getInstance().writeStudentsJSON(newRecord);
+        FileAccess.getInstance().writeStudentsJSON(allStudents);
     }
 
+    /**
+     * Returns the list of all students in the students database.
+     *
+     * @return List of all students
+     * @throws DatabaseAccessException if there was an error in querying the database.
+     */
     public static List<StudentRecord> getAllStudents() throws DatabaseAccessException {
         List<StudentRecord> studentList;
-        Gson gson = new Gson();
         studentList = FileAccess.getInstance().getStudentsJSON();
-
-        Type type = new TypeToken<ArrayList<StudentRecord>>(){}.getType();
-
-        //studentList = gson.fromJson(jsonString, type);
 
         return studentList;
     }
 
+    /**
+     * Returns all students in the supplied department.
+     *
+     * @param dept the department, for which we wish to generate a list of all students.
+     * @return List of students in the given department.
+     * @throws DatabaseAccessException if there was an error in querying the database.
+     */
     public static List<StudentRecord> getStudentsByDepartment(Department dept) throws DatabaseAccessException {
         List<StudentRecord> fullStudentList= getAllStudents();
         List<StudentRecord> filteredStudentList = new ArrayList<StudentRecord>();
@@ -59,6 +77,13 @@ public class StudentDAO {
         return filteredStudentList;
     }
 
+    /**
+     * Returns the student with the supplied ID, if they exist in the database.
+     *
+     * @param studentID the ID of the student we wish to retrieve the record for.
+     * @return StudentRecord for the given student id.
+     * @throws DatabaseAccessException if there was an error in querying the databse.
+     */
     public static StudentRecord getStudentByID(String studentID) throws DatabaseAccessException {
         List<StudentRecord> fullStudentList = getAllStudents();
 

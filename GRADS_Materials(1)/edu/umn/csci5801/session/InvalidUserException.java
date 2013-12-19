@@ -1,12 +1,24 @@
 package edu.umn.csci5801.session;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Ben
- * Date: 12/7/13
- * Time: 9:28 PM
- * To change this template use File | Settings | File Templates.
+ * @author Ben Hagaman
+ * @author Sam Blustin
+ * @author Catherine Reeves
+ * @author Xum Giang
+ * @author Trang Nguyen
+ *
+ * InvalidUserException.java
+ *
+ * This exception should be thrown if the user is set to an invalid user.
  */
 public class InvalidUserException extends Exception {
 
+    /**
+     * InvalidUserException
+     *
+     * @param message the message to print out.
+     */
+    public InvalidUserException(String message) {
+        super(message);
+    }
 }

@@ -199,6 +199,7 @@ public class DegreePlanDAO {
         factory.setApplicableCourses(colloqList);
         factory.setMustTakeAllCourses(true);
 
+
         DegreeRequirement colloq = factory.make();
 
 

@@ -14,11 +14,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Ben
- * Date: 12/12/13
- * Time: 12:53 PM
- * To change this template use File | Settings | File Templates.
+ * @author Ben Hagaman
+ * @author Sam Blustin
+ * @author Catherine Reeves
+ * @author Xum Giang
+ * @author Trang Nguyen
+ *
+ * DegreeRequirement.java
+ *
+ * This class represents a degree requirement that may be part of a DegreePlan, or another requirement..
  */
 public class DegreeRequirement {
 
@@ -190,10 +194,21 @@ public class DegreeRequirement {
     }
 
     /**
-     *
-     * @param coursesTaken
-     * @param milestonesPassed
+     * Returns the minimum courses that this requirement needs to pass.
+     * @param originalList
      * @return
+     */
+    protected List<CourseTaken> getMinimumNecessaryCourses(List<CourseTaken> originalList) {
+        //TODO
+        return originalList;
+    }
+
+    /**
+     * Generates a list of results depending on if the requirement, and subrequirements are passed.
+     *
+     * @param coursesTaken courses that the student has taken.
+     * @param milestonesPassed milestones that the student has passed.
+     * @return the list of results from the check.
      */
     public List<RequirementCheckResult> generateRequirementCheckResults(
             List<CourseTaken> coursesTaken,
@@ -378,13 +393,13 @@ public class DegreeRequirement {
     /**
      * returns a filtered list, which filters out S/N courses from the passed in list
      *
-     * @param coursesTaken courses we wish to apply the filter to
+     * @param originalList courses we wish to apply the filter to
      * @return the filtered list
      */
-    private List<CourseTaken> filterOutSN(List<CourseTaken> coursesTaken) {
+    private List<CourseTaken> filterOutSN(List<CourseTaken> originalList) {
         List<CourseTaken> coursesToReturn = new ArrayList<CourseTaken>();
 
-        for(CourseTaken courseTaken: coursesTaken) {
+        for(CourseTaken courseTaken: originalList) {
             if (! (courseTaken.getGrade().equals(Grade.S) || courseTaken.getGrade().equals(Grade.N))) {
                 coursesToReturn.add(courseTaken);
             }
@@ -397,13 +412,13 @@ public class DegreeRequirement {
      * returns a list of courses taken, with courses that don't meet the minimum
      * course level requirement out.
      *
-     * @param coursesTaken courses we wish to filter from
+     * @param originalList courses we wish to filter from
      * @return the filtered list
      */
-    private List<CourseTaken> filterOutByMinCourseLevel(List<CourseTaken> coursesTaken) {
+    private List<CourseTaken> filterOutByMinCourseLevel(List<CourseTaken> originalList) {
         ArrayList<CourseTaken> coursesToReturn = new ArrayList<CourseTaken>();
 
-        for (CourseTaken courseTaken: coursesTaken) {
+        for (CourseTaken courseTaken: originalList) {
             String courseID = courseTaken.getCourse().getId();
             String courseNum = courseID.substring(courseID.length()-4);
 
@@ -419,13 +434,13 @@ public class DegreeRequirement {
      * returns a list of courses taken, with courses that don't meet the minimum course
      * grade requirement out.
      *
-     * @param coursesTaken courses we wish to filter from
+     * @param originalList courses we wish to filter from
      * @return the filtered list
      */
-    private List<CourseTaken> filterOutByMinCourseGrade(List<CourseTaken> coursesTaken) {
+    private List<CourseTaken> filterOutByMinCourseGrade(List<CourseTaken> originalList) {
         ArrayList<CourseTaken> coursesToReturn = new ArrayList<CourseTaken>();
 
-        for (CourseTaken courseTaken: coursesTaken) {
+        for (CourseTaken courseTaken: originalList) {
             if (courseTaken.getGrade().numericValue() >= minCourseGrade.numericValue()
                     && courseTaken.getGrade().numericValue() > 0) {
 
@@ -443,16 +458,16 @@ public class DegreeRequirement {
     /**
      * returns a list of courses taken, with courses that are duplicates filtered out
      *
-     * @param coursesTaken courses we wish to filter from
+     * @param originalList courses we wish to filter from
      * @return the filtered list
      */
-    private List<CourseTaken> filterOutDuplicateCourses(List<CourseTaken> coursesTaken) {
+    private List<CourseTaken> filterOutDuplicateCourses(List<CourseTaken> originalList) {
         ArrayList<String> allCourseIDs = new ArrayList<String>();
         ArrayList<String> repeatedCourseIDs = new ArrayList<String>();
         ArrayList<CourseTaken> coursesToReturn = new ArrayList<CourseTaken>();
         Map<String, CourseTaken> acceptedCourses = new HashMap<String, CourseTaken>();
 
-        for (CourseTaken courseTaken: coursesTaken) {
+        for (CourseTaken courseTaken: originalList) {
             String courseID = courseTaken.getCourse().getId();
             if (acceptedCourses.containsKey(courseID)) {
                 repeatedCourseIDs.add(courseID);
@@ -467,7 +482,7 @@ public class DegreeRequirement {
         for (String courseID: repeatedCourseIDs) {
             CourseTaken courseToKeep = null;
 
-            for(CourseTaken courseTaken: coursesTaken) {
+            for(CourseTaken courseTaken: originalList) {
                 if (courseTaken.getCourse().getId().equals(courseID)) {
                     if (courseToKeep == null)
                         courseToKeep = courseTaken;
@@ -489,11 +504,12 @@ public class DegreeRequirement {
     }
 
     /**
+     * Returns a list with the courses to exclude filtered out.
      *
-     * @param acceptedCourses
-     * @return
+     * @param originalList courses to filter from.
+     * @return list of filtered courses.
      */
-    private List<CourseTaken> filterOutCoursesToExclude(List<CourseTaken> acceptedCourses) {
+    private List<CourseTaken> filterOutCoursesToExclude(List<CourseTaken> originalList) {
         List<CourseTaken> coursesToReturn = new ArrayList<CourseTaken>();
         Map<String, Course> coursesToExcludeMap = new HashMap<String, Course>();
 
@@ -501,7 +517,7 @@ public class DegreeRequirement {
             coursesToExcludeMap.put(course.getId(), course);
         }
 
-        for(CourseTaken courseTaken: acceptedCourses) {
+        for(CourseTaken courseTaken: originalList) {
             if (! coursesToExcludeMap.containsKey(courseTaken.getCourse().getId())) {
                 coursesToReturn.add(courseTaken);
             }
@@ -511,11 +527,12 @@ public class DegreeRequirement {
     }
 
     /**
+     * Filters out courses with excluded departments.
      *
-     * @param acceptedCourses
-     * @return
+     * @param originalList the original list of courses.
+     * @return the filtered list.
      */
-    private List<CourseTaken> filterOutExcludedDepts(List<CourseTaken> acceptedCourses) {
+    private List<CourseTaken> filterOutExcludedDepts(List<CourseTaken> originalList) {
         List<CourseTaken> coursesToReturn = new ArrayList<CourseTaken>();
         Map<String, String> deptsToExcludeMap = new HashMap<String, String>();
 
@@ -523,7 +540,7 @@ public class DegreeRequirement {
             deptsToExcludeMap.put(dept, null);
         }
 
-        for(CourseTaken courseTaken: acceptedCourses) {
+        for(CourseTaken courseTaken: originalList) {
             String courseID = courseTaken.getCourse().getId();
 
             if (! deptsToExcludeMap.containsKey(courseID.substring(0, courseID.length()-4))) {
@@ -535,11 +552,12 @@ public class DegreeRequirement {
     }
 
     /**
+     * returns a list of courses, filtered to only include the included departments.
      *
-     * @param acceptedCourses
-     * @return
+     * @param originalList the original list of courses.
+     * @return the filtered list of courses.
      */
-    private List<CourseTaken> filterByIncludedDepts(List<CourseTaken> acceptedCourses) {
+    private List<CourseTaken> filterByIncludedDepts(List<CourseTaken> originalList) {
         List<CourseTaken> coursesToReturn = new ArrayList<CourseTaken>();
         Map<String, String> deptsToIncludeMap = new HashMap<String, String>();
 
@@ -547,7 +565,7 @@ public class DegreeRequirement {
             deptsToIncludeMap.put(dept, null);
         }
 
-        for(CourseTaken courseTaken: acceptedCourses) {
+        for(CourseTaken courseTaken: originalList) {
             String courseID = courseTaken.getCourse().getId();
 
             if (deptsToIncludeMap.containsKey(courseID.substring(0, courseID.length()-4))) {
@@ -558,7 +576,13 @@ public class DegreeRequirement {
         return coursesToReturn;
     }
 
-    private List<CourseTaken> filterToApplicableCourses(List<CourseTaken> acceptedCourses) {
+    /**
+     * Returns a list of courses, filtered to only include courses from the applicable courses list.
+     *
+     * @param originalList the original list of courses.
+     * @return the filtered list of courses.
+     */
+    private List<CourseTaken> filterToApplicableCourses(List<CourseTaken> originalList) {
         List<CourseTaken> coursesToReturn = new ArrayList<CourseTaken>();
         Map<String, Course> courseMap = new HashMap<String, Course>();
 
@@ -566,7 +590,7 @@ public class DegreeRequirement {
             courseMap.put(course.getId(), course);
         }
 
-        for(CourseTaken courseTaken: acceptedCourses) {
+        for(CourseTaken courseTaken: originalList) {
             if (courseMap.containsKey(courseTaken.getCourse().getId()))
                 coursesToReturn.add(courseTaken);
         }
@@ -649,9 +673,10 @@ public class DegreeRequirement {
     }
 
     /**
+     * Returns the best courses for the minimum required count.
      *
-     * @param coursesTaken
-     * @return
+     * @param coursesTaken list of courses taken by the student.
+     * @return List filtered to only include the minimum number of the best courses.
      */
     private List<CourseTaken> getBestCoursesForMinCount(List<CourseTaken> coursesTaken) {
         List<CourseTaken> AList = new ArrayList<CourseTaken>();
@@ -706,9 +731,10 @@ public class DegreeRequirement {
     }
 
     /**
+     * Returns the best courses for the minimum required credits.
      *
-     * @param coursesTaken
-     * @return
+     * @param coursesTaken list of courses taken by the student.
+     * @return List filtered to only include the minimum number of the best courses.
      */
     private List<CourseTaken> getBestCoursesForMinCredits(List<CourseTaken> coursesTaken) {
         List<CourseTaken> AList = new ArrayList<CourseTaken>();

@@ -56,9 +56,9 @@ public class DegreePlan {
     /**
      * Checks if the student passed the degree plan, given the courses taken.
      *
-     * @param coursesTaken the courses that
-     * @param milestonesPassed
-     * @return
+     * @param coursesTaken the courses that the students has taken.
+     * @param milestonesPassed milestones that the student has passed.
+     * @return true if the student passed all requirements. Otherwise returns false.
      */
     public boolean getIsStudentPassed(List<CourseTaken> coursesTaken, List<MilestoneSet> milestonesPassed) {
         if (! breadthRequirements.checkIsPassed(coursesTaken, milestonesPassed))
@@ -73,6 +73,13 @@ public class DegreePlan {
         return true;
     }
 
+    /**
+     * Generates and returns a requirementCheckResult list for the courses taken and milestones passed.
+     *
+     * @param coursesTaken the courses that the student has taken.
+     * @param milestonesPassed milestones that the student has passed.
+     * @return List of results from the progress check.
+     */
     public List<RequirementCheckResult> generateRequirementCheckResults(List<CourseTaken> coursesTaken,
                                                                         List<MilestoneSet> milestonesPassed) {
 
@@ -106,10 +113,18 @@ public class DegreePlan {
         return requirementCheckResultList;
     }
 
+    /**
+     * returns the degree that this plan is for.
+     * @return the degree
+     */
     public Degree getDegree() {
         return degree;
     }
 
+    /**
+     * returns the department that this plan belongs to.
+     * @return the department.
+     */
     public Department getDepartment() {
         return department;
     }

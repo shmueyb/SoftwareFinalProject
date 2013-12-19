@@ -734,7 +734,7 @@ public class DegreePlanDAO {
         factory = new DegreeRequirementFactory();
 
         List<Course> planBProject = new ArrayList<Course>();
-        planBProject.add(CourseDAO.getCourseByID("csci8777"));
+        planBProject.add(CourseDAO.getCourseByID("csci8760"));
 
         factory.setRequirementName("Plan B Project");
         factory.setApplicableCourses(planBProject);

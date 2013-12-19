@@ -1,13 +1,23 @@
 package edu.umn.csci5801.db;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Ben
- * Date: 12/8/13
- * Time: 2:33 AM
- * To change this template use File | Settings | File Templates.
+ * @author Ben Hagaman
+ * @author Sam Blustin
+ * @author Catherine Reeves
+ * @author Xum Giang
+ * @author Trang Nguyen
+ *
+ * DatabaseAccessException.java
+ *
+ * This exception is to be thrown when there is a general problem with accessing any database.
  */
 public class DatabaseAccessException extends Exception{
+
+    /**
+     * Creates an exception with the supplied message.
+     *
+     * @param message the error message to print out.
+     */
     public DatabaseAccessException(String message) {
         super(message);
     }

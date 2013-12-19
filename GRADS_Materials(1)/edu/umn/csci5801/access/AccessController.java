@@ -8,11 +8,15 @@ import edu.umn.csci5801.db.StudentDAO;
 
 
 /**
- * Created with IntelliJ IDEA.
- * User: Ben
- * Date: 12/5/13
- * Time: 12:35 PM
- * To change this template use File | Settings | File Templates.
+ * @author Ben Hagaman
+ * @author Sam Blustin
+ * @author Catherine Reeves
+ * @author Xum Giang
+ * @author Trang Nguyen
+ *
+ * AccessController.java
+ *
+ * This class is used to check if the user of the system has the privileges to perform particular actions.
  */
 public class AccessController {
 

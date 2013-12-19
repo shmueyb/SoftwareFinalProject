@@ -116,7 +116,7 @@ public class GRADS implements GRADSIntf {
      * @param studentID the student ID to add a new note for.
      * @param note the note to append
      * @throws AccessDeniedException if the current user does not have access to
-     *      add notes to the student's record.
+     *      add notes to the student's record or is not a GPC.
      * @throws DatabaseAccessException if the note failed being added to the database
      */
     @Override
@@ -125,7 +125,6 @@ public class GRADS implements GRADSIntf {
 
         access.checkUserCanEditRecord(studentID);
         StudentRecordController.addNote(studentID, note);
-
     }
 
     /**

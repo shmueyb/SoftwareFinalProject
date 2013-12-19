@@ -23,6 +23,10 @@ public class UserDAO {
             }
         }
 
+        if (currentUser == null){
+            throw new DatabaseAccessException("User with userID: " + userID + " not found in the database");
+        }
+
         return currentUser;
     }
 

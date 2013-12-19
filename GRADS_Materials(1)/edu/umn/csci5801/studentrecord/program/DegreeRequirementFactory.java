@@ -28,10 +28,10 @@ public class DegreeRequirementFactory {
     private List<Course> applicableCourses;
     private List<Milestone> requiredMilestones;
     private Double minGPA;
-    private boolean isSNAllowed;
-    private boolean mustTakeAllCourses;
-    private boolean mayRepeatCoursesForCredit;
-    private boolean onlyAllowCoursesThatPassSubReqs;
+    private Boolean isSNAllowed;
+    private Boolean mustTakeAllCourses;
+    private Boolean mayRepeatCoursesForCredit;
+    private Boolean onlyAllowCoursesThatPassSubReqs;
     private Integer minCredits;
     private Integer minCourseCount;
     private Integer minCourseLevel;

@@ -194,6 +194,16 @@ public class DegreeRequirement {
     }
 
     /**
+     * Returns the minimum courses that this requirement needs to pass.
+     * @param originalList
+     * @return
+     */
+    protected List<CourseTaken> getMinimumNecessaryCourses(List<CourseTaken> originalList) {
+        //TODO
+        return originalList;
+    }
+
+    /**
      * Generates a list of results depending on if the requirement, and subrequirements are passed.
      *
      * @param coursesTaken courses that the student has taken.
